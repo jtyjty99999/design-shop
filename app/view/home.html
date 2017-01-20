@@ -1,0 +1,33 @@
+{% extends "_layout.html" %}
+
+{% block header %}
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<link rel="stylesheet" type="text/css" href="/public/css/jquery.fullPage.css" />
+{% endblock %}
+
+{% block body %}
+<!-- Main Content -->
+<div class="container" id="fullpage">
+    <div class="row section fp-auto-height">
+        <div class="col-md-12"><img src="/public/images/big/1.jpg" class="img-responsive" alt="Responsive image"></div>
+    </div>
+    <div class="row section fp-auto-height">
+        <div class="col-md-12"><img src="/public/images/big/2.jpg" class="img-responsive" alt="Responsive image"></div>
+    </div>
+    <div class="row section fp-auto-height">
+        <div class="col-md-12"><img src="/public/images/big/3.jpg" class="img-responsive" alt="Responsive image"></div>
+    </div>
+    <div class="row section fp-auto-height">
+        <div class="col-md-12"><img src="/public/images/big/4.jpg" class="img-responsive" alt="Responsive image"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="/public/js/plugins/jquery.fullPage.min.js"></script>
+
+<script>
+    $('#fullpage').fullpage();
+</script>
+{% endblock %}
