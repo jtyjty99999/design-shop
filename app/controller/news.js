@@ -16,7 +16,7 @@ exports.index = function* () {
     d.fromNow = moment(d.timestamp).fromNow();
     return d
   })
-
+  console.log(result.articles);
   yield this.render('news.html', Object.assign({
     pageNum,
     pageSize,
@@ -29,7 +29,7 @@ exports.add = function* () {
 
   const title = this.request.body.title;
   const content = this.request.body.content;
-  const desc = this.request.body.desc;
+  const description = this.request.body.description;
   const m_pic = this.request.body.m_pic;
   const method = this.request.body.method;
   const id = this.request.body.id;
@@ -38,14 +38,14 @@ exports.add = function* () {
       id,
       title,
       content,
-      desc,
+      description,
       m_pic
     });
   }else{
     yield this.service.news.insert({
         title,
         content,
-        desc,
+        description,
         m_pic
     });
   }
@@ -60,13 +60,13 @@ exports.update = function* () {
   const id = this.request.body.id;
   const title = this.request.body.title;
   const content = this.request.body.content;
-  const desc = this.request.body.desc;
+  const description = this.request.body.description;
   const m_pic = this.request.body.m_pic;
   yield this.service.news.update({
     id,
     title,
     content,
-    desc,
+    description,
     m_pic
   });
 

@@ -5,7 +5,7 @@ module.exports = app => {
     * insert(obj) {
       const result = yield app.mysql.insert('design_news', {
         title:obj.title,
-        desc: obj.desc,
+        description: obj.description,
         content:obj.content,
         m_pic:obj.m_pic,
         timestamp: app.mysql.literals.now,
@@ -16,7 +16,7 @@ module.exports = app => {
 
     // 获取文章列表
     * list(pageNum, pageSize) {
-      const articles = yield app.mysql.query('select id, title, "desc", content, timestamp,m_pic from design_news order by timestamp desc limit ? offset ?;', [ pageSize, (pageNum - 1) * pageSize ]);
+      const articles = yield app.mysql.query('select id, title, description, content, timestamp,m_pic from design_news order by timestamp desc limit ? offset ?;', [ pageSize, (pageNum - 1) * pageSize ]);
 
       return articles;
     }

@@ -22,7 +22,7 @@ exports.index = function* () {
 // 新增一个文章
 exports.add = function* () {
   const name = this.request.body.name;
-  const desc = this.request.body.desc;
+  const description = this.request.body.description;
   const position = this.request.body.position;
   const m_pic = this.request.body.m_pic;
   const in_pic = this.request.body.in_pic;
@@ -33,7 +33,7 @@ exports.add = function* () {
     yield this.service.team.update({
       id,
       name,
-      desc,
+      description,
       position,
       m_pic,
       in_pic
@@ -42,7 +42,7 @@ exports.add = function* () {
   }else{
     yield this.service.team.insert({
         name,
-        desc,
+        description,
         position,
         m_pic,
         in_pic
@@ -60,7 +60,7 @@ exports.add = function* () {
 exports.update = function* () {
   const id = this.request.body.id;
   const name = this.request.body.name;
-  const desc = this.request.body.desc;
+  const description = this.request.body.description;
   const position = this.request.body.position;
   const m_pic = this.request.body.m_pic;
   const in_pic = this.request.body.in_pic;
@@ -68,7 +68,7 @@ exports.update = function* () {
   yield this.service.team.update({
     id,
     name,
-    desc,
+    description,
     position,
     m_pic,
     in_pic

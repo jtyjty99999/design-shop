@@ -4,7 +4,7 @@ module.exports = app => {
   class MonthServer extends app.Service {
     * insert(obj) {
       const result = yield app.mysql.insert('design_team', {
-        desc:obj.desc,
+        description:obj.description,
         name: obj.name,
         position:obj.position,
         m_pic:obj.m_pic,
@@ -17,7 +17,7 @@ module.exports = app => {
 
     // 获取文章列表
     * list(pageNum, pageSize) {
-      const articles = yield app.mysql.query('select  id,  m_pic,in_pic, name, position,"desc" from design_team order by timestamp desc limit ? offset ?;', [ pageSize, (pageNum - 1) * pageSize ]);
+      const articles = yield app.mysql.query('select  id,  m_pic,in_pic, name, position,description from design_team order by timestamp desc limit ? offset ?;', [ pageSize, (pageNum - 1) * pageSize ]);
       return articles;
     }
 
