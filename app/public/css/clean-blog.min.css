@@ -127,6 +127,12 @@ margin-right: 45px;
     background-position: 0 11px;  
 }
 
+@media (min-width: 768px){
+    .navbar-nav.navbar-right:last-child {
+        margin-right: 0px!important;
+    }
+}
+
 .navbar-link{
     cursor: pointer
 }
@@ -162,7 +168,7 @@ margin-right: 45px;
 .media{margin-top:15px}
 .media:first-child{margin-top:0}
 .media-right,.media>.pull-right{padding-left:10px}
-.media-left,.media>.pull-left{padding-right:10px}
+.media-left,.media>.pull-left{padding-right:62px}
 .media-left,.media-right,.media-body{display:table-cell;vertical-align:top}
 .media-middle{vertical-align:middle}
 .media-bottom{vertical-align:bottom}
@@ -171,11 +177,12 @@ margin-right: 45px;
 
 .news{
     padding-left:463px;
-    padding-top: 25px;
-    padding-bottom: 25px;
+    padding-top: 0px;
+    padding-bottom: 30px;
     color:#3e3a39;
     background-color:#d1cdc4;
-    margin-bottom:30px
+    margin-bottom:30px;
+    height: 180px
 }
 .news-container{
     margin-top: 100px;
@@ -183,13 +190,14 @@ margin-right: 45px;
 .news .media-object{
     width: 183px;
     height: 131px;
-    background: red
+    background: red;
+    margin-top: 24px;
 }
 
 .news h4{
     font-size:21px;   
-    margin-bottom: 18px;
-    padding-top: 16px;
+    margin-bottom: 11px;
+    padding-top: 36px;
 }
 .news h5{
     font-size: 14px;
@@ -198,6 +206,7 @@ margin-right: 45px;
 .news p{
     font-size:12px;
     width: 432px;
+    margin-top: -6px;
 }
 #news-content p{
     font-family: 'Microsoft Yahei';
@@ -372,7 +381,7 @@ margin-right: 45px;
     margin-right: auto;
     padding: 0;
     margin-left: auto;
-        margin-bottom: 44px;
+        margin-bottom: 35px;
 }
 
 .team_tab li{
@@ -391,7 +400,88 @@ margin-right: 45px;
     display: inline-block;
     width: auto;
     padding-right: 2px;
+    position: relative
 }
+
+/*翻转图片样式*/
+
+@-webkit-keyframes flipOutYtest {
+    from {
+        -webkit-transform: perspective(1400px);
+        transform: perspective(1400px);
+    }
+    40% {
+        -webkit-transform: perspective(1400px) rotate3d(0, 1, 0, 60deg);
+        transform: perspective(1400px) rotate3d(0, 1, 0, 60deg);
+        opacity: 1;
+    }
+    50% {
+        -webkit-transform: perspective(1400px) rotate3d(0, 1, 0, 90deg);
+        transform: perspective(1400px) rotate3d(0, 1, 0, 90deg);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: perspective(1400px) rotate3d(0, 1, 0, 180deg);
+        transform: perspective(1400px) rotate3d(0, 1, 0, 180deg);
+        opacity: 0;
+    }
+}
+
+.test {
+    -webkit-animation: flipOutYtest 0.25s linear;
+    animation: flipOutYtest 0.25s linear;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes flipInYtest {
+    from {
+        -webkit-transform: perspective(1400px) rotate3d(0, 1, 0, -180deg);
+        transform: perspective(1400px) rotate3d(0, 1, 0, -180deg);
+        opacity: 0;
+    }
+    50% {
+        -webkit-transform: perspective(1400px) rotate3d(0, 1, 0, -90deg);
+        transform: perspective(1400px) rotate3d(0, 1, 0, -90deg);
+        opacity: 0;
+    }
+    60% {
+        -webkit-transform: perspective(1400px) rotate3d(0, 1, 0, -60deg);
+        transform: perspective(1400px) rotate3d(0, 1, 0, -60deg);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: perspective(1400px);
+        transform: perspective(1400px);
+        opacity: 1;
+    }
+}
+
+.test2 {
+    -webkit-animation: flipInYtest 0.25s linear;
+    animation: flipInYtest 0.25s linear;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    width: 100%;
+    min-height: 140px;
+    background-color: #ccc;
+    opacity: 0.7;
+    text-align: center;
+    vertical-align: middle;
+    color: #fff;
+    font-size: 18px;
+    overflow: hidden;
+    line-height: 140px
+}
+
+.well-item { position: relative; float: left; width: 217px; min-height: 140px; z-index:999}
+.well-item img { width: 100%; min-height: 140px; }
+  .correct { position: absolute; width: 100%; z-index:1px}
+  .opposite { min-height: 140px; width: 100%;}
+  .opposite div { min-height: 140px; width: 100%; }
+  .opposite-content {width: 100%; min-height: 140px;}
+  .opposite-content-text {vertical-align: middle; text-align: center; color: white; font-size: 24px; min-height:150px}
+
 
 /*contact*/
 

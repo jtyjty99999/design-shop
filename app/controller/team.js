@@ -10,6 +10,13 @@ exports.index = function* () {
   const result = yield {
     articles: this.service.team.list(pageNum, pageSize),
     count: this.service.team.count(),
+    hangzhou: this.service.team.search('hangzhou'),
+    london: this.service.team.search('london'),
+    losa: this.service.team.search('losa'),
+    brand: this.service.team.search('brand'),
+    business: this.service.team.search('business'),
+    research: this.service.team.search('research'),
+    design: this.service.team.search('design'),
     current:'team'
   };
 
@@ -26,8 +33,8 @@ exports.add = function* () {
   const description = this.request.body.description;
   const position = this.request.body.position;
   const m_pic = this.request.body.m_pic;
-  const in_pic = this.request.body.in_pic;
-
+  const content = this.request.body.content;
+  const tag = this.request.body.tag;
   const id = this.request.body.id;
   const method = this.request.body.method;
   if(method ==='PUT'){
@@ -37,7 +44,8 @@ exports.add = function* () {
       description,
       position,
       m_pic,
-      in_pic
+      content,
+      tag
     });
 
   }else{
@@ -46,7 +54,8 @@ exports.add = function* () {
         description,
         position,
         m_pic,
-        in_pic
+        content,
+        tag
     });
 
 
@@ -64,15 +73,16 @@ exports.update = function* () {
   const description = this.request.body.description;
   const position = this.request.body.position;
   const m_pic = this.request.body.m_pic;
-  const in_pic = this.request.body.in_pic;
-
+  const content = this.request.body.content;
+  const tag = this.request.body.tag;
   yield this.service.team.update({
     id,
     name,
     description,
     position,
     m_pic,
-    in_pic
+    content,
+    tag
   });
 
   this.redirect(`/manager`);
@@ -91,16 +101,10 @@ exports.deleteTeam = function* () {
     this.body = false;
   }
 };
-/*
+
 
 exports.find = function* () {
   const id = +this.query.id;
-  const article = yield this.service.article.find(id);
-
-  article.fromNow = moment(article.modified_time).fromNow();
-  article.html = marked(article.content);
-
-  yield this.render('post.html', article);
-
+  const article = yield this.service.team.find(id);
+  this.body = article;
 };
-*/

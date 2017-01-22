@@ -89,6 +89,33 @@ exports.editorTeam = function* () {
     article = yield this.service.team.find(articleID);
   }
 
+  if(articleID &&article&&article.tag){
+
+    if(article.tag.indexOf('hangzhou')!==-1){
+      article.ishangzhou = true;
+    }
+    if(article.tag.indexOf('london')!==-1){
+      article.islondon = true;
+    }
+    if(article.tag.indexOf('losa')!==-1){
+      article.islosa = true;
+    }
+    if(article.tag.indexOf('design')!==-1){
+      article.isdesign = true;
+    }
+    if(article.tag.indexOf('business')!==-1){
+      article.isbusiness = true;
+    }
+    if(article.tag.indexOf('research')!==-1){
+      article.isresearch = true;
+    }
+    if(article.tag.indexOf('brand')!==-1){
+      article.isbrand = true;
+    }
+
+  }
+
+
   if (articleID && article) {
     isNew = false;
   }
@@ -105,12 +132,13 @@ exports.editorProject = function* () {
   let isNew = true;
 
   if (articleID) {
-    article = yield this.service.article.find(articleID);
+    article = yield this.service.project.find(articleID);
   }
 
   if (articleID && article) {
     isNew = false;
   }
+  console.log(article);
   yield this.render('admin/editor-project.html', {
     article,
     isNew,

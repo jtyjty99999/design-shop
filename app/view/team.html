@@ -21,60 +21,106 @@
             </div>
 
             <div class="team-list-group">
-                <div class="col-md-2">
-                    <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161027/134042151020.jpg" data-holder-rendered="true">
-                    <h4></h4>
+                {% for person in hangzhou %}
+
+                <div class="col-md-2" data-id="{{person.id }}">
+                        <div class="well-item">
+                            <div class="correct"> <img src="{{person.m_pic}}" width="215" class="test2"></div>
+                            <div class="opposite">
+                                <div class="test">
+                                    {{person.name }} {{person.position }}				
+                                </div>
+                            </div>
+                        </div>
                 </div>
-                <div class="col-md-2">
-                    <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161027/134042151020.jpg" data-holder-rendered="true">
-                    <h4></h4>
-                </div>
+                {% endfor %}
+
             </div>
             <div class="team-list-group">
-                <div class="col-md-2">
-                    <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161027/134042151020.jpg" data-holder-rendered="true">
-                    <h4></h4>
+                {% for person in london %}
+                <div class="col-md-2" data-id="{{person.id }}">
+                        <div class="well-item">
+                            <div class="correct"> <img src="{{person.m_pic}}" width="215" class="test2"></div>
+                            <div class="opposite">
+                                <div class="test">
+                                    {{person.name }} {{person.position }}				
+                                </div>
+                            </div>
+                        </div>
                 </div>
+                {% endfor %}
             </div>
             <div class="team-list-group">
-                <div class="col-md-2">
-                    <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161027/134042151020.jpg" data-holder-rendered="true">
-                    <h4></h4>
+                {% for person in losa %}
+                <div class="col-md-2" data-id="{{person.id }}">
+                        <div class="well-item">
+                            <div class="correct"> <img src="{{person.m_pic}}" width="215" class="test2"></div>
+                            <div class="opposite">
+                                <div class="test">
+                                    {{person.name }} {{person.position }}				
+                                </div>
+                            </div>
+                        </div>
                 </div>
-                <div class="col-md-2">
-                    <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161027/134042151020.jpg" data-holder-rendered="true">
-                    <h4></h4>
-                </div>
-                <div class="col-md-2">
-                    <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161027/134042151020.jpg" data-holder-rendered="true">
-                    <h4></h4>
-                </div>
+                {% endfor %}
             </div>
             <div class="team-list-group">
-                <div class="col-md-2">
-                    <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161027/134042151020.jpg" data-holder-rendered="true">
-                    <h4></h4>
+            </div>
+            <div class="team-list-group">
+                {% for person in design %}
+                <div class="col-md-2" data-id="{{person.id }}">
+                        <div class="well-item">
+                            <div class="correct"> <img src="{{person.m_pic}}" width="215" class="test2"></div>
+                            <div class="opposite">
+                                <div class="test">
+                                    {{person.name }} {{person.position }}				
+                                </div>
+                            </div>
+                        </div>
                 </div>
-                <div class="col-md-2">
-                    <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161027/134042151020.jpg" data-holder-rendered="true">
-                    <h4></h4>
+                {% endfor %}
+            </div>
+            <div class="team-list-group">
+                {% for person in brand %}
+                <div class="col-md-2" data-id="{{person.id }}">
+                        <div class="well-item">
+                            <div class="correct"> <img src="{{person.m_pic}}" width="215" class="test2"></div>
+                            <div class="opposite">
+                                <div class="test">
+                                    {{person.name }} {{person.position }}				
+                                </div>
+                            </div>
+                        </div>
                 </div>
-                <div class="col-md-2">
-                    <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161027/134042151020.jpg" data-holder-rendered="true">
-                    <h4></h4>
+                {% endfor %}
+            </div>
+            <div class="team-list-group">
+                {% for person in research %}
+                <div class="col-md-2" data-id="{{person.id }}">
+                        <div class="well-item">
+                            <div class="correct"> <img src="{{person.m_pic}}" width="215" class="test2"></div>
+                            <div class="opposite">
+                                <div class="test">
+                                    {{person.name }} {{person.position }}				
+                                </div>
+                            </div>
+                        </div>
                 </div>
-                <div class="col-md-2">
-                    <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161027/134042151020.jpg" data-holder-rendered="true">
-                    <h4></h4>
+                {% endfor %}
+            </div>
+            <div class="team-list-group">
+                {% for person in business %}
+                <div class="col-md-2" data-id="{{person.id }}">
+                        <div class="well-item">
+                            <div class="correct"> <img src="{{person.m_pic}}" width="215" class="test2"></div>
+                            <div class="opposite">
+                                <div class="test">
+                                    {{person.name }} {{person.position }}				
+                                </div>
+                            </div>
+                        </div>
                 </div>
-                <div class="col-md-2">
-                    <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161027/134042151020.jpg" data-holder-rendered="true">
-                    <h4></h4>
-                </div>
-                <div class="col-md-2">
-                    <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161027/134042151020.jpg" data-holder-rendered="true">
-                    <h4></h4>
-                </div>
+                {% endfor %}
             </div>
         </div>
 </div>
@@ -120,6 +166,60 @@
 			})
             $ul.css('display','none');
             $ul.eq(0).css('display','block');
+
+                $(document).delegate('.team-list-group img','click',function(){
+                    let url = $(this).attr('data-src');
+                    index = $(this).parent().index();
+                    location.href = url;
+                })
+
+        $(".well-item").hover(function(){
+
+            $(this).find(".correct").children().removeClass();
+            $(this).find(".opposite").children().removeClass();
+            $(this).find(".correct").children().addClass("test");
+            $(this).find(".opposite").children().addClass('test2');
+        },function(){
+            $(this).find(".correct").children().removeClass();
+            $(this).find(".opposite").children().removeClass();
+            $(this).find(".correct").children().addClass("test2");
+            $(this).find(".opposite").children().addClass('test');
+        });
+
+
+        $(document).delegate('.col-md-2','click',function(){
+            let in_png = $(this).attr('data-big');
+            let id = $(this).attr('data-id');
+
+            $.ajax({
+            url: "/findteam?id="+id,
+            }).success(function(res) {
+
+                layer.open({
+                        title: false,
+                        type: 1,
+                        shadeClose: true,
+                        closeBtn:1,
+                        shade: 0.8,
+                        area:['80%','90%'],
+                        content: '<div id="news-content">'+res.content+'</div>',
+                        success: function(layero, i){
+                            // console.log(index);
+                            $('.control-btn').show();
+
+                        },
+                        end: function(layero, i){
+                            $('.control-btn').hide();
+                        }
+                    }); 
+
+            });
+
+
+
+        })
+
+
 
 	});
 

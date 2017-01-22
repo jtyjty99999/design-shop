@@ -8,7 +8,8 @@ module.exports = app => {
         name: obj.name,
         position:obj.position,
         m_pic:obj.m_pic,
-        in_pic:obj.in_pic,
+        content:obj.content,
+        tag:obj.tag,
         timestamp: app.mysql.literals.now,
       });
 
@@ -17,10 +18,15 @@ module.exports = app => {
 
     // 获取文章列表
     * list(pageNum, pageSize) {
-      const articles = yield app.mysql.query('select  id,  m_pic,in_pic, name, position,description from design_team order by timestamp desc limit ? offset ?;', [ pageSize, (pageNum - 1) * pageSize ]);
+      const articles = yield app.mysql.query('select  id, tag ,m_pic,content, name, position,description from design_team order by timestamp desc limit ? offset ?;', [ pageSize, (pageNum - 1) * pageSize ]);
       return articles;
     }
+    // 获取某一类的team
+    * search(type) {
+      const article = yield app.mysql.query('select  id, tag ,m_pic,content, name, position,description from design_team where tag = ? order by timestamp desc', [ type ]);
 
+      return article;
+    }
     // 获取文章列表
     * find(id) {
       const article = yield app.mysql.get('design_team', { id });

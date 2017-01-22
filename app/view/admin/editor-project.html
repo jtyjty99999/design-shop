@@ -44,12 +44,17 @@
             <div class="row control-group" style="margin: 0 60px 60px;" >
                 <div class="form-group col-xs-12 floating-label-form-group controls">
                     <label>项目类型</label>
-                    <input value="{{article.type}}" type="text" class="form-control" placeholder="项目类型" id="type" name="type">
+                    <select name="type" id="type" class="form-control">
+                        <option value="eat" {% if article.type =='eat' %}selected{% endif %}>eat</option>
+                        <option value="live" {% if article.type =='live' %}selected{% endif %}>live</option>
+                        <option value="travel" {% if article.type =='travel' %}selected{% endif %}>travel</option>
+                        <option value="wear" {% if article.type =='wear' %}selected{% endif %}>wear</option>
+                    </select>
                     <p class="help-block text-danger"></p>
                 </div>
             </div>
             <div class="editormd" id="article-editormd">
-                <textarea name="content" id="editor1"></textarea>
+                <textarea name="content" id="editor1">{{article.content}}</textarea>
             </div>
             <br/><input id="article-submit" type="submit" name="submit" value="Submit" class="btn" style="margin-left: 5%;" />
         </form>
