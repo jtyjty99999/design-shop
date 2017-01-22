@@ -22,8 +22,85 @@ exports.login = function* () {
 
 };
 
-exports.editor = function* () {
-  const articleID = parseInt(this.query.articleID);
+exports.editorJob = function* () {
+  const articleID = parseInt(this.query.jobID);
+  let article = null;
+  let isNew = true;
+
+  if (articleID) {
+    article = yield this.service.job.find(articleID);
+  }
+
+  if (articleID && article) {
+    isNew = false;
+  }
+  yield this.render('admin/editor-job.html', {
+    article,
+    isNew,
+    login: this.session.login,
+  });
+
+};
+
+exports.editorPress = function* () {
+  const articleID = parseInt(this.query.pressID);
+  let article = null;
+  let isNew = true;
+
+  if (articleID) {
+    article = yield this.service.press.find(articleID);
+  }
+
+  if (articleID && article) {
+    isNew = false;
+  }
+  yield this.render('admin/editor-press.html', {
+    article,
+    isNew,
+    login: this.session.login,
+  });
+
+};
+exports.editorNews = function* () {
+  const articleID = parseInt(this.query.newsID);
+  let article = null;
+  let isNew = true;
+
+  if (articleID) {
+    article = yield this.service.news.find(articleID);
+  }
+
+  if (articleID && article) {
+    isNew = false;
+  }
+  yield this.render('admin/editor-news.html', {
+    article,
+    isNew,
+    login: this.session.login,
+  });
+
+};
+exports.editorTeam = function* () {
+  const articleID = parseInt(this.query.teamID);
+  let article = null;
+  let isNew = true;
+
+  if (articleID) {
+    article = yield this.service.team.find(articleID);
+  }
+
+  if (articleID && article) {
+    isNew = false;
+  }
+  yield this.render('admin/editor-team.html', {
+    article,
+    isNew,
+    login: this.session.login,
+  });
+
+};
+exports.editorProject = function* () {
+  const articleID = parseInt(this.query.projectID);
   let article = null;
   let isNew = true;
 
@@ -34,7 +111,7 @@ exports.editor = function* () {
   if (articleID && article) {
     isNew = false;
   }
-  yield this.render('admin/editor.html', {
+  yield this.render('admin/editor-project.html', {
     article,
     isNew,
     login: this.session.login,
@@ -47,8 +124,11 @@ exports.manager = function* () {
   const pageSize = +this.query.pageSize || 10;
 
   const result = yield {
-    articles: this.service.article.list(pageNum, pageSize),
-    count: this.service.article.count(),
+    projects: this.service.project.list(pageNum, pageSize),
+    news: this.service.news.list(pageNum, pageSize),
+    jobs: this.service.job.list(pageNum, pageSize),
+    teams: this.service.team.list(pageNum, pageSize),
+    presses: this.service.press.list(pageNum, pageSize),
   };
 
   yield this.render('admin/manager.html', Object.assign({

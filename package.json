@@ -7,7 +7,7 @@
     "start": "node index.js",
     "dev": "egg-bin dev",
     "lint": "eslint app config test index.js",
-    "test": "npm run lint && npm run test-local",
+    "test": "npm run test-local",
     "test-local": "egg-bin test",
     "cov": "egg-bin cov",
     "ci": "npm run lint && npm run cov"

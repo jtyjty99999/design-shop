@@ -1,0 +1,130 @@
+{% extends "_layout.html" %}
+
+{% block body %}
+<!-- Main Content -->
+<div class="container">
+    
+        <div class="row" id="team-list">
+
+            <div class="col-md-12">
+                <ul class="jobs tab team_tab" id="job_tab">
+                    <Li class="current">HANGZHOU</Li>
+                    <Li>LONDON</Li>
+                    <Li>LOS ANGELES</Li>
+                    <Li class="join-us"><a href="/job">JOIN US</a></Li>
+                    <Li>DESIGN</Li>
+                    <Li>BRAND</Li>
+                    <Li>RESEARCH</Li>
+                    <Li>BUSINESS</Li>
+
+                </ul>
+            </div>
+
+            <div class="team-list-group">
+                <div class="col-md-2">
+                    <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161027/134042151020.jpg" data-holder-rendered="true">
+                    <h4></h4>
+                </div>
+                <div class="col-md-2">
+                    <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161027/134042151020.jpg" data-holder-rendered="true">
+                    <h4></h4>
+                </div>
+            </div>
+            <div class="team-list-group">
+                <div class="col-md-2">
+                    <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161027/134042151020.jpg" data-holder-rendered="true">
+                    <h4></h4>
+                </div>
+            </div>
+            <div class="team-list-group">
+                <div class="col-md-2">
+                    <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161027/134042151020.jpg" data-holder-rendered="true">
+                    <h4></h4>
+                </div>
+                <div class="col-md-2">
+                    <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161027/134042151020.jpg" data-holder-rendered="true">
+                    <h4></h4>
+                </div>
+                <div class="col-md-2">
+                    <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161027/134042151020.jpg" data-holder-rendered="true">
+                    <h4></h4>
+                </div>
+            </div>
+            <div class="team-list-group">
+                <div class="col-md-2">
+                    <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161027/134042151020.jpg" data-holder-rendered="true">
+                    <h4></h4>
+                </div>
+                <div class="col-md-2">
+                    <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161027/134042151020.jpg" data-holder-rendered="true">
+                    <h4></h4>
+                </div>
+                <div class="col-md-2">
+                    <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161027/134042151020.jpg" data-holder-rendered="true">
+                    <h4></h4>
+                </div>
+                <div class="col-md-2">
+                    <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161027/134042151020.jpg" data-holder-rendered="true">
+                    <h4></h4>
+                </div>
+                <div class="col-md-2">
+                    <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161027/134042151020.jpg" data-holder-rendered="true">
+                    <h4></h4>
+                </div>
+                <div class="col-md-2">
+                    <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161027/134042151020.jpg" data-holder-rendered="true">
+                    <h4></h4>
+                </div>
+            </div>
+        </div>
+</div>
+{% endblock %}
+
+
+{% block script %}
+
+<script type="text/javascript" src="/public/js/plugins/layer.js"></script>
+
+<script>
+
+  function showdetail(id){
+	  
+    layer.open({
+            title: false,
+            type: 1,
+            shadeClose: true,
+            closeBtn:1,
+            shade: 0.8,
+            area:['760px','460px'],
+            content: '<div class="dialog-content">测试</div>' 
+        }); 
+
+  }
+
+
+</script>
+
+<script>
+
+	$(function(){
+			var $li = $('#job_tab li').not('.join-us');
+			var $ul = $('.team-list-group');
+						
+			$li.mouseover(function(){
+				var $this = $(this);
+				var $t = $this.index();
+				$li.removeClass();
+				$this.addClass('current');
+				$ul.css('display','none');
+				$ul.eq($t).css('display','block');
+			})
+            $ul.css('display','none');
+            $ul.eq(0).css('display','block');
+
+	});
+
+
+
+
+</script>
+{% endblock %}

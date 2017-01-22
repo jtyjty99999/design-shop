@@ -1,30 +1,91 @@
 {% extends "_layout.html" %}
 
-{% block header %}
-<!-- Page Header -->
-<!-- Set your background image for this header on the line below. -->
-<header class="intro-header" style="background-image: url('public/images/home-bg.jpg')">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>{{site[0].name if site.length else 'Aliyun Egg Blog'}}</h1>
-                    <hr class="small">
-                    <span class="subheading">{{site[0].sub_name if site.length else 'Base on Aliyun Egg'}}</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-{% endblock %}
 
 {% block body %}
 <!-- Main Content -->
 <div class="container">
     <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            contact
+        <div class="col-md-12 contact_title" id="job_title">
+            <h3>FIND DEFRONT</h3>
         </div>
+
+        <div class="col-md-12">
+            <ul class="jobs tab contact_tab" id="job_tab">
+                <Li class="current">OFFICE</Li>
+                <Li>COOPERATION</Li>
+                <Li>RETAILER</Li>
+                <Li>SOCIAL MEDIA</Li>
+            </ul>
+        </div>
+        
+        <div class="col-md-12">
+            <div class="contact-panel">
+                <img src="/public/images/big/map.jpg" alt="">
+            </div>
+            <div class="contact-panel">
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+            </div>
+            <div class="contact-panel">
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+            </div>
+            <div class="contact-panel">
+                <ul class="media-link-list">
+                    <li class="media-link">1</li>
+                    <li class="media-link">2</li>
+                    <li class="media-link">3</li>
+                    <li class="media-link">4</li>
+                    <li class="media-link">5</li>
+                </ul>
+            </div> 
+        </div>
+
     </div>
 </div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="/public/js/plugins/layer.js"></script>
+
+<script>
+
+  function showdetail(id){
+	  
+    layer.open({
+            title: false,
+            type: 1,
+            shadeClose: true,
+            closeBtn:1,
+            shade: 0.8,
+            area:['760px','460px'],
+            content: '<div class="dialog-content">测试</div>' 
+        }); 
+
+  }
+
+
+</script>
+
+<script>
+
+	$(function(){
+			var $li = $('#job_tab li');
+			var $ul = $('.contact-panel');
+						
+			$li.mouseover(function(){
+				var $this = $(this);
+				var $t = $this.index();
+				$li.removeClass();
+				$this.addClass('current');
+				$ul.css('display','none');
+				$ul.eq($t).css('display','block');
+			})
+            $li.removeClass();
+            $li.eq(0).addClass('current');
+            $ul.css('display','none');
+			$ul.eq(0).css('display','block');
+
+
+	});
+
+</script>
 {% endblock %}

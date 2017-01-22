@@ -1,30 +1,85 @@
 {% extends "_layout.html" %}
 
-{% block header %}
-<!-- Page Header -->
-<!-- Set your background image for this header on the line below. -->
-<header class="intro-header" style="background-image: url('public/images/home-bg.jpg')">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>{{site[0].name if site.length else 'Aliyun Egg Blog'}}</h1>
-                    <hr class="small">
-                    <span class="subheading">{{site[0].sub_name if site.length else 'Base on Aliyun Egg'}}</span>
+{% block body %}
+<!-- Main Content -->
+<div class="container press-container">
+    
+        <div class="row press-pic-list">
+            <div class="col-md-3">
+                <img onclick="showdetail(156);" style="cursor:pointer" src="http://www.de-front.com/upload/20161116/101739766449.jpg">
+                <div class="press-info">
+                    test99999
+                </div>
+            </div>
+            <div class="col-md-3">
+                <img onclick="showdetail(156);" style="cursor:pointer" src="http://www.de-front.com/upload/20161116/101739766449.jpg">
+                <div class="press-info">
+                    test99999
+                </div>
+            </div>
+            <div class="col-md-3">
+                <img onclick="showdetail(156);" style="cursor:pointer" src="http://www.de-front.com/upload/20161116/101739766449.jpg">
+                <div class="press-info">
+                    test99999
+                </div>
+            </div>
+            <div class="col-md-3">
+                <img onclick="showdetail(156);" style="cursor:pointer" src="http://www.de-front.com/upload/20161116/101739766449.jpg">
+                <div class="press-info">
+                    test99999
                 </div>
             </div>
         </div>
-    </div>
-</header>
+        <div class="row press-pic-list">
+            <div class="col-md-3">
+                <img onclick="showdetail(156);" style="cursor:pointer" src="http://www.de-front.com/upload/20161116/101739766449.jpg">
+                <div class="press-info">
+                    test99999
+                </div>
+            </div>
+            <div class="col-md-3">
+                <img onclick="showdetail(156);" style="cursor:pointer" src="http://www.de-front.com/upload/20161116/101739766449.jpg">
+                <div class="press-info">
+                    test99999
+                </div>
+            </div>
+            <div class="col-md-3">
+                <img onclick="showdetail(156);" style="cursor:pointer" src="http://www.de-front.com/upload/20161116/101739766449.jpg">
+                <div class="press-info">
+                    test99999
+                </div>
+            </div>
+            <div class="col-md-3">
+                <img onclick="showdetail(156);" style="cursor:pointer" src="http://www.de-front.com/upload/20161116/101739766449.jpg">
+                <div class="press-info">
+                    test99999
+                </div>
+            </div>
+        </div>
+</div>
 {% endblock %}
 
-{% block body %}
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            press
-        </div>
-    </div>
-</div>
+
+{% block script %}
+
+<script type="text/javascript" src="/public/js/plugins/layer.js"></script>
+
+<script>
+
+  function showdetail(id){
+	  
+    layer.open({
+            title: false,
+            type: 1,
+            shadeClose: true,
+            closeBtn:1,
+            shade: 0.8,
+            area:['760px','460px'],
+            content: '<div class="dialog-content">测试</div>' 
+        }); 
+
+  }
+
+
+</script>
 {% endblock %}

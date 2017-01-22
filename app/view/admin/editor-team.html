@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="page-heading">
-                    <h1>Published an article</h1>
+                    <h1>Published a team person</h1>
                     <hr class="small">
                 </div>
             </div>
@@ -22,22 +22,43 @@
 {% block body %}
 <div class="container">
     <div class="row article-form">
-        <form action="/article" method="post">
+        <form action="/team" method="post">
             {% if article.id %}
             <input type="hidden" name="id" value="{{article.id}}">
             <input type="hidden" name="id" value="PUT">
             {% endif %}
             <div class="row control-group" style="margin: 0 60px;" >
                 <div class="form-group col-xs-12 floating-label-form-group controls">
-                    <label>Title</label>
-                    <input value="{{article.title}}" type="text" class="form-control" placeholder="Title" id="title" name="title" required data-validation-required-message="Please enter article title.">
+                    <label>姓名</label>
+                    <input value="{{article.name}}" type="text" class="form-control" placeholder="姓名" id="name" name="name" required data-validation-required-message="Please enter article title.">
+                    <p class="help-block text-danger"></p>
+                </div>
+            </div>
+            <div class="row control-group" style="margin: 0 60px;" >
+                <div class="form-group col-xs-12 floating-label-form-group controls">
+                    <label>描述</label>
+                    <input value="{{article.desc}}" type="text" class="form-control" placeholder="描述" id="desc" name="desc" required data-validation-required-message="Please enter article title.">
                     <p class="help-block text-danger"></p>
                 </div>
             </div>
             <div class="row control-group" style="margin: 0 60px 60px;" >
                 <div class="form-group col-xs-12 floating-label-form-group controls">
-                    <label>Sub-Title</label>
-                    <input value="{{article.sub_title}}" type="text" class="form-control" placeholder="Sub-Title" id="sub_title" name="sub_title">
+                    <label>职位</label>
+                    <input value="{{article.position}}" type="text" class="form-control" placeholder="职位" id="position" name="position">
+                    <p class="help-block text-danger"></p>
+                </div>
+            </div>
+            <div class="row control-group" style="margin: 0 60px 60px;" >
+                <div class="form-group col-xs-12 floating-label-form-group controls">
+                    <label>团队图片</label>
+                    <input value="{{article.m_pic}}" type="text" class="form-control" placeholder="团队图片" id="m_pic" name="m_pic">
+                    <p class="help-block text-danger"></p>
+                </div>
+            </div>
+            <div class="row control-group" style="margin: 0 60px 60px;" >
+                <div class="form-group col-xs-12 floating-label-form-group controls">
+                    <label>团队介绍附图</label>
+                    <input value="{{article.in_pic}}" type="text" class="form-control" placeholder="团队介绍附图" id="in_pic" name="in_pic">
                     <p class="help-block text-danger"></p>
                 </div>
             </div>
