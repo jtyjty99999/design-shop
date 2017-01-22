@@ -8,8 +8,13 @@ exports.index = function* () {
   const pageSize = +this.query.pageSize || 10;
 
   const result = yield {
-    articles: this.service.project.list(pageNum, pageSize),
+    all: this.service.project.list(pageNum, pageSize),
+    wear: this.service.project.search('wear'),
+    eat: this.service.project.search('eat'),
+    live: this.service.project.search('live'),
+    travel: this.service.project.search('travel'),
     count: this.service.project.count(),
+    current:'project'
   };
 
   yield this.render('project.html', Object.assign({
@@ -24,6 +29,7 @@ exports.add = function* () {
   const m_pic = this.request.body.m_pic;
   const content = this.request.body.content;
   const type = this.request.body.type;
+  const title = this.request.body.title;
   const id = this.request.body.id;
   const method = this.request.body.method;
   if(method ==='PUT'){
@@ -32,17 +38,17 @@ exports.add = function* () {
       m_pic,
       content,
       type,
+      title
     });
   }else{
     yield this.service.project.insert({
         content,
         m_pic,
-        type
+        type,
+        title
     });
 
   }
-
-
 
   this.redirect('/manager');
 
@@ -54,12 +60,14 @@ exports.update = function* () {
   const m_pic = this.request.body.m_pic;
   const content = this.request.body.content;
   const type = this.request.body.type;
+  const title = this.request.body.title;
 
   yield this.service.project.update({
     id,
     m_pic,
     content,
     type,
+    title
   });
 
   this.redirect(`/manager`);
@@ -78,16 +86,11 @@ exports.deleteProject = function* () {
     this.body = false;
   }
 };
-/*
 
 exports.find = function* () {
   const id = +this.query.id;
-  const article = yield this.service.article.find(id);
-
-  article.fromNow = moment(article.modified_time).fromNow();
-  article.html = marked(article.content);
-
-  yield this.render('post.html', article);
+  const article = yield this.service.project.find(id);
+  console.log(article);
+  yield this.render('project-info.html', article);
 
 };
-*/

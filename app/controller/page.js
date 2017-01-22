@@ -26,12 +26,16 @@ exports.home = function* () {
 };
 
 exports.about = function* () {
-    const result = {};
+    const result = {
+          current:'about'
+    };
     yield this.render('about.html', result);
 };
 
 exports.contact = function* () {
-    const result = {};
+    const result = {
+          current:'contact'
+    };
     yield this.render('contact.html', result);
 };
 

@@ -10,6 +10,7 @@ exports.index = function* () {
   const result = yield {
     articles: this.service.press.list(pageNum, pageSize),
     count: this.service.press.count(),
+    current:'press'
   };
 
   yield this.render('press.html', Object.assign({

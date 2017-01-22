@@ -31,7 +31,7 @@ module.exports = app => {
   app.put('/press', admin, app.controller.press.update);
   app.delete('/press', admin, app.controller.press.deletePress);
 
-  app.get('/project', install, app.controller.project.find);
+  app.get('/project/info', install, app.controller.project.find);
   app.post('/project', admin, app.controller.project.add);
   app.put('/project', admin, app.controller.project.update);
   app.delete('/project', admin, app.controller.project.deleteProject);

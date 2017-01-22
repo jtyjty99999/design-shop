@@ -10,6 +10,7 @@ exports.index = function* () {
   const result = yield {
     articles: this.service.news.list(pageNum, pageSize),
     count: this.service.news.count(),
+    current:'news'
   };
 
   result.articles = result.articles.map(function(d){

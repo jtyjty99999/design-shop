@@ -10,6 +10,7 @@ exports.index = function* () {
   const result = yield {
     articles: this.service.job.list(pageNum, pageSize),
     count: this.service.job.count(),
+    current:'job'
   };
 
   yield this.render('job.html', Object.assign({

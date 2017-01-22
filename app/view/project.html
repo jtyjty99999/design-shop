@@ -14,32 +14,101 @@
              </ul>
          </div>
 
-    <div id="project-list">
+    <div class="project-card">
 
         <div class="row">
+            {% for project in all %}
             <div class="col-md-4">
-                <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161104/09471965680.jpg" data-holder-rendered="true">
+                <img data-src="/project/info?id={{project.id}}" class="img" alt="140x140" src="{{project.m_pic}}" data-holder-rendered="true">
+                <div class="mask-title">{{project.title}}</div>
             </div>
-            <div class="col-md-4">
-                <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161104/09471965680.jpg" data-holder-rendered="true">
-            </div>
-            <div class="col-md-4">
-                <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161104/09471965680.jpg" data-holder-rendered="true">
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-4">
-                <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161104/09471965680.jpg" data-holder-rendered="true">
-            </div>
-            <div class="col-md-4">
-                <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161104/09471965680.jpg" data-holder-rendered="true">
-            </div>
-            <div class="col-md-4">
-                <img data-src="holder.js/140x140" class="img" alt="140x140" src="http://www.de-front.com/upload/20161104/09471965680.jpg" data-holder-rendered="true">
-            </div>
+            {% endfor %}
         </div>
 
     </div>
+    <div class="project-card">
+
+        <div class="row">
+            {% for project in wear %}
+            <div class="col-md-4">
+                <img data-src="/project/info?id={{project.id}}" class="img" alt="140x140" src="{{project.m_pic}}" data-holder-rendered="true">
+                <div class="mask-title">{{project.title}}</div>
+            </div>
+           
+            {% endfor %}
+        </div>
+
+    </div>
+    <div class="project-card">
+
+        <div class="row">
+            {% for project in eat %}
+            <div class="col-md-4">
+                <img data-src="/project/info?id={{project.id}}" class="img" alt="140x140" src="{{project.m_pic}}" data-holder-rendered="true">
+                 <div class="mask-title">{{project.title}}</div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+    <div class="project-card">
+
+        <div class="row">
+            {% for project in live %}
+            <div class="col-md-4">
+                <img data-src="/project/info?id={{project.id}}" class="img" alt="140x140" src="{{project.m_pic}}" data-holder-rendered="true">
+                 <div class="mask-title">{{project.title}}</div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+    <div class="project-card">
+
+        <div class="row">
+            {% for project in travel %}
+            <div class="col-md-4">
+                <img data-src="/project/info?id={{project.id}}" class="img" alt="140x140" src="{{project.m_pic}}" data-holder-rendered="true">
+                 <div class="mask-title">{{project.title}}</div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>    
 </div>
+{% endblock %}
+
+{% block script %}
+
+<script>
+
+	$(function(){
+			var $li = $('.menu_project li');
+			var $ul = $('.project-card');
+						
+			$li.mouseover(function(){
+				var $this = $(this);
+				var $t = $this.index();
+				$li.removeClass();
+				$this.addClass('current');
+				$ul.css('display','none');
+				$ul.eq($t).css('display','block');
+			})
+
+				$li.removeClass();
+				$li.eq(0).addClass('current');
+				$ul.css('display','none');
+				$ul.eq(0).css('display','block');
+
+                $(document).delegate('.project-card img','click',function(){
+                    let url = $(this).attr('data-src');
+                    index = $(this).parent().index();
+                    location.href = url;
+                })
+	});
+
+
+
+</script>
 {% endblock %}

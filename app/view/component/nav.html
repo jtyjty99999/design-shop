@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand navbar-logo" href="/"></a>
-            <a class="navbar-brand" href="/project">PROJECTS</a>
+            <a class="navbar-brand project {% if current =='project' %}current{% endif %}" href="/project">PROJECTS</a>
             <!--
             <a class="navbar-brand" href="/shop">SHOP</a>
             -->
@@ -20,22 +20,22 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a class="navbar-link" href="/about">ABOUT</a>
+                    <a class="navbar-link {% if current =='about' %}current{% endif %}" href="/about">ABOUT</a>
                 </li>
                 <li>
-                    <a class="navbar-link" href="/news">NEWS</a>
+                    <a class="navbar-link {% if current =='news' %}current{% endif %}" href="/news">NEWS</a>
                 </li>
                 <li>
-                    <a class="navbar-link" href="/press">PRESS</a>
+                    <a class="navbar-link {% if current =='press' %}current{% endif %}" href="/press">PRESS</a>
                 </li>
                 <li>
-                    <a class="navbar-link" href="/team">TEAM</a>
+                    <a class="navbar-link {% if current =='team' %}current{% endif %}" href="/team">TEAM</a>
                 </li>
                 <li>
-                    <a class="navbar-link" href="/job">JOB</a>
+                    <a class="navbar-link {% if current =='job' %}current{% endif %}" href="/job">JOB</a>
                 </li>
                 <li>
-                    <a class="navbar-link navbar-link-last" href="/contact">CONTACT</a>
+                    <a class="navbar-link navbar-link-last {% if current =='contact' %}current{% endif %}" href="/contact">CONTACT</a>
                 </li>
                 <li>
                     <a class="navbar-icon car" href=""></a>

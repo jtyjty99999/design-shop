@@ -31,6 +31,23 @@ body{font-family:Lora,'Times New Roman',serif;font-size:20px;color:#404040}p{lin
     font-size: 12px!important;
     margin-right:66px!important
 }
+.navbar-brand.project{
+    padding-left: 36px!important;
+    height: 16px!important;
+    line-height: 16px!important;
+    border-left: 1px solid #686662;
+    margin-top: 10px!important;
+}
+
+
+
+.navbar-brand:hover{
+    color:black!important
+}
+.navbar-brand.current{
+    color:black!important
+}
+
 .container-fluid{
     padding-left: 0
 }
@@ -42,10 +59,16 @@ body{font-family:Lora,'Times New Roman',serif;font-size:20px;color:#404040}p{lin
     padding-right: 14px!important;
     padding-left: 40px!important;
     margin: 0px 40px!important;
-    border-right: 1px solid #686662;
+    margin-right: 0!important;
 }
 .navbar-custom .nav li a{
     padding: 0;
+}
+.navbar-custom .nav li a:hover{
+    color:black!important
+}
+.navbar-custom .nav li a.current{
+    color:black!important
 }
 .nav li a{
     color:#686662!important;
@@ -61,10 +84,16 @@ margin-right: 45px;
     font-size: 12px!important;
     letter-spacing: 0px!important;
 }
+.navbar-link:hover{
+    color:black
+}
 .navbar-custom .nav li a.navbar-link-last{
     padding-right: 19px;
     margin-right: 0;
-    border-right: 1px solid #686662
+    border-right: 1px solid #686662;
+    height: 16px;
+    line-height: 18px;
+    margin-top: 9px;
 }
 .navbar-icon{
     width: 20px;
@@ -189,9 +218,10 @@ margin-right: 45px;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 19891015;
+    z-index: 99999999;
     height: 100%;
     display: none;
+    pointer-events: none;
 }
 
 .control-btn div{
@@ -200,6 +230,7 @@ margin-right: 45px;
     position:absolute;
     top:50%;
     cursor: pointer;
+    pointer-events: visible;
 }
 #prev{
     background: url('../images/prev.png') no-repeat;
@@ -251,17 +282,38 @@ margin-right: 45px;
 
 /*project*/
 
-#project-list .row{
+.project-card .row{
     margin:0;
 }
 
-#project-list .col-md-4{
-    padding:0
+.project-card .col-md-4{
+    padding:0;
+    position:relative;
+    overflow: hidden
 }
 
-#project-list img{
+.project-card img{
     width: 100%;
     height:260px;
+    cursor: pointer
+}
+
+.project-card img:hover+.mask-title{
+    top:0px;
+}
+
+.mask-title{
+    height:260px;
+    line-height: 260px;
+    position:absolute;
+    left: 0px;
+    top: 260px;
+    text-align: center;
+    transition: all 1s;
+    width: 100%;
+    background: white;
+    opacity: 0.6;
+    cursor: pointer
 }
 
 .menu_project {
