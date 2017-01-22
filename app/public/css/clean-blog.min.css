@@ -579,3 +579,18 @@ job list
         font-family: Century Gothic;
     }
     .list_team ul{ display:none}
+
+
+.footer{
+    position: fixed;
+    bottom: 0;
+}
+
+.footer-nofix{
+}
+
+@media only screen and (min-width: 1170px){
+    .navbar-custom.is-fixed{
+        top:-35px!important
+    }
+}
