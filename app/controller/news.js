@@ -11,7 +11,12 @@ exports.index = function* () {
     articles: this.service.news.list(pageNum, pageSize),
     count: this.service.news.count(),
   };
-  console.log(result);
+
+  result.articles = result.articles.map(function(d){
+    d.fromNow = moment(d.timestamp).fromNow();
+    return d
+  })
+
   yield this.render('news.html', Object.assign({
     pageNum,
     pageSize,
@@ -21,17 +26,30 @@ exports.index = function* () {
 
 // 新增一个文章
 exports.add = function* () {
+
   const title = this.request.body.title;
   const content = this.request.body.content;
   const desc = this.request.body.desc;
   const m_pic = this.request.body.m_pic;
-  console.log(this.request.body);
-  yield this.service.news.insert({
+  const method = this.request.body.method;
+  const id = this.request.body.id;
+  if(method ==='PUT'){
+    yield this.service.news.update({
+      id,
       title,
       content,
       desc,
       m_pic
-  });
+    });
+  }else{
+    yield this.service.news.insert({
+        title,
+        content,
+        desc,
+        m_pic
+    });
+  }
+
 
   this.redirect('/manager');
 
@@ -68,16 +86,15 @@ exports.deleteNews = function* () {
     this.body = false;
   }
 };
-/*
+
 
 exports.find = function* () {
   const id = +this.query.id;
-  const article = yield this.service.article.find(id);
+  const article = yield this.service.news.find(id);
 
-  article.fromNow = moment(article.modified_time).fromNow();
-  article.html = marked(article.content);
+  article.fromNow = moment(article.timestamp).fromNow();
+  article.content = marked(article.content);
 
-  yield this.render('post.html', article);
+  this.body = article;
 
 };
-*/

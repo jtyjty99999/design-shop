@@ -25,7 +25,7 @@
         <form action="/press" method="post">
             {% if article.id %}
             <input type="hidden" name="id" value="{{article.id}}">
-            <input type="hidden" name="id" value="PUT">
+            <input type="hidden" name="method" value="PUT">
             {% endif %}
             <div class="row control-group" style="margin: 0 60px;" >
                 <div class="form-group col-xs-12 floating-label-form-group controls">
@@ -55,8 +55,3 @@
 {% endblock %}
 
 {% block page %}{% include "component/pager.html" %}{% endblock %}
-
-{% block script %}
-<script src="/public/js/lib/editormd.js"></script>
-<script src="/public/js/editor.js"></script>
-{% endblock %}

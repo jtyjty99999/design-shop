@@ -25,7 +25,7 @@
         <form action="/team" method="post">
             {% if article.id %}
             <input type="hidden" name="id" value="{{article.id}}">
-            <input type="hidden" name="id" value="PUT">
+            <input type="hidden" name="method" value="PUT">
             {% endif %}
             <div class="row control-group" style="margin: 0 60px;" >
                 <div class="form-group col-xs-12 floating-label-form-group controls">
@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div class="editormd" id="article-editormd">
-                <textarea name="content">{{'### Hello world!' if isNew else article.content}}</textarea>
+                <textarea name="content" id="editor1"></textarea>
             </div>
             <br/><input id="article-submit" type="submit" name="submit" value="Submit" class="btn" style="margin-left: 5%;" />
         </form>

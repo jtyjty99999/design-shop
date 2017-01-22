@@ -9,11 +9,11 @@
             <div class="media news">
                 <a class="media-left" href="#">
                     <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="{{new.m_pic}}"
-                        data-holder-rendered="true">
+                        data-holder-rendered="true" data-id="{{new.id}}">
                 </a>
                 <div class="media-body">
                     <h4 class="media-heading">{{new.title}}</h4>
-                    <h5 class="media-heading">{{new.timestamp}}</h5>
+                    <h5 class="media-heading">{{new.fromNow}}</h5>
                     <p>{{new.desc}}</p>
 
                 </div>
@@ -23,4 +23,96 @@
         </div>
     </div>
 </div>
+<div class="control-btn">
+
+    <div id="prev"></div>
+    <div id="next"></div>
+
+</div>
+{% endblock %}
+{% block script %}
+
+<script type="text/javascript" src="/public/js/plugins/layer.js"></script>
+
+<script>
+
+let index;
+
+$(document).delegate('.media-object','click',function(){
+    let in_png = $(this).attr('data-big');
+    index = $(this).parent().parent().index();
+    let id = $(this).attr('data-id');
+
+    $.ajax({
+    url: "/findnews?id="+id,
+    }).success(function(res) {
+
+        layer.open({
+                title: false,
+                type: 1,
+                shadeClose: true,
+                closeBtn:1,
+                shade: 0.8,
+                area:['80%','90%'],
+                content: '<div id="news-content">'+res.content+'</div>',
+                success: function(layero, i){
+                    // console.log(index);
+                    $('.control-btn').show();
+
+                },
+                end: function(layero, i){
+                    $('.control-btn').hide();
+                }
+            }); 
+
+    });
+
+
+
+})
+
+
+$(document).delegate('#next','click',function(){
+
+    let max = $('.media').length;
+    
+    if(index == max-1){
+        index = 0;
+    }else{
+        index+=1;
+    }
+
+    let id = $('.media').eq(index).find('img').attr('data-id');
+
+    $.ajax({
+        url: "/findnews?id="+id,
+    }).success(function(res) {
+        $('#news-content').html(res.content);
+    });
+
+    
+    return false 
+})
+
+
+$(document).delegate('#prev','click',function(){
+    let max = $('.media').length;
+    
+    if(index == 0){
+        index = max-1;
+    }else{
+        index-=1;
+    }
+    let id = $('.media').eq(index).find('img').attr('data-id');
+
+    $.ajax({
+        url: "/findnews?id="+id,
+    }).success(function(res) {
+        $('#news-content').html(res.content);
+    });
+
+    return false 
+})
+
+</script>
 {% endblock %}

@@ -20,10 +20,11 @@ module.exports = app => {
   app.put('/job', admin, app.controller.job.update);
   app.delete('/job', admin, app.controller.job.deleteJob);
 
-  app.get('/news', install, app.controller.news.find);
+  app.get('/findnews', install, app.controller.news.find);
   app.post('/news', admin, app.controller.news.add);
   app.put('/news', admin, app.controller.news.update);
   app.delete('/news', admin, app.controller.news.deleteNews);
+
 
   app.get('/press', install, app.controller.press.find);
   app.post('/press', admin, app.controller.press.add);

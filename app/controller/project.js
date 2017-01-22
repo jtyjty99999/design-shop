@@ -24,11 +24,25 @@ exports.add = function* () {
   const m_pic = this.request.body.m_pic;
   const content = this.request.body.content;
   const type = this.request.body.type;
-  yield this.service.project.insert({
-      content,
+  const id = this.request.body.id;
+  const method = this.request.body.method;
+  if(method ==='PUT'){
+    yield this.service.project.update({
+      id,
       m_pic,
-      type
-  });
+      content,
+      type,
+    });
+  }else{
+    yield this.service.project.insert({
+        content,
+        m_pic,
+        type
+    });
+
+  }
+
+
 
   this.redirect('/manager');
 

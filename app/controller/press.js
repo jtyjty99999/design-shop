@@ -24,11 +24,22 @@ exports.add = function* () {
   const title = this.request.body.title;
   const m_pic = this.request.body.m_pic;
   const in_pic = this.request.body.in_pic;
-  yield this.service.press.insert({
+  const id = this.request.body.id;
+  const method = this.request.body.method;
+  if(method ==='PUT'){
+    yield this.service.press.update({
+      id,
       title,
       m_pic,
-      in_pic
-  });
+      in_pic,
+    });
+  }else{
+    yield this.service.press.insert({
+        title,
+        m_pic,
+        in_pic
+    });
+  }
 
   this.redirect('/manager');
 
@@ -40,6 +51,7 @@ exports.update = function* () {
   const title = this.request.body.title;
   const m_pic = this.request.body.m_pic;
   const in_pic = this.request.body.in_pic;
+
 
   yield this.service.press.update({
     id,

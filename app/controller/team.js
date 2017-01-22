@@ -26,13 +26,31 @@ exports.add = function* () {
   const position = this.request.body.position;
   const m_pic = this.request.body.m_pic;
   const in_pic = this.request.body.in_pic;
-  yield this.service.team.insert({
+
+  const id = this.request.body.id;
+  const method = this.request.body.method;
+  if(method ==='PUT'){
+    yield this.service.team.update({
+      id,
       name,
       desc,
       position,
       m_pic,
       in_pic
-  });
+    });
+
+  }else{
+    yield this.service.team.insert({
+        name,
+        desc,
+        position,
+        m_pic,
+        in_pic
+    });
+
+
+  }
+
 
   this.redirect('/manager');
 

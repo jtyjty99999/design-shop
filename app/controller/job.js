@@ -23,10 +23,22 @@ exports.index = function* () {
 exports.add = function* () {
   const title = this.request.body.title;
   const content = this.request.body.content;
-  yield this.service.job.insert({
+  const method = this.request.body.method;
+  const id = this.request.body.id;
+  if(method ==='PUT'){
+    yield this.service.job.update({
+      id,
       title,
-      content
-  });
+      content,
+    });
+  }else{
+    yield this.service.job.insert({
+        title,
+        content
+    });
+
+  }
+
 
   this.redirect('/manager');
 

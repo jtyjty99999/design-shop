@@ -5,57 +5,22 @@
 <div class="container press-container">
     
         <div class="row press-pic-list">
+
+            {% for press in articles %}
             <div class="col-md-3">
-                <img onclick="showdetail(156);" style="cursor:pointer" src="http://www.de-front.com/upload/20161116/101739766449.jpg">
+                <img class="press-pic" style="cursor:pointer" src="{{press.m_pic}}" data-big = "{{press.in_pic}}">
                 <div class="press-info">
-                    test99999
+                    {{press.title}}
                 </div>
             </div>
-            <div class="col-md-3">
-                <img onclick="showdetail(156);" style="cursor:pointer" src="http://www.de-front.com/upload/20161116/101739766449.jpg">
-                <div class="press-info">
-                    test99999
-                </div>
-            </div>
-            <div class="col-md-3">
-                <img onclick="showdetail(156);" style="cursor:pointer" src="http://www.de-front.com/upload/20161116/101739766449.jpg">
-                <div class="press-info">
-                    test99999
-                </div>
-            </div>
-            <div class="col-md-3">
-                <img onclick="showdetail(156);" style="cursor:pointer" src="http://www.de-front.com/upload/20161116/101739766449.jpg">
-                <div class="press-info">
-                    test99999
-                </div>
-            </div>
+            {% endfor %}
         </div>
-        <div class="row press-pic-list">
-            <div class="col-md-3">
-                <img onclick="showdetail(156);" style="cursor:pointer" src="http://www.de-front.com/upload/20161116/101739766449.jpg">
-                <div class="press-info">
-                    test99999
-                </div>
-            </div>
-            <div class="col-md-3">
-                <img onclick="showdetail(156);" style="cursor:pointer" src="http://www.de-front.com/upload/20161116/101739766449.jpg">
-                <div class="press-info">
-                    test99999
-                </div>
-            </div>
-            <div class="col-md-3">
-                <img onclick="showdetail(156);" style="cursor:pointer" src="http://www.de-front.com/upload/20161116/101739766449.jpg">
-                <div class="press-info">
-                    test99999
-                </div>
-            </div>
-            <div class="col-md-3">
-                <img onclick="showdetail(156);" style="cursor:pointer" src="http://www.de-front.com/upload/20161116/101739766449.jpg">
-                <div class="press-info">
-                    test99999
-                </div>
-            </div>
-        </div>
+</div>
+<div class="control-btn">
+
+    <div id="prev"></div>
+    <div id="next"></div>
+
 </div>
 {% endblock %}
 
@@ -66,20 +31,61 @@
 
 <script>
 
-  function showdetail(id){
-	  
+let index;
+
+$(document).delegate('.press-pic','click',function(){
+    let in_png = $(this).attr('data-big');
+    index = $(this).parent().index();
     layer.open({
             title: false,
             type: 1,
             shadeClose: true,
             closeBtn:1,
             shade: 0.8,
-            area:['760px','460px'],
-            content: '<div class="dialog-content">测试</div>' 
+            area:['80%','90%'],
+            content: '<div><img class="press-pic-big" src="'+in_png+'"></div>',
+            success: function(layero, i){
+                // console.log(index);
+                $('.control-btn').show();
+
+
+            },
+            end: function(layero, i){
+                $('.control-btn').hide();
+            }
         }); 
 
-  }
+})
 
+
+$(document).delegate('#next','click',function(){
+
+    let max = $('.col-md-3').length;
+    
+    if(index == max-1){
+        index = 0;
+    }else{
+        index+=1;
+    }
+    console.log($('.col-md-3').eq(index).find('img').attr('data-big'));
+    $('.press-pic-big').attr('src',$('.col-md-3').eq(index).find('img').attr('data-big'));
+    return false 
+})
+
+
+$(document).delegate('#prev','click',function(){
+
+    let max = $('.col-md-3').length;
+    
+    if(index == 0){
+        index = max-1;
+    }else{
+        index-=1;
+    }
+
+    $('.press-pic-big').attr('src',$('.col-md-3').eq(index).find('img').attr('data-big'));
+    return false 
+})
 
 </script>
 {% endblock %}
