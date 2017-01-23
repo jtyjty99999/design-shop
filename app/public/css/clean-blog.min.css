@@ -594,3 +594,7 @@ job list
         top:-35px!important
     }
 }
+
+label{
+    pointer-events: none;
+}
