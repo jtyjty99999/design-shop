@@ -448,6 +448,16 @@ margin-right: 45px;
     animation-fill-mode: both;
 }
 
+.test p, .test2 p {
+    margin: 0!important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+
+}
+
+
 @-webkit-keyframes flipInYtest {
     from {
         -webkit-transform: perspective(1400px) rotate3d(0, 1, 0, -180deg);
