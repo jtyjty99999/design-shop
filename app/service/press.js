@@ -22,28 +22,28 @@ module.exports = app => {
 
     // 获取文章列表
     * find(id) {
-      const article = yield app.mysql.get('design_news', { id });
+      const article = yield app.mysql.get('design_press', { id });
 
       return article;
     }
 
     // 文章总数
     * count() {
-      const count = yield app.mysql.query('select count(*) from design_news');
+      const count = yield app.mysql.query('select count(*) from design_press');
 
       return count[0]['count(*)'];
     }
 
     // 删除文章
     * update(data) {
-      const result = yield app.mysql.update('design_news', data);
+      const result = yield app.mysql.update('design_press', data);
 
       return result.affectedRows === 1;
     }
 
     // 删除文章
     * deleteJob(id) {
-      const result = yield app.mysql.update('design_news', {
+      const result = yield app.mysql.update('design_press', {
         deleted:1,
       });
 

@@ -50,7 +50,7 @@ exports.editorPress = function* () {
   if (articleID) {
     article = yield this.service.press.find(articleID);
   }
-
+  
   if (articleID && article) {
     isNew = false;
   }
