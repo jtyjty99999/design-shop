@@ -23,7 +23,8 @@ module.exports = app => {
     }
     // 获取某一类的team
     * search(type) {
-      const article = yield app.mysql.query('select  id, tag ,m_pic,content, name, position,description from design_team where tag = ? order by timestamp desc', [ type ]);
+      type = '%'+type+'%';
+      const article = yield app.mysql.query('select  id, tag ,m_pic,content, name, position,description from design_team where tag like ? order by timestamp desc', [ type ]);
 
       return article;
     }
