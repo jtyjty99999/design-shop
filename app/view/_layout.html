@@ -50,7 +50,24 @@
 <!-- Custom Theme JavaScript -->
 <script src="/public/js/lib/clean-blog.min.js"></script>
 
+
 {% block script %}{% endblock %}
+
+<script>
+$('.footer').hide();
+$(window).scroll(function(){
+　　var scrollTop = $(this).scrollTop();
+　　var scrollHeight = $(document).height();
+　　var windowHeight = $(this).height();
+　　if(scrollTop + windowHeight == scrollHeight){
+　　　　$('.footer').show(300);
+　　}else{
+　　　　$('.footer').hide(300);
+    }
+});
+
+</script>
+
 
 </body>
 
