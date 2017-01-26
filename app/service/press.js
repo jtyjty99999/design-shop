@@ -16,7 +16,7 @@ module.exports = app => {
     // 获取文章列表
     // 获取文章列表
     * list(pageNum, pageSize) {
-      const articles = yield app.mysql.query('select  id,title,  m_pic, in_pic from design_press order by timestamp desc limit ? offset ?;', [ pageSize, (pageNum - 1) * pageSize ]);
+      const articles = yield app.mysql.query('select  id,title,  m_pic, in_pic from design_press where deleted = 0 order by timestamp desc limit ? offset ?;', [ pageSize, (pageNum - 1) * pageSize ]);
       return articles;
     }
 
@@ -44,6 +44,7 @@ module.exports = app => {
     // 删除文章
     * deleteJob(id) {
       const result = yield app.mysql.update('design_press', {
+        id:id,
         deleted:1,
       });
 

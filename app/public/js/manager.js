@@ -1,12 +1,12 @@
 (function() {
   // ajax 发请求需要带上ctoken
-  $('#delete-article').on('click', function () {
+  $('.delete').on('click', function () {
     $.ajax({
-      url: '/article',
+      url: '/'+ $(this).data('type'),
       type: 'delete',
       data: {
         id: $(this).data('articleid'),
-        ctoken: $.cookie('ctoken'),
+        _csrf: $('#csrf').val(),
       },
       success: function(status) {
         if (status) {

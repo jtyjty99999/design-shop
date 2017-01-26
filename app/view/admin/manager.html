@@ -38,7 +38,7 @@
                 </a>
                 <div class="col-xs-6 col-md-4 text-right">
                     <a class="btn btn-primary" href="/editor-news?newsID={{new.id}}" role="button">edit</a>
-                    <a id="delete-article" data-articleid="{{new.id}}" class="btn btn-danger" href="javascript:;" role="button">delete</a>
+                    <a data-type="news" data-articleid="{{new.id}}" class="delete btn btn-danger" href="javascript:;" role="button">delete</a>
                 </div>
             </div>
             <hr>
@@ -55,7 +55,7 @@
                 </a>
                 <div class="col-xs-6 col-md-4 text-right">
                     <a class="btn btn-primary" href="/editor-job?jobID={{job.id}}" role="button">edit</a>
-                    <a id="delete-article" data-articleid="{{job.id}}" class="btn btn-danger" href="javascript:;" role="button">delete</a>
+                    <a data-type="job" data-articleid="{{job.id}}" class="delete btn btn-danger" href="javascript:;" role="button">delete</a>
                 </div>
             </div>
             <hr>
@@ -72,7 +72,7 @@
                 </a>
                 <div class="col-xs-6 col-md-4 text-right">
                     <a class="btn btn-primary" href="/editor-team?teamID={{team.id}}" role="button">edit</a>
-                    <a id="delete-article" data-articleid="{{team.id}}" class="btn btn-danger" href="javascript:;" role="button">delete</a>
+                    <a data-type="team" data-articleid="{{team.id}}" class="delete btn btn-danger" href="javascript:;" role="button">delete</a>
                 </div>
             </div>
             <hr>
@@ -89,7 +89,7 @@
                 </a>
                 <div class="col-xs-6 col-md-4 text-right">
                     <a class="btn btn-primary" href="/editor-press?pressID={{press.id}}" role="button">edit</a>
-                    <a id="delete-article" data-articleid="{{press.id}}" class="btn btn-danger" href="javascript:;" role="button">delete</a>
+                    <a data-type="press" data-articleid="{{press.id}}" class="delete btn btn-danger" href="javascript:;" role="button">delete</a>
                 </div>
             </div>
             <hr>
@@ -106,7 +106,7 @@
                 </a>
                 <div class="col-xs-6 col-md-4 text-right">
                     <a class="btn btn-primary" href="/editor-project?projectID={{project.id}}" role="button">edit</a>
-                    <a id="delete-article" data-articleid="{{project.id}}" class="btn btn-danger" href="javascript:;" role="button">delete</a>
+                    <a data-type="project" data-articleid="{{project.id}}" class="delete btn btn-danger" href="javascript:;" role="button">delete</a>
                 </div>
             </div>
             <hr>
@@ -114,6 +114,7 @@
         </div>
     </div>
 </div>
+<input type="hidden" name="" id="csrf" value="{{ctx.csrf}}">
 {% endblock %}
 
 
