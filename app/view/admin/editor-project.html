@@ -44,11 +44,11 @@
             <div class="row control-group" style="margin: 0 60px 60px;" >
                 <div class="form-group col-xs-12 floating-label-form-group controls">
                     <label>项目类型</label>
-                    <select name="type" id="type" class="form-control">
-                        <option value="eat" {% if article.type =='eat' %}selected{% endif %}>eat</option>
-                        <option value="live" {% if article.type =='live' %}selected{% endif %}>live</option>
-                        <option value="travel" {% if article.type =='travel' %}selected{% endif %}>travel</option>
-                        <option value="wear" {% if article.type =='wear' %}selected{% endif %}>wear</option>
+                    <select name="type" id="type" class="form-control" multiple="multiple">
+                        <option value="eat" {% if article.iseat ==true %}selected{% endif %}>eat</option>
+                        <option value="live" {% if article.islive ==true %}selected{% endif %}>live</option>
+                        <option value="travel" {% if article.istravel ==true %}selected{% endif %}>travel</option>
+                        <option value="wear" {% if article.iswear ==true %}selected{% endif %}>wear</option>
                     </select>
                     <p class="help-block text-danger"></p>
                 </div>

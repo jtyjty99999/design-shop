@@ -12,6 +12,7 @@ module.exports = app => {
         tag:obj.tag,
         timestamp: app.mysql.literals.now,
       });
+      console.log(result)
 
       return result.affectedRows === 1;
     }

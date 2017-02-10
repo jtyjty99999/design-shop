@@ -28,10 +28,13 @@ exports.index = function* () {
 exports.add = function* () {
   const m_pic = this.request.body.m_pic;
   const content = this.request.body.content;
-  const type = this.request.body.type;
+  let type = this.request.body.type;
   const title = this.request.body.title;
   const id = this.request.body.id;
   const method = this.request.body.method;
+  if(typeof type === 'object'){
+    type = type.join(',');
+  }
   if(method ==='PUT'){
     yield this.service.project.update({
       id,

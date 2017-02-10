@@ -37,7 +37,10 @@ exports.add = function* () {
   let tag = this.request.body.tag;
   const id = this.request.body.id;
   const method = this.request.body.method;
-  tag = tag.join(',');
+  if(typeof tag === 'object'){
+    tag = tag.join(',');
+  }
+  
   if(method ==='PUT'){
     yield this.service.team.update({
       id,
@@ -76,6 +79,9 @@ exports.update = function* () {
   const m_pic = this.request.body.m_pic;
   const content = this.request.body.content;
   const tag = this.request.body.tag;
+  if(typeof tag === 'array'){
+    tag = tag.join(',');
+  }
   yield this.service.team.update({
     id,
     name,

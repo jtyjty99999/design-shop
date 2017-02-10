@@ -135,6 +135,24 @@ exports.editorProject = function* () {
     article = yield this.service.project.find(articleID);
   }
 
+  if(articleID &&article&&article.type){
+
+    if(article.type.indexOf('eat')!==-1){
+      article.iseat = true;
+    }
+    if(article.type.indexOf('live')!==-1){
+      article.islive = true;
+    }
+    if(article.type.indexOf('travel')!==-1){
+      article.istravel = true;
+    }
+    if(article.type.indexOf('wear')!==-1){
+      article.iswear = true;
+    }
+
+  }
+  console.log(article)
+
   if (articleID && article) {
     isNew = false;
   }
