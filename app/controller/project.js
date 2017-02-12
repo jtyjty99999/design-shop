@@ -16,7 +16,6 @@ exports.index = function* () {
     count: this.service.project.count(),
     current:'project'
   };
-
   yield this.render('project.html', Object.assign({
     pageNum,
     pageSize,
