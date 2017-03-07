@@ -36,6 +36,12 @@ module.exports = app => {
   app.put('/project', admin, app.controller.project.update);
   app.delete('/project', admin, app.controller.project.deleteProject);
 
+  app.get('/goods/info', install, app.controller.goods.find);
+  app.post('/goods', admin, app.controller.goods.add);
+  app.put('/goods', admin, app.controller.goods.update);
+  app.delete('/goods', admin, app.controller.goods.deleteGoods);
+
+
   app.get('/findteam', install, app.controller.team.find);
   app.post('/team', admin, app.controller.team.add);
   app.put('/team', admin, app.controller.team.update);

@@ -1,0 +1,91 @@
+{% extends "_layout.html" %}
+
+{% block body %}
+<!-- Main Content -->
+<div class="container">
+
+        <div class="menu_project">
+             <ul>
+                <li><a href="">ALL</a></li>
+                <li><a href="">WEAR</a></li>
+                <li><a href="">EAT</a></li>
+             </ul>
+         </div>
+
+    <div class="project-card">
+
+        <div class="row">
+            {% for project in all %}
+            <div class="col-md-4">
+                <img data-src="/project/info?id={{project.id}}" class="img" alt="140x140" src="{{project.m_pic}}" data-holder-rendered="true">
+                <div class="mask-title">{{project.title}}</div>
+            </div>
+
+            {% endfor %}
+        </div>
+
+    </div>
+    <div class="project-card">
+
+        <div class="row">
+            {% for project in wear %}
+            <div class="col-md-4">
+                <img data-src="/project/info?id={{project.id}}" class="img" alt="140x140" src="{{project.m_pic}}" data-holder-rendered="true">
+                <div class="mask-title">{{project.title}}</div>
+            </div>
+           
+            {% endfor %}
+        </div>
+
+    </div>
+    <div class="project-card">
+
+        <div class="row">
+            {% for project in eat %}
+            <div class="col-md-4">
+                <img data-src="/project/info?id={{project.id}}" class="img" alt="140x140" src="{{project.m_pic}}" data-holder-rendered="true">
+                 <div class="mask-title">{{project.title}}</div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+   
+</div>
+{% block footer %}
+
+    <div class="footer">
+        <img src="/public/images/footer.jpg" alt="">
+    </div>
+
+{% endblock %}
+{% endblock %}
+
+{% block script %}
+
+<script>
+
+	$(function(){
+			var $li = $('.menu_project li');
+			var $ul = $('.project-card');
+						
+			$li.mouseover(function(){
+				var $this = $(this);
+				var $t = $this.index();
+				$li.removeClass();
+				$this.addClass('current');
+				$ul.css('display','none');
+				$ul.eq($t).css('display','block');
+			})
+
+				$li.removeClass();
+				$li.eq(0).addClass('current');
+				$ul.css('display','none');
+				$ul.eq(0).css('display','block');
+
+	});
+
+
+
+</script>
+{% endblock %}

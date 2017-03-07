@@ -102,8 +102,8 @@
 		// solution with file upload/management capabilities, like for example CKFinder.
 		// For more information see http://docs.ckeditor.com/#!/guide/dev_ckfinder_integration
 		// Uncomment and correct these lines after you setup your local CKFinder instance.
-		// filebrowserBrowseUrl: 'http://example.com/ckfinder/ckfinder.html',
-		// filebrowserUploadUrl: 'http://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+		filebrowserBrowseUrl: '/upload',
+		filebrowserUploadUrl: '/upload?_csrf=' + $('body').attr('csrf'),
 		/*********************** File management support ***********************/
 		// Make the editing area bigger than default.
 		height: 800,
