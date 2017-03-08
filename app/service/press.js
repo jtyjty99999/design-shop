@@ -42,7 +42,7 @@ module.exports = app => {
     }
 
     // 删除文章
-    * deleteJob(id) {
+    * deletePress(id) {
       const result = yield app.mysql.update('design_press', {
         id:id,
         deleted:1,
