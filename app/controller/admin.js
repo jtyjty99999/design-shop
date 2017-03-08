@@ -167,7 +167,7 @@ exports.editorProject = function* () {
 
 exports.manager = function* () {
   const pageNum = +this.query.pageNum || 1;
-  const pageSize = +this.query.pageSize || 10;
+  const pageSize = +this.query.pageSize || 100;
 
   const result = yield {
     projects: this.service.project.list(pageNum, pageSize),
