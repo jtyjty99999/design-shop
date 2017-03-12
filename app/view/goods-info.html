@@ -4,14 +4,59 @@
 <!-- Main Content -->
 <div class="container">
 
-    <div class="row section fp-auto-height">
-        <div class="col-md-6">
+    <div class="row section fp-auto-height" id="goods-container">
+        <div class="col-md-12">
+
+            <div class="goods-nav">
+                <a>{{good.type}}</a>&gt
+                <a>{{good.title}}</a>
+            </div>
+
         </div>
         <div class="col-md-6">
+            <div class="goods-pics">
+                        {% for in_pic in good.in_pic %}
+                        <img src="{{in_pic}}" alt=""> 
+                        {% endfor %}  
+            </div>
+
+                <ul class="goods-pics-pointer">
+                        {% for in_pic in good.in_pic %}
+                            <li></li>
+                        {% endfor %}
+                </ul>
+        </div>
+        <div class="col-md-6" id="good-info-block">
+            <h3>{{good.title}}</h3>
+            <h4>{{good.subtitle}}</h4>
+            <hr>
+            <p>{{good.description}}</p>
+            <div class="row good-input">
+                <div class="col-md-6">Price</div>
+                <div class="col-md-6 price-format">$ {{good.price}}</div>
+            </div>
+            <div class="row good-input">
+                <div class="col-md-6">MATERIAL</div>
+                <div class="col-md-6">
+                    <ul class="color-list">
+                        {% for color in good.color %}
+                        <li style="background:{{color}}"></li> 
+                        {% endfor %}                
+                    </ul>
+                </div>
+            </div>
+            <div class="row good-input">
+                <div class="col-md-6">QUANTITY</div>
+                <div class="col-md-6"><input  style="width:100px;" data_max="{{good.whole}}" value="0" data_step="1"  data_digit="0"/></div>
+            </div>
+            <div class="row good-input" id="add-cart-box">
+                <button id="add-to-cart" data-good="{{good.id}}">ADD TO CART</button>
+            </div>
+
         </div>
     </div>
 
-{{content | safe}}
+{{good.content | safe}}
 
 </div>
 {% block footer %}
@@ -22,3 +67,31 @@
 
 {% endblock %}
 {% endblock %}
+
+{% block script %}
+
+<script src="/public/js/number-input.js"></script>
+
+<script>
+
+	$(function(){
+			var $li = $('.goods-pics-pointer li');
+			var $pics = $('.goods-pics img');
+						
+			$li.mouseover(function(){
+				var $this = $(this);
+				var $t = $this.index();
+				$pics.css('display','none');
+			    $pics.eq($t).css('display','block');
+			})
+
+				$pics.css('display','none');
+				$pics.eq(0).css('display','block');
+
+	});
+
+
+
+</script>
+{% endblock %}
+

@@ -31,6 +31,14 @@ exports.add = function* () {
   const title = this.request.body.title;
   const id = this.request.body.id;
   const method = this.request.body.method;
+
+  const description = this.request.body.description;
+  const price = this.request.body.price;
+  const whole = this.request.body.whole;
+  const subtitle = this.request.body.subtitle;
+  const in_pic = this.request.body.in_pic;
+  const color = this.request.body.color;
+
   if(typeof type === 'object'){
     type = type.join(',');
   }
@@ -40,14 +48,26 @@ exports.add = function* () {
       m_pic,
       content,
       type,
-      title
+      title,
+      description,
+      price,
+      whole,
+      subtitle,
+      in_pic,
+      color
     });
   }else{
     yield this.service.goods.insert({
         content,
         m_pic,
         type,
-        title
+        title,
+        description,
+        price,
+        whole,
+        subtitle,
+        in_pic,
+        color
     });
 
   }
@@ -92,7 +112,8 @@ exports.deleteGoods = function* () {
 exports.find = function* () {
   const id = +this.query.id;
   const article = yield this.service.goods.find(id);
-  console.log(article);
-  yield this.render('goods-info.html', article);
+  article.color = article.color.split(',');
+  article.in_pic = article.in_pic.split(',');
+  yield this.render('goods-info.html', {good:article});
 
 };

@@ -598,3 +598,106 @@ job list
 label{
     pointer-events: none;
 }
+
+
+/*
+goods
+*/
+
+#goods-container{
+    margin-top:83px
+}
+.goods-pics-pointer{
+    text-align: center
+}
+.goods-pics-pointer li{
+    margin-top:20px;
+    width:52px;
+    height: 4px;
+    border: 1px solid black;
+    list-style: none;
+    display: inline-block;
+    margin-right:11px
+}
+.goods-pics-pointer li:hover{
+    background:black
+}
+.goods-pics{
+    width: 574px;
+    height: 431px
+}
+.goods-pics img{
+    height:100%;
+}
+#good-info-block{
+    padding: 46px 45px 42px;
+    background: #d1cdc4;
+    color:#727171;
+    width: 574px;
+    height: 486px
+}
+#good-info-block hr{
+    border-color: #727171
+}
+.color-list{
+    padding-left: 0px
+}
+.color-list li{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 4px;
+}
+.good-input{
+    margin-top:30px;
+}
+
+#good-info-block h3{
+    font-size: 21px;
+    color:black
+}
+#good-info-block h4{
+    font-size: 14px;
+    color:#727171
+}
+#good-info-block p{
+    font-size: 12px;
+    color:#727171
+}
+.price-format{
+    font-size: 18px;
+    color:black
+}
+#good-info-block input{
+    font-size: 14px;
+    border-top: 1px solid black;
+    border-bottom: 3px solid black;
+    border-left: none;
+    border-right: none;
+}
+#add-to-cart{
+    width: 303px;
+    height: 35px;
+    font-size: 21px;
+    color: white;
+    background: #070503;
+    text-align: center;
+    margin: auto
+}
+#add-cart-box{
+    text-align: center
+}
+.number-input-left,.number-input-right{
+    color: white;
+    background: #221812;
+    width: 24px!important;
+    height: 24px!important
+}
+.number-input-left{
+    margin-right: -1px;
+    line-height: 18.5px!important;
+}
+.number-input-right{
+    margin-left:-1px;
+    line-height: 23px!important;
+}

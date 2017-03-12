@@ -6,6 +6,7 @@ module.exports = app => {
 
   app.get('/', app.controller.page.home);
   app.get('/project', app.controller.project.index);
+  app.get('/goods', app.controller.goods.index);
   app.get('/shop', app.controller.page.shop);
   app.get('/about', app.controller.page.about);
   app.get('/news', app.controller.news.index);
@@ -55,6 +56,7 @@ module.exports = app => {
   app.get('/editor-press', install, admin, app.controller.admin.editorPress);
   app.get('/editor-project', install, admin, app.controller.admin.editorProject);
   app.get('/editor-news', install, admin, app.controller.admin.editorNews);
+  app.get('/editor-good', install, admin, app.controller.admin.editorGoods);
   app.post('/login', app.controller.admin.login);
 
   app.get('/login', install, app.controller.site.login);

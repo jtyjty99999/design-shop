@@ -165,6 +165,47 @@ exports.editorProject = function* () {
 
 };
 
+exports.editorGoods = function* () {
+  const articleID = parseInt(this.query.goodID);
+  let article = null;
+  let isNew = true;
+
+  if (articleID) {
+    article = yield this.service.goods.find(articleID);
+  }
+
+  if(articleID &&article&&article.type){
+
+    if(article.type.indexOf('eat')!==-1){
+      article.iseat = true;
+    }
+    if(article.type.indexOf('live')!==-1){
+      article.islive = true;
+    }
+    if(article.type.indexOf('travel')!==-1){
+      article.istravel = true;
+    }
+    if(article.type.indexOf('wear')!==-1){
+      article.iswear = true;
+    }
+
+  }
+  console.log(article)
+
+  if (articleID && article) {
+    isNew = false;
+  }
+  console.log(article);
+  yield this.render('admin/editor-good.html', {
+    article,
+    isNew,
+    login: this.session.login,
+  });
+
+};
+
+
+
 exports.manager = function* () {
   const pageNum = +this.query.pageNum || 1;
   const pageSize = +this.query.pageSize || 100;
@@ -175,6 +216,7 @@ exports.manager = function* () {
     jobs: this.service.job.list(pageNum, pageSize),
     teams: this.service.team.list(pageNum, pageSize),
     presses: this.service.press.list(pageNum, pageSize),
+    goods: this.service.goods.list(pageNum, pageSize),
   };
 
   yield this.render('admin/manager.html', Object.assign({
