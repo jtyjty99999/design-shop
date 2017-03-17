@@ -8,6 +8,12 @@ module.exports = app => {
         type: obj.type,
         title: obj.title,
         content:obj.content,
+        price:obj.price,
+        subtitle:obj.subtitle,
+        in_pic:obj.in_pic,
+        whole :obj.whole,
+        description :obj.description,
+        color :obj.color,
         timestamp: app.mysql.literals.now,
       });
 
@@ -16,7 +22,7 @@ module.exports = app => {
 
     // 获取文章列表
     * list(pageNum, pageSize) {
-      const articles = yield app.mysql.query('select  id,title,  m_pic, content, type from design_goods where deleted = 0 order by timestamp desc limit ? offset ?;', [ pageSize, (pageNum - 1) * pageSize ]);
+      const articles = yield app.mysql.query('select  id,title,  m_pic, content, type,price from design_goods where deleted = 0 order by timestamp desc limit ? offset ?;', [ pageSize, (pageNum - 1) * pageSize ]);
       return articles;
     }
 

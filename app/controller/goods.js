@@ -112,8 +112,8 @@ exports.deleteGoods = function* () {
 exports.find = function* () {
   const id = +this.query.id;
   const article = yield this.service.goods.find(id);
-  article.color = article.color.split(',');
-  article.in_pic = article.in_pic.split(',');
+  article.color = article.color && article.color.split(',');
+  article.in_pic = article.in_pic && article.in_pic.split(',');
   yield this.render('goods-info.html', {good:article});
 
 };

@@ -4,7 +4,7 @@
 <!-- Main Content -->
 <div class="container">
 
-        <div class="menu_project">
+        <div class="menu_project good-menu-project">
              <ul>
                 <li><a href="">ALL</a></li>
                 <li><a href="">WEAR</a></li>
@@ -14,63 +14,68 @@
              </ul>
          </div>
 
-    <div class="project-card">
+    <div class="project-card good-card">
 
         <div class="row">
             {% for good in all %}
-            <div class="col-md-4">
-                <img data-src="/good/info?id={{good.id}}" class="img" alt="140x140" src="{{good.m_pic}}" data-holder-rendered="true">
-                <div class="mask-title">{{good.title}}</div>
+            <div class="col-md-3">
+                <img data-src="/goods/info?id={{good.id}}" class="img" alt="140x140" src="{{good.m_pic}}" data-holder-rendered="true">
+                <h4>{{good.title}}</h4>
+                <h5>{{good.price}}</h5>
             </div>
 
             {% endfor %}
         </div>
 
     </div>
-    <div class="project-card">
+    <div class="project-card good-card">
 
         <div class="row">
             {% for good in wear %}
-            <div class="col-md-4">
-                <img data-src="/good/info?id={{project.id}}" class="img" alt="140x140" src="{{good.m_pic}}" data-holder-rendered="true">
-                <div class="mask-title">{{good.title}}</div>
+            <div class="col-md-3">
+                <img data-src="/goods/info?id={{project.id}}" class="img" alt="140x140" src="{{good.m_pic}}" data-holder-rendered="true">
+                <h4>{{good.title}}</h4>
+                <h5>{{good.price}}</h5>
             </div>
            
             {% endfor %}
         </div>
 
     </div>
-    <div class="project-card">
+    <div class="project-card good-card">
 
         <div class="row">
             {% for good in eat %}
-            <div class="col-md-4">
-                <img data-src="/good/info?id={{good.id}}" class="img" alt="140x140" src="{{good.m_pic}}" data-holder-rendered="true">
-                 <div class="mask-title">{{good.title}}</div>
+            <div class="col-md-3">
+                <img data-src="/goods/info?id={{good.id}}" class="img" alt="140x140" src="{{good.m_pic}}" data-holder-rendered="true">
+                <h4>{{good.title}}</h4>
+                <h5>{{good.price}}</h5>
             </div>
             {% endfor %}
         </div>
 
     </div>
-    <div class="project-card">
+    <div class="project-card good-card">
 
         <div class="row">
             {% for good in live %}
-            <div class="col-md-4">
-                <img data-src="/good/info?id={{good.id}}" class="img" alt="140x140" src="{{project.m_pic}}" data-holder-rendered="true">
-                 <div class="mask-title">{{good.title}}</div>
+            <div class="col-md-3">
+                <img data-src="/goods/info?id={{good.id}}" class="img" alt="140x140" src="{{project.m_pic}}" data-holder-rendered="true">
+                <h4>{{good.title}}</h4>
+                <h5>{{good.price}}</h5>
             </div>
             {% endfor %}
         </div>
 
     </div>
-    <div class="project-card">
+    <div class="project-card good-card">
 
         <div class="row">
             {% for good in travel %}
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <img data-src="/goods/info?id={{good.id}}" class="img" alt="140x140" src="{{good.m_pic}}" data-holder-rendered="true">
-                 <div class="mask-title">{{good.title}}</div>
+                <h4>{{good.title}}</h4>
+                <h5>{{good.price}}</h5>
             </div>
             {% endfor %}
         </div>
