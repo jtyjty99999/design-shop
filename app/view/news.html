@@ -45,12 +45,12 @@
 
 <script>
 
-let index;
+var index;
 
 $(document).delegate('.media-object','click',function(){
-    let in_png = $(this).attr('data-big');
+    var in_png = $(this).attr('data-big');
     index = $(this).parent().parent().index();
-    let id = $(this).attr('data-id');
+    var id = $(this).attr('data-id');
 
     $.ajax({
     url: "/findnews?id="+id,
@@ -83,7 +83,7 @@ $(document).delegate('.media-object','click',function(){
 
 $(document).delegate('#next','click',function(){
 
-    let max = $('.media').length;
+    var max = $('.media').length;
     
     if(index == max-1){
         index = 0;
@@ -91,7 +91,7 @@ $(document).delegate('#next','click',function(){
         index+=1;
     }
 
-    let id = $('.media').eq(index).find('img').attr('data-id');
+    var id = $('.media').eq(index).find('img').attr('data-id');
 
     $.ajax({
         url: "/findnews?id="+id,
@@ -105,14 +105,14 @@ $(document).delegate('#next','click',function(){
 
 
 $(document).delegate('#prev','click',function(){
-    let max = $('.media').length;
+    var max = $('.media').length;
     
     if(index == 0){
         index = max-1;
     }else{
         index-=1;
     }
-    let id = $('.media').eq(index).find('img').attr('data-id');
+    var id = $('.media').eq(index).find('img').attr('data-id');
 
     $.ajax({
         url: "/findnews?id="+id,

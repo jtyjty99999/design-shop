@@ -176,7 +176,7 @@
             $ul.eq(0).css('display','block');
 
                 $(document).delegate('.team-list-group img','click',function(){
-                    let url = $(this).attr('data-src');
+                    var url = $(this).attr('data-src');
                     index = $(this).parent().index();
                     location.href = url;
                 })
@@ -196,8 +196,8 @@
 
 
         $(document).delegate('.col-md-2','click',function(){
-            let in_png = $(this).attr('data-big');
-            let id = $(this).attr('data-id');
+            var in_png = $(this).attr('data-big');
+            var id = $(this).attr('data-id');
 
             $.ajax({
             url: "/findteam?id="+id,

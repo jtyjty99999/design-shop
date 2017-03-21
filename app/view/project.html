@@ -109,7 +109,7 @@
 				$ul.eq(0).css('display','block');
 
                 $(document).delegate('.project-card img','click',function(){
-                    let url = $(this).attr('data-src');
+                    var url = $(this).attr('data-src');
                     index = $(this).parent().index();
                     location.href = url;
                 })

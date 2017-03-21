@@ -38,10 +38,10 @@
 
 <script>
 
-let index;
+var index;
 
 $(document).delegate('.press-pic','click',function(){
-    let in_png = $(this).attr('data-big');
+    var in_png = $(this).attr('data-big');
     index = $(this).parent().index();
     layer.open({
             title: false,
@@ -67,7 +67,7 @@ $(document).delegate('.press-pic','click',function(){
 
 $(document).delegate('#next','click',function(){
 
-    let max = $('.col-md-3').length;
+    var max = $('.col-md-3').length;
     
     if(index == max-1){
         index = 0;
@@ -82,7 +82,7 @@ $(document).delegate('#next','click',function(){
 
 $(document).delegate('#prev','click',function(){
 
-    let max = $('.col-md-3').length;
+    var max = $('.col-md-3').length;
     
     if(index == 0){
         index = max-1;
