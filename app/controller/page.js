@@ -45,6 +45,20 @@ exports.about = function* () {
   yield this.render('about.html', result);
 };
 
+exports.privacy = function* () {
+  const result = {
+    current: 'privacy'
+  };
+  yield this.render('privacy.html', result);
+};
+
+exports.return = function* () {
+  const result = {
+    current: 'return'
+  };
+  yield this.render('return.html', result);
+};
+
 exports.contact = function* () {
   const result = {
     current: 'contact'

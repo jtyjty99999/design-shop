@@ -21,7 +21,7 @@ table, td{
     padding:0;
     margin-top: 35px;
     font-family: Century Gothic;
-    margin-bottom: 30px;
+    margin-bottom: 120px;
 }
 /* nav-bar*/
 .navbar{
@@ -584,11 +584,51 @@ job list
 .footer{
     position: fixed;
     bottom: 0;
+    height: 123px;
 }
 
 .footer-nofix{
 }
 
+.privacy-text{
+    margin-top: 90px;
+    margin-bottom:110px;
+}
+.privacy-text h3{
+    font-size: 18px;
+    color: #838282
+}
+.privacy-text p{
+    font-size: 12px;
+    color: #838282;
+    line-height: 21px;
+}
+.privacy-text li{
+    list-style: initial;
+    color: #838282;
+    font-size: 12px
+}
+.privacy-text ul{
+    margin: 0px;
+    padding-left: 16px;
+}
+
+.footer-privacy{
+    color:#d1cdc4;
+    font-size: 12px;
+    /* letter-spacing: 1em; */
+    position: relative;
+    bottom: 43px;
+    left: 179px;
+    font-family: Century Gothic;
+}
+
+.footer-privacy a{
+    color:#d1cdc4;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 46px;
+}
 @media only screen and (min-width: 1170px){
     .navbar-custom.is-fixed{
         top:-35px!important

@@ -60,7 +60,7 @@
         <div class="row">
             {% for good in live %}
             <div class="col-md-3">
-                <img data-src="/goods/info?id={{good.id}}" class="img" alt="140x140" src="{{project.m_pic}}" data-holder-rendered="true">
+                <img data-src="/goods/info?id={{good.id}}" class="img" alt="140x140" src="{{good.m_pic}}" data-holder-rendered="true">
                 <h4>{{good.title}}</h4>
                 <h5>{{good.price}}</h5>
             </div>
@@ -86,7 +86,12 @@
 
     <div class="footer">
         <img src="/public/images/footer.jpg" alt="">
+        <div class="footer-privacy">
+            <a href="/privacy">PRIVACY POLICY</a>
+            <a href="/return">RETURN AND EXCHANGE</a>
+        </div>
     </div>
+
 
 {% endblock %}
 {% endblock %}

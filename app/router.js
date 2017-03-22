@@ -9,6 +9,8 @@ module.exports = app => {
   app.get('/goods', app.controller.goods.index);
   app.get('/shop', app.controller.page.shop);
   app.get('/about', app.controller.page.about);
+  app.get('/return', app.controller.page.return);
+  app.get('/privacy', app.controller.page.privacy);
   app.get('/news', app.controller.news.index);
   app.get('/press', app.controller.press.index);
   app.get('/team', app.controller.team.index);
