@@ -1,0 +1,454 @@
+{% extends "_layout.html" %}
+
+{% block body %}
+<!-- Main Content -->
+<div class="container">
+
+        <div class="menu_project">
+             <ul>
+                <li><a href="">资料</a></li>
+                <li class="manage-tab"><a href="">管理</a></li>
+                <li><a href="">订单</a></li>
+             </ul>
+         </div>
+
+    <div class="project-card">
+
+        <style>
+            .project-card .profile-head{
+                width:105px;
+                height:105px
+            }
+            .project-card .profile-box{
+                margin-top: 70px;
+            }
+            .profile-head-box{
+                text-align: center;
+                height: 500px;
+                border-right: 3px solid #d1cdc4
+            }
+            .profile-head-box img{
+                margin-bottom: 10px
+            }
+            .profile-action{
+                font-size:12px;
+                color: #d1cdc4
+            }
+            .profile-info-box{
+                margin-left: 82px;
+            }
+            .profile-title{
+                font-size: 14px;
+                    margin-left: 14px;
+                    margin-bottom: 32px
+            }
+            .profile-input .input-group{
+                border: 1px solid black;
+            }
+            .project-card .profile-input{
+                margin-bottom: 20px
+            }
+            .profile-input .input-group-addon{
+                background: white;
+                    border: none;
+                    border-radius: initial;
+                    font-size: 12px
+            }
+            .profile-input input{
+                    border: none;
+                    box-shadow: none;
+                    border-radius: initial
+            }
+            .profile-input input:focus{
+                    border: none;
+                    box-shadow: none
+            }
+            .profile-input #confirm-modify{
+                width: 140px;
+                height: 30px;
+                line-height: 30px;
+                font-size: 12px;
+                padding: 0px;
+                background: black;
+                color: white;
+                font-weight: normal;
+            }
+            .profile-input .profile-action{
+                margin-top: 9px;
+                margin-left: -36px;
+            }
+
+        .address-list div{
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 14px;
+                margin-bottom: 20px;
+        }
+        .address-list .address-list-detail{
+
+            border: 1px solid #d1cdc4;
+            width: 600px;
+            padding: 6px;
+            margin-left: 17px;
+        }
+
+
+        .address-list-status{
+
+            position: relative;
+            border: 1px solid black;
+            width: 16px;
+            height: 16px;
+            border-radius: 20px;
+        }
+        .address-list-status:before{
+            position: relative;
+            /* border: 1px solid red; */
+            width: 12px;
+            height: 12px;
+            border-radius: 20px;
+            display: block;
+            content: '';
+            top: 1px;
+            left: 1px;
+        }
+        .address-list-status.status-current:before{
+            background: black;
+        }
+
+            .profile-manage-box .input-group-addon.address-current-select:before{
+                background: black
+            }
+            .profile-manage-title{
+                text-align: right;
+                font-size: 14px;
+                font-weight: normal;
+                margin-top: 63px;
+            }
+            .profile-manage-title-box{
+                border-right: 3px solid #d1cdc4;
+                height:300px
+            }
+        </style>
+
+        <div class="row profile-box">
+            <div class="col-md-3 profile-head-box">
+                <img data-src="/project/info?id={{project.id}}" class="profile-head" alt="140x140" src="{{user.pic}}" data-holder-rendered="true">
+                <div class="profile-action">修改头像</div>
+            </div>
+            <div class="col-md-8 profile-info-box">
+                <h4 class="profile-title">资料信息</h4>
+                <div class="row profile-input">
+                    <div class="col-xs-5">
+                        <div class="input-group">
+                            <div class="input-group-addon">昵称</div>
+                            <input type="text" class="form-control" id="nick" value="{{user.nick}}" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-xs-7">
+                        <div class="input-group">
+                            <div class="input-group-addon">手机</div>
+                            <input type="text" class="form-control" id="phone" value="{{user.phone}}" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="row profile-input">
+                    <div class="col-xs-12">
+                        <div class="input-group">
+                            <div class="input-group-addon">邮箱</div>
+                            <input type="email" class="form-control" id="email" value="{{user.phone}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row profile-input">
+                    <input type="hidden" value="{{ ctx.csrf | safe }}" id="_csrf">
+                    <div class="col-xs-3">
+                        <button id="confirm-modify" type="button" class="btn btn-default">确认修改</button>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="profile-action">修改密码 &gt&gt</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="project-card">
+
+        <div class="row profile-box profile-manage-box">
+            <div class="col-md-3 profile-manage-title-box">
+                <h4 class="profile-manage-title">常用收货信息</h4>
+            </div>
+            <div class="col-md-8">
+                <ul class="address-list">
+                    <li>
+                        <div class="address-list-status status-current"></div>
+                        <div class="address-list-detail">常用</div>
+                    </li>
+                    <li>
+                        <div class="address-list-status"></div>
+                        <div class="address-list-detail">常用2</div>
+                    </li>
+                    <li>
+                        <div class="address-list-status"></div>
+                        <div class="address-list-detail">常用3</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <style>
+        .menu_project .manage-tab{
+            width:260px;
+        }
+        .project-card>.bill-container{
+                width: 1120px;
+                margin: auto;
+                border-color: #cecbbf;
+                border-top-style: solid;
+                border-top-width: 21px;
+                color:#717171;
+                height: 235px
+        }
+        .bill-info-box{
+
+        }
+        .bill-info{
+                padding: 5px 0;
+            height: 80px;
+            background-color:#cecbbf
+        }
+        .bill-info img{
+            width:92px;
+            height:70px
+        }
+        .bill-info-text-box{
+
+        }        
+
+        .bill-info-text-box h4{
+            margin: 0;
+            font-size: 14px;
+        }  
+        .bill-info-text-box p{
+            margin: 0;
+            font-size: 12px;
+            transform: scale(0.8);
+            margin-left: -18px;
+        }     
+        .bill-info-text-box hr{
+            margin: 0px;
+            margin-bottom: 5px;
+        }    
+        .bill-info-text-table{
+            font-size: 9px;
+            transform: scale(0.8);
+            margin-left: -18px;
+            line-height: 10px;
+        }
+        .bill-info-text-table div:first-child{
+            display: inline-block;
+            padding: 0px;
+            text-align: left;
+            margin-left: -20px;
+            margin-right: 46px;
+        }
+        .bill-info-text-table div:last-child{
+            display: inline-block;
+            padding: 0px;
+            text-align: right;
+            width: 50px;
+        }
+        .bill-status-text{
+                height: 80px;
+                font-size: 12px;
+        }
+        .bill-price{
+            text-align: center;
+            margin-top:52px 
+        } 
+        .bill-status-text hr{margin: 0}
+        .bill-status{
+            text-align: center
+        }
+        .bill-status-box{
+            margin-top: 52px;
+        }
+        .bill-status-table-text{
+                padding-top: 22px;
+                text-align: center;
+                font-size: 12px;
+                position: absolute;
+                top: 0px;
+                width: 24px;
+                left: -5px;
+        }
+        .bill-status-table-text hr{
+                margin:0;
+                width: 50px;
+                margin-left: 100px;
+        }
+        .bill-status-box li.bill-sep{
+            width: 40px;
+                height: 1px;
+                background: black;
+        }
+        .bill-status-box li{
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .bill-status-box li.bill-status-li{
+
+            position: relative;
+            border: 1px solid black;
+            width: 16px;
+            height: 16px;
+            border-radius: 20px;
+        }
+        .bill-status-box li.bill-status-li:before{
+            position: relative;
+            /* border: 1px solid red; */
+            width: 12px;
+            height: 12px;
+            border-radius: 20px;
+            display: block;
+            content: '';
+            top: 1px;
+            left: 1px;
+        }
+        .bill-status-box li.status-current:before{
+            background: black;
+        }
+        .bill-info-title{
+            font-size: 12px;
+            text-align: center;
+            margin-top:-20px
+        }
+
+    </style>
+    <div class="project-card">
+        {% for bill in bills %}
+        <div class="row bill-container profile-box">
+            <div class="col-md-4">
+                <p class="bill-info-title">{{time}} 2016-00-00 00:00:00 订单号: 00000001</p>
+                <div class="bill-info-box">
+
+                    <div class="bill-info">
+                        <div class="row">
+                            <div class="col-md-6"> <img class="img" alt="140x140" src="{{bill.m_pic}}"></div>
+                            <div class="col-md-6 bill-info-text-box">
+                                <h4>Arponic</h4>
+                                <p>asjdlkajldjsla</p>
+                                <hr>
+                                <div class="row bill-info-text-table">
+                                    <div class="col-md-6">PRICE</div><div class="col-md-6">200</div>
+                                </div>
+                                <div class="row bill-info-text-table">
+                                    <div class="col-md-6">MATERIAL</div><div class="col-md-6">glass</div>
+                                </div>
+                                <div class="row bill-info-text-table">
+                                    <div class="col-md-6">QUANTITY</div><div class="col-md-6">1</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-md-3">
+                 <p class="bill-info-title">金额</p>
+                <div class="bill-status-text">
+                    <div class="bill-price">{{bill.price}}400$</div>
+                    <hr>
+                    <div class="bill-status">已支付</div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                 <p class="bill-info-title">交易状态</p>
+                <ul class="bill-status-box">
+                    <li class="status-current bill-status-li"><span class="bill-status-table-text">下单</span></li>
+                    <li class="bill-sep"></li>
+                    <li class="status-current bill-status-li"><span class="bill-status-table-text">支付</span></li>
+                    <li class="bill-sep"></li>
+                    <li class="status-current bill-status-li"><span class="bill-status-table-text">发货</span></li>
+                    <li class="bill-sep"></li>
+                    <li class="bill-status-li"><span class="bill-status-table-text">收货</span></li>
+                    <li class="bill-sep"></li>
+                    <li class="bill-status-li"><span class="bill-status-table-text">完成</span></li>
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+   
+</div>
+{% block footer %}
+
+    <div class="footer">
+        <img src="/public/images/footer.jpg" alt="">
+        <div class="footer-privacy">
+            <a href="/privacy">PRIVACY POLICY</a>
+            <a href="/return">RETURN AND EXCHANGE</a>
+        </div>
+    </div>
+
+
+{% endblock %}
+{% endblock %}
+
+{% block script %}
+
+<script>
+
+	$(function(){
+			var $li = $('.menu_project li');
+			var $ul = $('.project-card');
+						
+			$li.mouseover(function(){
+				var $this = $(this);
+				var $t = $this.index();
+				$li.removeClass('current');
+				$this.addClass('current');
+				$ul.css('display','none');
+				$ul.eq($t).css('display','block');
+			})
+
+				$li.removeClass('current');
+				$li.eq(0).addClass('current');
+				$ul.css('display','none');
+				$ul.eq(0).css('display','block');
+
+	});
+
+                $(document).delegate('#confirm-modify','click',function(){
+                    $.ajax({
+                        url:'/user',
+                        type:'PUT', //GET
+                        async:false,    //或false,是否异步
+                        data:{
+                            nick:$('#nick').val(),
+                            email:$('#email').val(),
+                            phone:$('#phone').val(),
+                            _csrf:$('#_csrf').val()
+                        },
+                        timeout:300,    //超时时间
+                        dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        beforeSend:function(xhr){
+                            // console.log(xhr)
+                            // console.log('发送前')
+                        },
+                        success:function(data){
+                            if(data.msg ==='wrong'){
+                                alert('修改失败');
+                            }else{
+                                alert('修改成功');
+                            }
+                        }
+                    });
+                });
+
+</script>
+{% endblock %}

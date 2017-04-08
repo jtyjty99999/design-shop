@@ -52,20 +52,237 @@
 
 
 {% block script %}{% endblock %}
+<style>
+
+#login-box{
+    width:353px;
+    height:379px;
+    padding:42px 24px;
+    background:white;
+    font-weight: normal;
+    font-family: 'Microsoft Yahei'
+}
+#login-box button{
+    background: black;
+    font-size:18px;
+    color:white;
+    width:100%;
+    height:38px;
+    line-height: 38px;
+    padding:0;
+    margin-bottom:28px;
+    font-weight: normal
+}
+#login-box .form-group{
+    margin-bottom: 30px
+}
+#login-box .tab-content{
+    margin-top:34px
+}
+#login-box input{
+    border-radius:initial
+}
+#login-box li.active{
+    width:55%
+}
+
+#login-box li a{
+    color:#3e3a39;
+    border:none;
+    border-radius: initial;
+font-size: 18px;
+    padding: 0;
+    height: 36px;
+    line-height: 36px;
+    display: block;
+    position:relative;
+    text-align: center;
+    min-width:100px
+}
+#login-box li a:before{
+    font-size: 12px;
+    transform: scale(0.9);
+    position: absolute;
+    width:100px;
+    top: 20px;
+    display: none;
+}
+#login-box li.active a:before{
+    display: block
+}
+#login-box li:first-child a:before{
+    content:'欢迎您回来';
+    left: -4px;
+}
+#login-box li:last-child{
+    float: right
+}
+#login-box li:last-child a:before{
+    content:'欢迎您加入';
+    left: 70px;
+}
+#login-box li.active:first-child a{
+    text-align:left
+}
+#login-box li:first-child a{
+    border-right:1px solid black;
+}
+#login-box li.active:last-child a{
+    text-align:right
+}
+#login-box .nav-tabs{
+    border:none;
+}
+#login-box .active a{
+    color:black;
+        line-height: 22px;
+}
+</style>
+<script type="text/javascript" src="/public/js/plugins/layer.js"></script>
 
 <script>
-    /*
-$('.footer').hide();
-$(window).scroll(function(){
-　　var scrollTop = $(this).scrollTop();
-　　var scrollHeight = $(document).height();
-　　var windowHeight = $(this).height();
-　　if(scrollTop + windowHeight == scrollHeight){
-　　　　$('.footer').show(300);
-　　}else{
-　　　　$('.footer').hide(300);
-    }
-});*/
+
+
+                function isLogin(cb){
+                    $.ajax({
+                        url:'/user/islogin',
+                        type:'GET', //GET
+                        async:false,    //或false,是否异步
+                        timeout:300,    //超时时间
+                        dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        beforeSend:function(xhr){
+                            // console.log(xhr)
+                            // console.log('发送前')
+                        },
+                        success:function(data){
+                            cb(data);
+                        }
+                    });
+                }
+
+                var loginContent = `<div id="login-box">
+
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                            <form>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="name" placeholder="帐号/手机号">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="password" placeholder="密码">
+                                </div>
+                                <input type="hidden" value="{{ ctx.csrf | safe }}" id="_csrf">
+                                <button type="button" id="login" class="btn btn-default">登录</button>
+                            </form>
+                        
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="profile">
+                            <form>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="nameInput" placeholder="帐号/手机">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="passwordInput" placeholder="密码">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="passwordInputConfirm" placeholder="确认密码">
+                                </div>
+                                <button type="button" id="registry" class="btn btn-default">注册</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>`
+                
+                $(document).delegate('#profile','click',function(){
+                    isLogin(function(data){
+                  console.log(data,data.login === true);      
+                        if(data.login === true){
+                            location.href ='/profile';
+                        }else{
+                            layer.open({
+                                title: false,
+                                type: 1,
+                                shadeClose: true,
+                                closeBtn:1,
+                                shade: 0.8,
+                                area:['353px','379px'],
+                                content: loginContent,
+                                success: function(layero, i){
+                                    // console.log(index);
+                                },
+                                end: function(layero, i){
+                                }
+                            }); 
+                        }
+                    });
+                });    
+
+                $(document).delegate('#login','click',function(){
+
+                    $.ajax({
+                        url:'/user/login',
+                        type:'POST', //GET
+                        async:false,    //或false,是否异步
+                        data:{
+                            name:$('#name').val(),password:$('#password').val(),_csrf:$('#_csrf').val()
+                        },
+                        timeout:300,    //超时时间
+                        dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        beforeSend:function(xhr){
+                            // console.log(xhr)
+                            // console.log('发送前')
+                        },
+                        success:function(data){
+                            if(data.msg ==='noexist'){
+                                alert('账户不存在');
+                            }else if(data.msg ==='wrong'){
+                                alert('账户和密码不匹配');
+                            }else{
+                                alert('登录成功！');
+                                location.href ='/profile';
+                            }
+                        }
+                    });
+                });
+                $(document).delegate('#registry','click',function(){
+                    if($('#passwordInput').val()!==$('#passwordInputConfirm').val()){
+                        alert('密码和确认密码必须一致！');
+                        return 
+                    }
+                    console.log(1111);
+                    $.ajax({
+                        url:'/user',
+                        type:'PUT', //GET
+                        async:false,    //或false,是否异步
+                        data:{
+                            name:$('#nameInput').val(),
+                            password:$('#passwordInput').val(),
+                            _csrf:$('#_csrf').val()
+                        },
+                        timeout:300,    //超时时间
+                        dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        beforeSend:function(xhr){
+                            // console.log(xhr)
+                            // console.log('发送前')
+                        },
+                        success:function(data){
+                            if(data.msg ==='exist'){
+                                alert('账户已经存在');
+                            }else{
+                                alert('注册成功！');
+                                location.href ='/profile';
+                            }
+                        }
+                    });
+                });
 
 
 </script>

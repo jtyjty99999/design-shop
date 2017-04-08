@@ -26,8 +26,8 @@ exports.contact = function* () {
   yield this.render('contact.html');
 };
 
-exports.login = function* () {
-  const login = this.session.login;
+exports.adminLogin = function* () {
+  const login = this.session.adminLogin;
 
   if (login) {
     this.redirect('/manager');
@@ -37,8 +37,8 @@ exports.login = function* () {
 
 };
 
-exports.logout = function* () {
-  this.session.login = false;
+exports.adminLogout = function* () {
+  this.session.adminLogin = false;
 
   yield this.render('admin/login.html');
 

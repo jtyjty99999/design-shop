@@ -12,7 +12,7 @@ exports.login = function* () {
   const login = yield this.service.site.login(email, password);
 
   if (login) {
-    this.session.login = true;
+    this.session.adminLogin = true;
     this.redirect('/manager');
   } else {
     yield this.render('admin/login.html', {
@@ -37,7 +37,7 @@ exports.editorJob = function* () {
   yield this.render('admin/editor-job.html', {
     article,
     isNew,
-    login: this.session.login,
+    login: this.session.adminLogin,
   });
 
 };
@@ -57,7 +57,7 @@ exports.editorPress = function* () {
   yield this.render('admin/editor-press.html', {
     article,
     isNew,
-    login: this.session.login,
+    login: this.session.adminLogin,
   });
 
 };
@@ -76,7 +76,7 @@ exports.editorNews = function* () {
   yield this.render('admin/editor-news.html', {
     article,
     isNew,
-    login: this.session.login,
+    login: this.session.adminLogin,
   });
 
 };
@@ -122,7 +122,7 @@ exports.editorTeam = function* () {
   yield this.render('admin/editor-team.html', {
     article,
     isNew,
-    login: this.session.login,
+    login: this.session.adminLogin,
   });
 
 };
@@ -160,7 +160,7 @@ exports.editorProject = function* () {
   yield this.render('admin/editor-project.html', {
     article,
     isNew,
-    login: this.session.login,
+    login: this.session.adminLogin,
   });
 
 };
@@ -199,7 +199,7 @@ exports.editorGoods = function* () {
   yield this.render('admin/editor-good.html', {
     article,
     isNew,
-    login: this.session.login,
+    login: this.session.adminLogin,
   });
 
 };
@@ -222,6 +222,6 @@ exports.manager = function* () {
   yield this.render('admin/manager.html', Object.assign({
     pageNum,
     pageSize,
-    login: this.session.login,
+    login: this.session.adminLogin,
   }, result));
 };

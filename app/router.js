@@ -4,6 +4,26 @@ module.exports = app => {
   const admin = app.role.can('admin');
   const install = app.controller.site.isInstall;
 
+  //user 
+  app.get('/profile', install, app.controller.user.profile);
+  app.post('/user/login', app.controller.user.login);
+  app.post('/user', app.controller.user.registry);
+  app.put('/user', app.controller.user.update);
+  app.get('/user/islogin', app.controller.user.islogin); 
+  app.get('/logout', app.controller.user.logout);
+
+  // bill
+  app.get('/bill', install, app.controller.bill.find);
+  app.post('/bill', admin, app.controller.bill.add);
+  app.put('/bill', admin, app.controller.bill.update);
+  app.delete('/bill', admin, app.controller.bill.deleteBill);
+
+  // address
+  app.get('/address', install, app.controller.address.find);
+  app.post('/address', admin, app.controller.address.add);
+  app.put('/address', admin, app.controller.address.update);
+  app.delete('/address', admin, app.controller.address.deleteAddress);
+
   app.get('/', app.controller.page.home);
   app.get('/project', app.controller.project.index);
   app.get('/goods', app.controller.goods.index);
@@ -59,10 +79,10 @@ module.exports = app => {
   app.get('/editor-project', install, admin, app.controller.admin.editorProject);
   app.get('/editor-news', install, admin, app.controller.admin.editorNews);
   app.get('/editor-good', install, admin, app.controller.admin.editorGoods);
-  app.post('/login', app.controller.admin.login);
+  app.post('/adminLogin', app.controller.admin.login);
 
-  app.get('/login', install, app.controller.site.login);
-  app.get('/logout', app.controller.site.logout);
+  app.get('/adminlogin', install, app.controller.site.adminLogin);
+  app.get('/adminLogout', app.controller.site.adminLogout);
   app.get('/install', app.controller.site.startInstall);
   app.post('/install', app.controller.site.install);
   app.get('/about', install, app.controller.site.about);
