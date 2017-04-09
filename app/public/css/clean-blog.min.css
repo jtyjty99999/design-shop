@@ -645,6 +645,10 @@ label{
 goods
 */
 
+.select-current{
+    border:1px dotted black
+}
+
 #goods-container{
     margin-top:104px
 }

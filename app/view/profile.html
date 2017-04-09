@@ -210,15 +210,20 @@
                 border-top-style: solid;
                 border-top-width: 21px;
                 color:#717171;
-                height: 235px
+                height: 235px;
+                margin-top:28px
         }
         .bill-info-box{
 
         }
         .bill-info{
-                padding: 5px 0;
-            height: 80px;
-            background-color:#cecbbf
+                   height: 214px;
+                overflow: auto;
+        }
+        .bill-info>.row{
+            padding: 5px 0;
+            margin-top: 20px;
+            background-color:#cecbbf;
         }
         .bill-info img{
             width:92px;
@@ -267,14 +272,14 @@
         }
         .bill-price{
             text-align: center;
-            margin-top:52px 
+            margin-top: 90px; 
         } 
         .bill-status-text hr{margin: 0}
         .bill-status{
             text-align: center
         }
         .bill-status-box{
-            margin-top: 52px;
+                margin-top: 90px;
         }
         .bill-status-table-text{
                 padding-top: 22px;
@@ -324,7 +329,8 @@
         .bill-info-title{
             font-size: 12px;
             text-align: center;
-            margin-top:-20px
+            margin:0px;
+            margin-top:-20px;
         }
 
     </style>
@@ -332,27 +338,29 @@
         {% for bill in bills %}
         <div class="row bill-container profile-box">
             <div class="col-md-4">
-                <p class="bill-info-title">{{time}} 2016-00-00 00:00:00 订单号: 00000001</p>
+                <p class="bill-info-title">{{bill.create_time}} 订单号: {{bill.id}}</p>
                 <div class="bill-info-box">
 
                     <div class="bill-info">
+                        {% for good in bill.info %}
                         <div class="row">
-                            <div class="col-md-6"> <img class="img" alt="140x140" src="{{bill.m_pic}}"></div>
+                            <div class="col-md-6"> <img class="img" alt="140x140" src="{{good.m_pic}}"></div>
                             <div class="col-md-6 bill-info-text-box">
-                                <h4>Arponic</h4>
-                                <p>asjdlkajldjsla</p>
+                                <h4>{{good.title}}</h4>
+                                <p>{{good.subtitle}}</p>
                                 <hr>
                                 <div class="row bill-info-text-table">
-                                    <div class="col-md-6">PRICE</div><div class="col-md-6">200</div>
+                                    <div class="col-md-6">PRICE</div><div class="col-md-6">{{good.price}}</div>
                                 </div>
                                 <div class="row bill-info-text-table">
-                                    <div class="col-md-6">MATERIAL</div><div class="col-md-6">glass</div>
+                                    <div class="col-md-6">MATERIAL</div><div class="col-md-6">{{good.metarial}}</div>
                                 </div>
                                 <div class="row bill-info-text-table">
-                                    <div class="col-md-6">QUANTITY</div><div class="col-md-6">1</div>
+                                    <div class="col-md-6">QUANTITY</div><div class="col-md-6">{{good.quantity}}</div>
                                 </div>
                             </div>
                         </div>
+                        {% endfor %}
                     </div>
 
                 </div>
@@ -361,9 +369,11 @@
             <div class="col-md-3">
                  <p class="bill-info-title">金额</p>
                 <div class="bill-status-text">
-                    <div class="bill-price">{{bill.price}}400$</div>
+                    <div class="bill-price">{{bill.total}}</div>
                     <hr>
-                    <div class="bill-status">已支付</div>
+                    <div class="bill-status">{% if bill.status===0 %}未支付 <button class="pay btn" data-billid="{{bill.id}}">去支付</button>{% endif %} 
+                    {% if bill.status >0 %}已支付，等待发货{% endif %}
+                    {% if bill.status >1 %}<span class="bill-shipping-code">已发货，快递单号： {{bill.shipping_code}} <button class="confirm-package btn" data-billid="{{bill.id}}">确认收货</button></span>{% endif %} </div>
                 </div>
             </div>
             <div class="col-md-5">
@@ -371,13 +381,13 @@
                 <ul class="bill-status-box">
                     <li class="status-current bill-status-li"><span class="bill-status-table-text">下单</span></li>
                     <li class="bill-sep"></li>
-                    <li class="status-current bill-status-li"><span class="bill-status-table-text">支付</span></li>
+                    <li class="{% if bill.status >0 %}status-current{% endif %}  bill-status-li"><span class="bill-status-table-text">支付</span></li>
                     <li class="bill-sep"></li>
-                    <li class="status-current bill-status-li"><span class="bill-status-table-text">发货</span></li>
+                    <li class="{% if bill.status >1 %}status-current{% endif %} bill-status-li"><span class="bill-status-table-text">发货</span> </li>
                     <li class="bill-sep"></li>
-                    <li class="bill-status-li"><span class="bill-status-table-text">收货</span></li>
+                    <li class="{% if bill.status >2 %}status-current{% endif %} bill-status-li"><span class="bill-status-table-text">收货</span></li>
                     <li class="bill-sep"></li>
-                    <li class="bill-status-li"><span class="bill-status-table-text">完成</span></li>
+                    <li class="{% if bill.status >3 %}status-current{% endif %} bill-status-li"><span class="bill-status-table-text">完成</span></li>
                 </ul>
             </div>
         </div>
@@ -445,6 +455,58 @@
                                 alert('修改失败');
                             }else{
                                 alert('修改成功');
+                            }
+                        }
+                    });
+                });
+
+                $(document).delegate('.pay','click',function(){
+
+                    $.ajax({
+                        url:'/bill/pay',
+                        type:'GET', //GET
+                        async:false,    //或false,是否异步
+                        data:{
+                            bill_id:$(this).attr('data-billid'),
+                            _csrf:$('#_csrf').val()
+                        },
+                        timeout:300,    //超时时间
+                        dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        beforeSend:function(xhr){
+                            // console.log(xhr)
+                            // console.log('发送前')
+                        },
+                        success:function(data){
+                            if(data.success ===false){
+                                alert('支付失败');
+                            }else{
+                                location.href = data.surl;
+                            }
+                        }
+                    });
+                });
+
+                $(document).delegate('.confirm-package','click',function(){
+
+                    $.ajax({
+                        url:'/bill/confirm',
+                        type:'GET', //GET
+                        async:false,    //或false,是否异步
+                        data:{
+                            bill_id:$(this).attr('data-billid'),
+                            _csrf:$('#_csrf').val()
+                        },
+                        timeout:300,    //超时时间
+                        dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        beforeSend:function(xhr){
+                            // console.log(xhr)
+                            // console.log('发送前')
+                        },
+                        success:function(data){
+                            if(data.success ===false){
+                                alert('确认失败');
+                            }else{
+                                alert('确认成功');
                             }
                         }
                     });

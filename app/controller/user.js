@@ -67,14 +67,18 @@ exports.profile = function* () {
   const pageNum = +this.query.pageNum || 1;
   const pageSize = +this.query.pageSize || 100;
 
-  /*
+ 
   // 订单信息
   let bills = yield this.service.bill.list(this.session.user.id, pageNum, pageSize);
-
+  bills.forEach((bill)=>{
+    bill.info = JSON.parse(bill.info);
+  })
+  console.log(bills);
+ /*
   // 地址信息
   let address = yield this.service.address.list(this.session.user.id, pageNum, pageSize);
 */
-  let bills = [1, 2, 3];
+  // let bills = [1, 2, 3];
   yield this.render('profile.html', {
     user: this.session.user,
     bills: bills,

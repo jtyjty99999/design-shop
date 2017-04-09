@@ -40,16 +40,17 @@
                 <div class="col-md-6">
                     <ul class="color-list">
                         {% for color in good.color %}
-                        <li style="background:{{color}}"></li> 
+                        <li style="background:{{color}}" data-color="{{color}}"></li> 
                         {% endfor %}                
                     </ul>
                 </div>
             </div>
             <div class="row good-input">
                 <div class="col-md-6">QUANTITY</div>
-                <div class="col-md-6"><input  style="width:100px;" data_max="{{good.whole}}" value="0" data_step="1"  data_digit="0"/></div>
+                <div class="col-md-6"><input  style="width:100px;" data_max="{{good.whole}}" value="0" data_step="1"  data_digit="0" id="quantity"/></div>
             </div>
             <div class="row good-input" id="add-cart-box">
+                <input type="hidden" value="{{ ctx.csrf | safe }}" id="_csrf">
                 <button id="add-to-cart" data-good="{{good.id}}">ADD TO CART</button>
             </div>
 
@@ -91,6 +92,53 @@
 
 				$pics.css('display','none');
 				$pics.eq(0).css('display','block');
+
+                $('.color-list li').on('click',function(){
+                    $(this).siblings().removeClass('select-current');
+                    $(this).addClass('select-current');
+                })
+
+                $(document).delegate('#add-to-cart','click',function(){
+                    var quantity = $('#quantity').val();
+                    var material = $('.color-list li.select-current').attr('data-color');
+                    console.log(quantity, material)
+                    if(quantity === '0'){
+                        alert('请选择数量');
+                        return
+                    }
+                    if(material === undefined){
+                        alert('请选择颜色');
+                        return 
+                    }
+                    $.ajax({
+                        url:'/cart',
+                        type:'POST', //GET
+                        async:false,    //或false,是否异步
+                        data:{
+                            goods_id:$('#add-to-cart').attr('data-good'),
+                            quantity:quantity,
+                            material:material,
+                            _csrf:$('#_csrf').val()
+                        },
+                        timeout:300,    //超时时间
+                        dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        beforeSend:function(xhr){
+                            // console.log(xhr)
+                            // console.log('发送前')
+                        },
+                        success:function(data){
+                            if(data.success ===false){
+                                alert('添加失败,请登录');
+                            }else{
+                                alert('添加成功');
+                            }
+                        }
+                    });
+                });
+
+
+
+
 
 	});
 

@@ -12,7 +12,17 @@ module.exports = app => {
   app.get('/user/islogin', app.controller.user.islogin); 
   app.get('/logout', app.controller.user.logout);
 
+  // cart
+  app.get('/cart', app.controller.cart.index);
+  app.post('/cart', admin, app.controller.cart.add);
+  app.delete('/cart', admin, app.controller.cart.deleteGoods);
+
+  app.get('/paynotify', install, app.controller.bill.paynotify);
+  app.get('/payreturn', install, app.controller.bill.payreturn);
   // bill
+  app.get('/bill/send', app.controller.bill.send);
+  app.get('/bill/pay', app.controller.bill.pay);
+  app.get('/bill/confirm', app.controller.bill.confirm);
   app.get('/bill', install, app.controller.bill.find);
   app.post('/bill', admin, app.controller.bill.add);
   app.put('/bill', admin, app.controller.bill.update);

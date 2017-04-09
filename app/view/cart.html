@@ -1,0 +1,270 @@
+{% extends "_layout.html" %}
+
+{% block body %}
+<!-- Main Content -->
+
+<style>
+    #cart-container{
+        margin-top: 80px;
+    }
+    #cart-container #goods-container{
+        width:820px;
+        background: #d1cdc4;
+        height: 200px;
+        margin-top: 14px;
+    }
+    #cart-container .goods-pics{
+        width:auto;
+        height:auto;
+        
+    }
+    #cart-container .goods-pics img{
+        width:240px;
+        height:160px;
+            margin-top: 20px;
+    margin-left: 32px;
+    }
+    #cart-container #good-info-block{
+    width: 50%;
+    padding: 28px 38px;
+    height: 200px;
+    margin-left: 58px;
+    }
+    #cart-container #good-info-block hr{
+        margin-top: 27px
+    }
+    #cart-container #good-info-block p{
+        height:auto
+    }
+   #cart-container .good-input{
+        margin-top: 0px;
+            font-size: 14px;
+   }
+   #cart-container .price-format{
+       text-align:right;
+       font-size: 14px
+   }
+   #cart-container .good-input{
+   }
+   #cart-container .color-list{
+       margin-bottom: 0px;
+       height:16px
+   }
+   #cart-container .color-list li{
+       width:16px;
+       height:16px
+   }
+    #cart-container .good-input .col-md-6:nth-child(2) {
+    text-align: right;
+    }
+    .cart-box{
+        width: 820px;
+    margin: auto;
+    padding: 20px 70px;
+    border: 2px solid #D1CDBD;
+    margin-top: 20px;
+    font-family: "Microsoft Yahei";
+    margin-bottom: -8px;
+    }
+    .cart-box h4{
+        text-align: center;
+        font-weight: normal;
+        margin-bottom:30px;
+
+    }
+    .cart-box hr{
+          margin-top: 8px;
+        margin-bottom: 26px;
+    }
+    .cart-box .form-control{
+        margin-bottom: 23px;
+        height: 30px;
+        border-radius:initial
+    }
+    #place-box{
+            width: 820px;
+    margin: auto;
+    text-align: center;
+    margin-top: 40px;
+    }
+    #place-order{
+        width: 460px;
+        height: 58px;
+        font-size: 28px;
+        color: white;
+        background: black;
+        line-height: 58px;
+        font-weight: normal;
+            padding: 0;
+    }
+</style>
+<div class="container" id="cart-container">
+    {% if goods.length !==0 %}
+
+    {% for good in goods %}
+    <div class="row section fp-auto-height" id="goods-container">
+        <div class="col-md-5">
+            <div class="goods-pics">
+                <img src="{{good.m_pic}}" alt=""> 
+            </div>
+        </div>
+        <div class="col-md-7" id="good-info-block">
+            <h3>{{good.title}}</h3>
+            <h4>{{good.subtitle}}</h4>
+            <hr>
+            <div class="row good-input">
+                <div class="col-md-6">Price</div>
+                <div class="col-md-6 price-format">$ {{good.price}}</div>
+            </div>
+            <div class="row good-input">
+                <div class="col-md-6">MATERIAL</div>
+                <div class="col-md-6">
+                    <ul class="color-list">
+                        <li style="background:{{good.material}}"></li>       
+                    </ul>
+                </div>
+            </div>
+            <div class="row good-input">
+                <div class="col-md-6">QUANTITY</div>
+                <div class="col-md-6">{{good.quantity}}</div>
+            </div>
+
+        </div>
+    </div>
+    {% endfor %}  
+
+    <div class="cart-box">
+        <h4>SHIPPING ADDRESS</h4>
+        <div class="row">
+            <div class="col-lg-5">
+                <input type="text" class="form-control" aria-label="..." value="" id="country" placeholder="COUNTRY">
+            </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+        <div class="row">
+            <div class="col-lg-8">
+                <input type="text" class="form-control" aria-label="..." value="" id="address" placeholder="ADDRESS">
+            </div><!-- /.col-lg-6 -->
+            <div class="col-lg-4">
+                <input type="text" class="form-control" aria-label="..." value="" id="postcode" placeholder="POSTCODE">
+            </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+        <hr>
+        <h4>CUSTOMER INFORMATION</h4>
+        <div class="row">
+            <div class="col-lg-4">
+                <input type="text" class="form-control" aria-label="..." value="" id="name" placeholder="NAME">
+            </div><!-- /.col-lg-6 -->
+            <div class="col-lg-8">
+                <input type="text" class="form-control" aria-label="..." value="" id="phone" placeholder="PHONE">
+            </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <input type="text" class="form-control" aria-label="..." value="" id="email" placeholder="EMAIL">
+            </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+    </div>
+    <div class="cart-box">
+        <h4>TOTAL</h4>
+        <ul class="price-list">
+
+        </ul>
+    </div>
+
+    <div class="cart-box">
+        <h4>PAYMENT</h4>
+        <ul class="pay-type-list">
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <input type="hidden" value="{{ ctx.csrf | safe }}" id="_csrf">
+                
+    <div id="place-box">
+        <button class="btn" id="place-order">place order</button>
+    </div>
+
+    {% else%}
+
+    <div class="cart-box">
+        <h4>YOUR CART IS EMPTY</h4>
+    </div>
+
+    {% endif%}
+
+    
+
+</div>
+{% block footer %}
+
+    <div class="footer-nofix">
+        <img src="/public/images/footer.jpg" alt="">
+        <div class="footer-privacy">
+            <a href="/privacy">PRIVACY POLICY</a>
+            <a href="/return">RETURN AND EXCHANGE</a>
+        </div>
+    </div>
+
+{% endblock %}
+{% endblock %}
+
+{% block script %}
+
+<script>
+
+	$(function(){
+
+                $(document).delegate('#place-order','click',function(){
+                    var country = $('#country').val();
+                    var address = $('#address').val();
+                    var postcode = $('#postcode').val();
+                    var name = $('#name').val();
+                    var phone = $('#phone').val();
+                    var email = $('#email').val();
+
+                    if(address === undefined){
+                        alert('请填写地址');
+                        return 
+                    }
+                    if(name === undefined){
+                        alert('请填写姓名');
+                        return 
+                    }
+                    if(phone === undefined){
+                        alert('请填写电话');
+                        return 
+                    }
+                    $.ajax({
+                        url:'/bill',
+                        type:'POST', //GET
+                        async:false,    //或false,是否异步
+                        data:{
+                            address:address,
+                            country:country,
+                            name:name,
+                            phone:phone,
+                            email:email,
+                            postcode:postcode,
+                            _csrf:$('#_csrf').val()
+                        },
+                        timeout:300,    //超时时间
+                        dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        beforeSend:function(xhr){
+                            // console.log(xhr)
+                            // console.log('发送前')
+                        },
+                        success:function(data){
+                            if(data.success ===false){
+                                alert('下单失败');
+                            }else{
+                                alert('下单成功');
+                                location.href = data.surl;
+                            }
+                        }
+                    });
+                });
+	});
+
+</script>
+{% endblock %}
+
