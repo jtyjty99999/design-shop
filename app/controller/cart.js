@@ -29,7 +29,7 @@ exports.add = function* () {
 // 展示购物车
 exports.index = function* () {
 
-    if (!this.session.user || this.session.user && !this.session.user.id) {
+    if (!this.session.user || (this.session.user && !this.session.user.id)) {
         this.redirect('/');
     }
     let goods = yield this.service.cart.list(this.session.user.id);
