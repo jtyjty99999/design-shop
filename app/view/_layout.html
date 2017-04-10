@@ -203,7 +203,6 @@ font-size: 18px;
                 
                 $(document).delegate('#profile2','click',function(){
                     isLogin(function(data){
-                  console.log(data,data.login === true);      
                         if(data.login === true){
                             location.href ='/profile';
                         }else{
@@ -259,7 +258,7 @@ font-size: 18px;
                     }
                     $.ajax({
                         url:'/user',
-                        type:'PUT', //GET
+                        type:'POST', //GET
                         async:false,    //或false,是否异步
                         data:{
                             name:$('#nameInput').val(),
