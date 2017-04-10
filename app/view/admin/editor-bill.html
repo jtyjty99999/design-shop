@@ -1,0 +1,283 @@
+{% extends "_layout.html" %}
+{% block style %}
+    <link href="/public/css/editormd.min.css" rel="stylesheet">
+{% endblock %}
+{% block header %}
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('public/images/contact-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="page-heading">
+                    <h1>Manage bill</h1>
+                    <hr class="small">
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+
+        .bill-container{
+                width: 1120px;
+                margin: auto;
+                border-color: #cecbbf;
+                border-top-style: solid;
+                border-top-width: 21px;
+                color:#717171;
+                height: 235px;
+                margin-top:28px
+        }
+        .bill-info-box{
+
+        }
+        .bill-info{
+                   height: 214px;
+                overflow: auto;
+        }
+        .bill-info>.row{
+            padding: 5px 0;
+            margin-top: 20px;
+            background-color:#cecbbf;
+        }
+        .bill-info img{
+            width:92px;
+            height:70px
+        }
+        .bill-info-text-box{
+
+        }        
+
+        .bill-info-text-box h4{
+            margin: 0;
+            font-size: 14px;
+        }  
+        .bill-info-text-box p{
+            margin: 0;
+            font-size: 12px;
+            transform: scale(0.8);
+            margin-left: -18px;
+        }     
+        .bill-info-text-box hr{
+            margin: 0px;
+            margin-bottom: 5px;
+        }    
+        .bill-info-text-table{
+            font-size: 9px;
+            transform: scale(0.8);
+            margin-left: -18px;
+            line-height: 10px;
+        }
+        .bill-info-text-table div:first-child{
+            display: inline-block;
+            padding: 0px;
+            text-align: left;
+            margin-left: -20px;
+            margin-right: 46px;
+        }
+        .bill-info-text-table div:last-child{
+            display: inline-block;
+            padding: 0px;
+            text-align: right;
+            width: 50px;
+        }
+        .bill-status-text{
+                height: 80px;
+                font-size: 12px;
+        }
+        .bill-price{
+            text-align: center;
+            margin-top: 90px; 
+        } 
+        .bill-status-text hr{margin: 0}
+        .bill-status{
+            text-align: center
+        }
+        .bill-status-box{
+                margin-top: 90px;
+        }
+        .bill-status-table-text{
+                padding-top: 22px;
+                text-align: center;
+                font-size: 12px;
+                position: absolute;
+                top: 0px;
+                width: 24px;
+                left: -5px;
+        }
+        .bill-status-table-text hr{
+                margin:0;
+                width: 50px;
+                margin-left: 100px;
+        }
+        .bill-status-box li.bill-sep{
+            width: 40px;
+                height: 1px;
+                background: black;
+        }
+        .bill-status-box li{
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .bill-status-box li.bill-status-li{
+
+            position: relative;
+            border: 1px solid black;
+            width: 16px;
+            height: 16px;
+            border-radius: 20px;
+        }
+        .bill-status-box li.bill-status-li:before{
+            position: relative;
+            /* border: 1px solid red; */
+            width: 12px;
+            height: 12px;
+            border-radius: 20px;
+            display: block;
+            content: '';
+            top: 1px;
+            left: 1px;
+        }
+        .bill-status-box li.status-current:before{
+            background: black;
+        }
+        .bill-info-title{
+            font-size: 12px;
+            text-align: center;
+            margin:0px;
+            margin-top:-20px;
+        }
+
+    </style>
+</header>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+
+        {% for bill in bills %}
+        <div class="row bill-container profile-box">
+            <div class="col-md-4">
+                <p class="bill-info-title">{{bill.create_time}} 订单号: {{bill.id}}</p>
+                <div class="bill-info-box">
+
+                    <div class="bill-info">
+                        {% for good in bill.info %}
+                        <div class="row">
+                            <div class="col-md-6"> <img class="img" alt="140x140" src="{{good.m_pic}}"></div>
+                            <div class="col-md-6 bill-info-text-box">
+                                <h4>{{good.title}}</h4>
+                                <p>{{good.subtitle}}</p>
+                                <hr>
+                                <div class="row bill-info-text-table">
+                                    <div class="col-md-6">PRICE</div><div class="col-md-6">{{good.price}}</div>
+                                </div>
+                                <div class="row bill-info-text-table">
+                                    <div class="col-md-6">MATERIAL</div><div class="col-md-6">{{good.metarial}}</div>
+                                </div>
+                                <div class="row bill-info-text-table">
+                                    <div class="col-md-6">QUANTITY</div><div class="col-md-6">{{good.quantity}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-md-3">
+                 <p class="bill-info-title">金额</p>
+                <div class="bill-status-text">
+                    <div class="bill-price">{{bill.total}}</div>
+                    <hr>
+                    <div class="bill-status">{% if bill.status===0 %}未支付  <input type="text" value="{{bill.total}}" placeholder="价格" id="total"><button class="change btn" data-billid="{{bill.id}}">修改价格</button> {% endif %} 
+                    {% if bill.status ===1 %}已支付，等待发货。 用户的地址是：国家：{{bill.country}}, 地址：{{bill.address}}, 邮政编码:{{bill.postcode}} <input type="text" value="" placeholder="快递单号" id="shipping-code"> <button class="send btn" data-billid="{{bill.id}}">发货</button> {% endif %}
+                    {% if bill.status ===2 %}<span class="bill-shipping-code">已发货，快递单号： {{bill.shipping_code}} <button class="confirm-package btn" data-billid="{{bill.id}}">确认收货</button></span>{% endif %}{% if bill.status ===3 %}<span class="bill-shipping-code">已收货</span>{% endif %} </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                 <p class="bill-info-title">交易状态</p>
+                <ul class="bill-status-box">
+                    <li class="status-current bill-status-li"><span class="bill-status-table-text">下单</span></li>
+                    <li class="bill-sep"></li>
+                    <li class="{% if bill.status >0 %}status-current{% endif %}  bill-status-li"><span class="bill-status-table-text">支付</span></li>
+                    <li class="bill-sep"></li>
+                    <li class="{% if bill.status >1 %}status-current{% endif %} bill-status-li"><span class="bill-status-table-text">发货</span> </li>
+                    <li class="bill-sep"></li>
+                    <li class="{% if bill.status >2 %}status-current{% endif %} bill-status-li"><span class="bill-status-table-text">收货</span></li>
+                    <li class="bill-sep"></li>
+                    <li class="{% if bill.status >3 %}status-current{% endif %} bill-status-li"><span class="bill-status-table-text">完成</span></li>
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+
+</div>
+{% endblock %}
+
+{% block page %}{% include "component/pager.html" %}{% endblock %}
+
+{% block script %}
+
+<script>
+
+                $(document).delegate('.send','click',function(){
+
+                    $.ajax({
+                        url:'/bill/send',
+                        type:'GET', //GET
+                        async:false,    //或false,是否异步
+                        data:{
+                            bill_id:$(this).attr('data-billid'),
+                            _csrf:$('#_csrf').val(),
+                            shippingcode:$('#shipping-code').val()
+                        },
+                        timeout:300,    //超时时间
+                        dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        beforeSend:function(xhr){
+                            // console.log(xhr)
+                            // console.log('发送前')
+                        },
+                        success:function(data){
+                            if(data.success ===false){
+                                alert('发货失败');
+                            }else{
+                                alert('发货成功');
+                            }
+                        }
+                    });
+                });
+
+                $(document).delegate('.change','click',function(){
+
+                    $.ajax({
+                        url:'/bill/change',
+                        type:'GET', //GET
+                        async:false,    //或false,是否异步
+                        data:{
+                            bill_id:$(this).attr('data-billid'),
+                            _csrf:$('#_csrf').val(),
+                            total:$('#total').val()
+                        },
+                        timeout:300,    //超时时间
+                        dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        beforeSend:function(xhr){
+                            // console.log(xhr)
+                            // console.log('发送前')
+                        },
+                        success:function(data){
+                            if(data.success ===false){
+                                alert('修改失败');
+                            }else{
+                                alert('修改成功');
+                            }
+                        }
+                    });
+                });
+
+
+
+</script>
+
+{% endblock %}

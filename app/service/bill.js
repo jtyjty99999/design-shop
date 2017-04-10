@@ -23,9 +23,17 @@ module.exports = app => {
     // 获取文章列表
     // 获取文章列表
     * list(user_id, pageNum, pageSize) {
-      const articles = yield app.mysql.query('select  id,  status, total, create_time, info, address,country,name,email,phone from design_bill where user_id = ? and deleted = 0 order by create_time desc limit ? offset ?;', [ user_id, pageSize, (pageNum - 1) * pageSize ]);
+      const articles = yield app.mysql.query('select  id,  status, total, create_time, info, address,country,name,email,phone,shipping_code from design_bill where user_id = ? and deleted = 0 order by create_time desc limit ? offset ?;', [ user_id, pageSize, (pageNum - 1) * pageSize ]);
       return articles;
     }
+
+    // 获取文章列表
+    // 获取文章列表
+    * listAll(pageNum, pageSize) {
+      const articles = yield app.mysql.query('select  id,  status, total, create_time, info, address,country,name,email,phone,shipping_code from design_bill where deleted = 0 order by create_time desc limit ? offset ?;', [ pageSize, (pageNum - 1) * pageSize ]);
+      return articles;
+    }
+
 
     // 获取文章列表
     * find(id) {

@@ -42,6 +42,29 @@ exports.editorJob = function* () {
 
 };
 
+exports.editorBills = function* () {
+
+
+  const pageNum = +this.query.pageNum || 1;
+  const pageSize = +this.query.pageSize || 100;
+
+  // 订单信息
+  let bills = yield this.service.bill.listAll( pageNum, pageSize);
+  bills.forEach((bill)=>{
+    bill.info = JSON.parse(bill.info);
+  })
+ /*
+  // 地址信息
+  let address = yield this.service.address.list(this.session.user.id, pageNum, pageSize);
+*/
+  // let bills = [1, 2, 3];
+  yield this.render('admin/editor-bill.html', {
+    bills: bills,
+    // address: address
+  });
+
+}
+
 exports.editorPress = function* () {
   const articleID = parseInt(this.query.pressID);
   let article = null;

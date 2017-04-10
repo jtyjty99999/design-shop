@@ -20,6 +20,7 @@ module.exports = app => {
   app.get('/paynotify', install, app.controller.bill.paynotify);
   app.get('/payreturn', install, app.controller.bill.payreturn);
   // bill
+  app.get('/bill/change', app.controller.bill.change);
   app.get('/bill/send', app.controller.bill.send);
   app.get('/bill/pay', app.controller.bill.pay);
   app.get('/bill/confirm', app.controller.bill.confirm);
@@ -89,6 +90,7 @@ module.exports = app => {
   app.get('/editor-project', install, admin, app.controller.admin.editorProject);
   app.get('/editor-news', install, admin, app.controller.admin.editorNews);
   app.get('/editor-good', install, admin, app.controller.admin.editorGoods);
+  app.get('/editor-bill', install, admin, app.controller.admin.editorBills);
   app.post('/adminLogin', app.controller.admin.login);
 
   app.get('/adminlogin', install, app.controller.site.adminLogin);

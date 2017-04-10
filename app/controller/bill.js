@@ -1,7 +1,5 @@
 // 首页换图片
 // 购物车逻辑：删除 某个
-// 订单展示（后台的）
-// 订单管理， 可以填写订单发货号
 // 部署
 
 'use strict';
@@ -247,11 +245,23 @@ exports.pay = function *(){
 
 exports.send = function *(){
   let bill_id = this.query.bill_id;
-  let shipping_code = this.query.shipping_code;
+  let shipping_code = this.query.shippingcode;
   let bill = yield this.service.bill.update({
     id:bill_id,
     status:2,
     shipping_code
+  });
+  this.body = {
+    success: true
+  } 
+}
+
+exports.change = function *(){
+  let bill_id = this.query.bill_id;
+  let total = this.query.total;
+  let bill = yield this.service.bill.update({
+    id:bill_id,
+    total
   });
   this.body = {
     success: true
