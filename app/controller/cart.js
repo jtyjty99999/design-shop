@@ -36,18 +36,23 @@ exports.index = function* () {
         this.redirect('/');
         return;
     }
+
+    let total = 0;
+    
     let goods = yield this.service.cart.list(this.session.user.id);
 
     if (goods) {
         for (let i = 0, l = goods.length; i < l; i++) {
             let goodsInfo = yield this.service.goods.find(goods[i].goods_id);
             Object.assign(goods[i], goodsInfo);
+            total += parseInt(goods[i].price)* goods[i].quantity;
         }
     } else {
         goods = [];
     }
     yield this.render('cart.html', {
-        goods
+        goods,
+        total
     });
 };
 
