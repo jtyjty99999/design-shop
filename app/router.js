@@ -14,8 +14,8 @@ module.exports = app => {
 
   // cart
   app.get('/cart', app.controller.cart.index);
-  app.post('/cart', admin, app.controller.cart.add);
-  app.delete('/cart', admin, app.controller.cart.deleteGoods);
+  app.post('/cart', app.controller.cart.add);
+  app.delete('/cart', app.controller.cart.deleteGoods);
 
   app.get('/paynotify', install, app.controller.bill.paynotify);
   app.get('/payreturn', install, app.controller.bill.payreturn);
@@ -24,10 +24,10 @@ module.exports = app => {
   app.get('/bill/send', app.controller.bill.send);
   app.get('/bill/pay', app.controller.bill.pay);
   app.get('/bill/confirm', app.controller.bill.confirm);
-  app.get('/bill', install, app.controller.bill.find);
-  app.post('/bill', admin, app.controller.bill.add);
-  app.put('/bill', admin, app.controller.bill.update);
-  app.delete('/bill', admin, app.controller.bill.deleteBill);
+  app.get('/bill', app.controller.bill.find);
+  app.post('/bill', app.controller.bill.add);
+  app.put('/bill', app.controller.bill.update);
+  app.delete('/bill', app.controller.bill.deleteBill);
 
   // address
   app.get('/address', install, app.controller.address.find);
