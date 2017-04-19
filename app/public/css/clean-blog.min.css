@@ -254,11 +254,13 @@ margin-right: 45px;
 }
 #prev{
     background: url('../images/prev.png') no-repeat;
-    left:0
+    left:0;
+    display: none
 }
 #next{
     background: url('../images/next.png') no-repeat;
-    right:0
+    right:0;
+    display: none
 }
 
 .press-container{
@@ -368,7 +370,7 @@ margin-right: 45px;
 }
 
 
-.menu_project ul li:hover {
+.menu_project ul li.current {
     color:black;
     border-bottom:solid 1px black
 }
@@ -622,6 +624,7 @@ job list
     bottom: 43px;
     left: 179px;
     font-family: Century Gothic;
+    width:400px;
 }
 
 .footer-privacy a{
@@ -658,7 +661,9 @@ goods
     margin-bottom: 33px;
 }
 .goods-pics-pointer{
-    text-align: center
+    text-align: center;
+    margin-left:0;
+    padding-left:0
 }
 .goods-pics-pointer li{
     margin-top:20px;
@@ -669,12 +674,13 @@ goods
     display: inline-block;
     margin-right:11px
 }
-.goods-pics-pointer li:hover{
+.goods-pics-pointer li.hover{
     background:black
 }
 .goods-pics{
     width: 574px;
-    height: 431px
+    height: 431px;
+    display: inline-block
 }
 .goods-pics img{
     height:100%;
@@ -794,3 +800,4 @@ goods
 .good-menu-project{
     margin-bottom: 36px;
 }
+

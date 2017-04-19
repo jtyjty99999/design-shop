@@ -19,7 +19,7 @@ module.exports = app => {
 
     // 获取文章列表
     * list(pageNum, pageSize) {
-      const articles = yield app.mysql.query('select  id, tag ,m_pic,content, name, position,description from design_team where deleted = 0 order by timestamp desc limit ? offset ?;', [ pageSize, (pageNum - 1) * pageSize ]);
+      const articles = yield app.mysql.query('select  id, tag ,m_pic,content, name, position,description from design_team where deleted = 0 order by timestamp asc limit ? offset ?;', [ pageSize, (pageNum - 1) * pageSize ]);
       return articles;
     }
     // 获取某一类的team

@@ -55,11 +55,15 @@ $(document).delegate('.press-pic','click',function(){
             closeBtn:1,
             shade: 0.8,
             area:['80%','90%'],
-            content: '<div><img class="press-pic-big" src="'+in_png+'"></div>',
+            content: '<div id="press-container"><img class="press-pic-big" src="'+in_png+'"></div>',
             success: function(layero, i){
                 // console.log(index);
                 $('.control-btn').show();
-
+                console.log($('#press-container').parents('div').parents('.layui-layer'));
+                $('#press-container').parents('div').parents('.layui-layer').css({
+                    "background":"none",
+                    "box-shadow":"initial"
+                })
 
             },
             end: function(layero, i){

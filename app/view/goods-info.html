@@ -5,6 +5,7 @@
 <div class="container">
 
     <div class="row section fp-auto-height" id="goods-container">
+        <!--
         <div class="col-md-12" id="goods-nav">
 
             <div>
@@ -12,8 +13,8 @@
                 <a>{{good.title}}</a>
             </div>
 
-        </div>
-        <div class="col-md-6">
+        </div>-->
+        <div class="col-md-6" style="text-align:center">
             <div class="goods-pics">
                         {% for in_pic in good.in_pic %}
                         <img src="{{in_pic}}" alt=""> 
@@ -32,7 +33,7 @@
             <hr>
             <p>{{good.description}}</p>
             <div class="row good-input">
-                <div class="col-md-6">Price</div>
+                <div class="col-md-6">PRICE</div>
                 <div class="col-md-6 price-format">$ {{good.price}}</div>
             </div>
             <div class="row good-input">
@@ -88,6 +89,7 @@
 				var $t = $this.index();
 				$pics.css('display','none');
 			    $pics.eq($t).css('display','block');
+                $this.addClass('hover').siblings().removeClass('hover')
 			})
 
 				$pics.css('display','none');

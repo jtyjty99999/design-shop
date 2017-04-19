@@ -61,10 +61,7 @@ exports.add = function* () {
         content,
         tag
     });
-
-
   }
-
 
   this.redirect('/manager');
 
