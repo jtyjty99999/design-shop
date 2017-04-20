@@ -153,8 +153,41 @@ margin-right: 45px;
 .section {
     margin: auto;
 }
-.col-md-12{
+.col-md-12 {
     padding: 0
+}
+
+#login-status-box {
+    width: 176px;
+    height: 60px;
+    position: absolute;
+    right: -76px;
+    border: 1px solid black;
+    top: 97%;
+    padding: 10px 20px;
+    
+    display: none;
+    background: white
+}
+
+#welcome {
+    color: #d1cdc4;
+    font-size: 12px;
+    margin: 0;
+    font-weight: normal;
+    letter-spacing: 0em;
+}
+
+#login-status-box a {
+        margin-top: 8px;
+    display: block;
+    width: 100%;
+    height: 18px;
+    padding: 0;
+    line-height: 18px;
+    font-size: 12px;
+    font-weight: normal;
+        background-color: #d1cdc4;
 }
 
 
@@ -800,4 +833,5 @@ goods
 .good-menu-project{
     margin-bottom: 36px;
 }
+
 

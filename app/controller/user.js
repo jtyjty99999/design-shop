@@ -7,7 +7,8 @@ const loginRule = {
 
 exports.islogin = function* () {
   this.body = {
-    login: this.session.login
+    login: this.session.login,
+    username: this.session.login? (this.session.user.nick || this.session.user.username) :''
   };
 }
 

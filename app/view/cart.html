@@ -24,10 +24,11 @@
     margin-left: 32px;
     }
     #cart-container #good-info-block{
-    width: 50%;
-    padding: 28px 38px;
-    height: 200px;
-    margin-left: 58px;
+        width: 50%;
+        padding: 28px 38px;
+        height: 200px;
+        margin-left: 58px;
+        position:relative
     }
     #cart-container #good-info-block hr{
         margin-top: 27px
@@ -96,6 +97,13 @@
         font-weight: normal;
             padding: 0;
     }
+    .shop-close{
+        position: absolute;
+        right:0;
+        top:0;
+        color:black;
+        cursor: pointer
+    }
 </style>
 <div class="container" id="cart-container">
     {% if goods.length !==0 %}
@@ -108,6 +116,7 @@
             </div>
         </div>
         <div class="col-md-7" id="good-info-block">
+            <div class="shop-close" id="{{good.id}}">&times;</div>
             <h3>{{good.title}}</h3>
             <h4>{{good.subtitle}}</h4>
             <hr>
@@ -212,6 +221,32 @@
 <script>
 
 	$(function(){
+
+                $(document).delegate('.shop-close','click',function(){
+                    $.ajax({
+                        url:'/cart',
+                        type:'DELETE', //GET
+                        async:false,    //或false,是否异步
+                        data:{
+                            id:$(this).attr('id'),
+                            _csrf:$('#_csrf').val()
+                        },
+                        timeout:300,    //超时时间
+                        dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        beforeSend:function(xhr){
+                            // console.log(xhr)
+                            // console.log('发送前')
+                        },
+                        success:function(data){
+                            if(data.success ===false){
+                                alert('删除失败');
+                            }else{
+                                alert('删除成功');
+                                location.reload();
+                            }
+                        }
+                    });
+                });
 
                 $(document).delegate('#place-order','click',function(){
                     var country = $('#country').val();

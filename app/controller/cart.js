@@ -57,10 +57,10 @@ exports.index = function* () {
 };
 
 // 删除一个物品
-exports.deleteGoods = function* () {
+exports.deleteCarts = function* () {
     const id = +this.request.body.id;
 
-    const success = yield this.service.cart.deleteGoods(id);
+    const success = yield this.service.cart.remove(id);
 
     if (success) {
         this.body = true;

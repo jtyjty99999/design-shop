@@ -200,7 +200,28 @@ font-size: 18px;
                     </div>
 
                 </div>`
-                
+
+                $(document).delegate('#profile2','mouseenter',function(){
+                    isLogin(function(data){
+                        if(data.login === true){
+                            $('#login-status-box').show();
+                            $('#welcome').text('HELLO:' + data.username);
+                        }
+                    });
+                });            
+
+                $(document).delegate('#login-status-box','mouseenter',function(){
+                    $('#login-status-box').show();
+                });      
+
+                $(document).delegate('#profile2','mouseleave',function(){
+                    $('#login-status-box').hide();
+                }); 
+
+                $(document).delegate('#login-status-box','mouseleave',function(){
+                    $('#login-status-box').hide();
+                }); 
+
                 $(document).delegate('#profile2','click',function(){
                     isLogin(function(data){
                         if(data.login === true){
