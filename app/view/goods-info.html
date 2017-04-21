@@ -61,17 +61,7 @@
 {{good.content | safe}}
 
 </div>
-{% block footer %}
 
-    <div class="footer-nofix">
-        <img src="/public/images/footer.jpg" alt="">
-        <div class="footer-privacy">
-            <a href="/privacy">PRIVACY POLICY</a>
-            <a href="/return">RETURN AND EXCHANGE</a>
-        </div>
-    </div>
-
-{% endblock %}
 {% endblock %}
 
 {% block script %}
@@ -79,6 +69,23 @@
 <script src="/public/js/number-input.js"></script>
 
 <script>
+
+function isLogin(cb){
+                    $.ajax({
+                        url:'/user/islogin',
+                        type:'GET', //GET
+                        async:false,    //或false,是否异步
+                        timeout:300,    //超时时间
+                        dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        beforeSend:function(xhr){
+                            // console.log(xhr)
+                            // console.log('发送前')
+                        },
+                        success:function(data){
+                            cb(data);
+                        }
+                    });
+                }
 
 	$(function(){
 			var $li = $('.goods-pics-pointer li');
@@ -101,9 +108,14 @@
                 })
 
                 $(document).delegate('#add-to-cart','click',function(){
+                    
+                    isLogin(function(data){
+                        if(data.login === false){
+                            alert('请登录！');
+                        }else{
+
                     var quantity = $('#quantity').val();
                     var material = $('.color-list li.select-current').attr('data-color');
-                    console.log(quantity, material)
                     if(quantity === '0'){
                         alert('请选择数量');
                         return
@@ -136,16 +148,11 @@
                             }
                         }
                     });
+
+                        }
+                    });
                 });
-
-
-
-
-
 	});
-
-
-
 </script>
 {% endblock %}
 

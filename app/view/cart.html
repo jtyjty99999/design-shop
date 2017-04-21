@@ -203,17 +203,6 @@
     
 
 </div>
-{% block footer %}
-
-    <div class="footer-nofix">
-        <img src="/public/images/footer.jpg" alt="">
-        <div class="footer-privacy">
-            <a href="/privacy">PRIVACY POLICY</a>
-            <a href="/return">RETURN AND EXCHANGE</a>
-        </div>
-    </div>
-
-{% endblock %}
 {% endblock %}
 
 {% block script %}
@@ -256,15 +245,23 @@
                     var phone = $('#phone').val();
                     var email = $('#email').val();
 
-                    if(address === undefined){
+                    if(address === ''){
                         alert('请填写地址');
                         return 
                     }
-                    if(name === undefined){
+                    if(postcode === ''){
+                        alert('请填写邮编');
+                        return 
+                    }
+                    if(country === ''){
+                        alert('请填写国家');
+                        return 
+                    }
+                    if(name === ''){
                         alert('请填写姓名');
                         return 
                     }
-                    if(phone === undefined){
+                    if(phone === ''){
                         alert('请填写电话');
                         return 
                     }
