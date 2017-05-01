@@ -113,6 +113,9 @@
         .address-list-status.status-current:before{
             background: black;
         }
+        .layui-layer{
+            background: white
+        }
 
             .profile-manage-box .input-group-addon.address-current-select:before{
                 background: black
@@ -189,7 +192,7 @@
                             </li>
                         {% endfor %}
                 </ul>
-                <div class="profile-action" id="address-add">添加地址 &gt&gt</div>
+                {% if addressnotfull %}<div class="profile-action" id="address-add">添加地址 &gt&gt</div> {% endif %}
             </div>
         </div>
 
@@ -441,7 +444,7 @@
                                     <div class="col-xs-5">
                                         <div class="input-group">
                                             <div class="input-group-addon">邮编</div>
-                                            <input type="text" class="form-control" id="email" placeholder="">
+                                            <input type="text" class="form-control" id="postcode" placeholder="">
                                         </div>
                                     </div>
                                 </div>
@@ -527,13 +530,17 @@
                     var method;
                     if(type==='add'){
                         method = 'POST';
+                        msgRight="添加成功";
+                        msgWrong= "添加失败";
                     }else if(type==='modify'){
                         method = 'PUT';
+                        msgRight="修改成功";
+                        msgWrong= "修改失败";
                     }else{
                         return;
                     }
                     $.ajax({
-                        url:'/user',
+                        url:'/address',
                         type:method, //GET
                         async:false,    //或false,是否异步
                         data:{
@@ -543,7 +550,7 @@
                             contact_email:$('#contact_email').val(),
                             contact_phone:$('#contact_phone').val(),
                             country:$('#country').val(),
-                            id:$(this).parent().attr('data-id'),
+                            id:$(this).attr('data-addressid'),
                             _csrf:$('#_csrf').val()
                         },
                         timeout:300,    //超时时间
@@ -554,10 +561,11 @@
                         },
                         success:function(data){
                             if(data.msg ==='wrong'){
-                                alert('修改失败');
+                                alert(msgWrong);
                             }else{
-                                alert('修改成功');
+                                alert(msgRight);
                             }
+                            location.reload();
                         }
                     });
                 });
@@ -569,7 +577,7 @@
                                 shadeClose: true,
                                 closeBtn:1,
                                 shade: 0.8,
-                                area:['353px','379px'],
+                                area:['819px','388px'],
                                 content: addressContent,
                                 success: function(layero, i){
                                             $('#address').val('');
@@ -610,6 +618,7 @@
                                 alert('删除失败');
                             }else{
                                  alert('删除成功');
+                                 location.reload();
                             }
                         }
                     });
@@ -644,14 +653,14 @@
                                     area:['819px','388px'],
                                     content: addressContent,
                                     success: function(layero, i){
-                                        $('#address').val(data.info.address);
-                                        $('#postcode').val(data.info.postcode);
-                                        $('#contact_name').val(data.info.contact_name);
-                                        $('#contact_email').val(data.info.contact_email);
-                                        $('#contact_phone').val(data.info.contact_phone);
-                                        $('#country').val(data.info.country);
+                                        $('#address').val(data.address.address);
+                                        $('#postcode').val(data.address.postcode);
+                                        $('#contact_name').val(data.address.contact_name);
+                                        $('#contact_email').val(data.address.contact_email);
+                                        $('#contact_phone').val(data.address.contact_phone);
+                                        $('#country').val(data.address.country);
                                         $('#confirm-address').attr('type','modify');
-                                        $('#confirm-address').attr('data-addressid',data.info.id);
+                                        $('#confirm-address').attr('data-addressid',data.address.id);
                                     },
                                     end: function(layero, i){
                                     }

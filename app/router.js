@@ -30,12 +30,13 @@ module.exports = app => {
   app.delete('/bill', app.controller.bill.deleteBill);
 
   // address
-  app.get('/address', install, app.controller.address.find);
-  app.post('/address', admin, app.controller.address.add);
-  app.put('/address', admin, app.controller.address.update);
-  app.delete('/address', admin, app.controller.address.deleteAddress);
+  app.get('/address', app.controller.address.find);
+  app.post('/address', app.controller.address.add);
+  app.put('/address', app.controller.address.update);
+  app.delete('/address', app.controller.address.deleteAddress);
 
-  app.get('/', app.controller.page.home);
+  app.get('/', app.controller.page.video);
+  app.get('/home', app.controller.page.home);
   app.get('/project', app.controller.project.index);
   app.get('/goods', app.controller.goods.index);
   app.get('/shop', app.controller.page.shop);

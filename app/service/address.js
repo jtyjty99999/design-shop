@@ -7,7 +7,7 @@ module.exports = app => {
         user_id:obj.user_id,
         address: obj.address,
         country:obj.country,
-        post_code: obj.post_code,
+        postcode: obj.postcode,
         contact_name: obj.contact_name,
         contact_phone: obj.contact_phone,
         contact_email: obj.contact_email,        
@@ -20,7 +20,7 @@ module.exports = app => {
     // 获取文章列表
     // 获取文章列表
     * list(user_id, pageNum, pageSize) {
-      const articles = yield app.mysql.query('select  id,  status, total, create_time, info, address_id from design_address where user_id = ? and deleted = 0 order by create_time desc limit ? offset ?;', [ pageSize, (pageNum - 1) * pageSize ]);
+      const articles = yield app.mysql.query('select * from design_address where user_id = ? and deleted = 0 limit ? offset ?;', [user_id, pageSize, (pageNum - 1) * pageSize ]);
       return articles;
     }
 

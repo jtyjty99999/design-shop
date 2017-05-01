@@ -625,6 +625,9 @@ job list
 
 .footer-nofix{
 }
+.footer-nofix img{
+    width: 100%;
+}
 
 .privacy-text{
     margin-top: 90px;

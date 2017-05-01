@@ -8,7 +8,7 @@ const loginRule = {
 exports.islogin = function* () {
   this.body = {
     login: this.session.login,
-    username: this.session.login? (this.session.user.nick || this.session.user.username) :''
+    username: this.session.login ? (this.session.user.nick || this.session.user.username) : ''
   };
 }
 
@@ -23,13 +23,13 @@ exports.login = function* () {
     this.session.user = login;
     this.body = {
         "success": true,
-        "msg":''
-    }
+        "msg": ''
+      }
       // this.redirect('/manager');
   } else {
     this.body = {
       "success": false,
-      "msg":"wrong"
+      "msg": "wrong"
     }
   }
 };
@@ -52,10 +52,10 @@ exports.update = function* () {
     nick,
     pic
   });
-  this.session.user =  yield this.service.user.find(this.session.user.id);
+  this.session.user = yield this.service.user.find(this.session.user.id);
   this.body = {
-    success:true,
-    msg:""
+    success: true,
+    msg: ""
   };
 
 };
@@ -68,26 +68,25 @@ exports.profile = function* () {
   const pageNum = +this.query.pageNum || 1;
   const pageSize = +this.query.pageSize || 100;
 
- 
+  let addressnotfull;
   // 订单信息
   let bills = yield this.service.bill.list(this.session.user.id, pageNum, pageSize);
-  bills.forEach((bill)=>{
-    bill.info = JSON.parse(bill.info);
-  })
-  let addresses = [{
-    id:1,
-    country:'中国',
-    address:'网商路699号'
-  }]
- /*
-  // 地址信息
-  let address = yield this.service.address.list(this.session.user.id, pageNum, pageSize);
-*/
+  bills.forEach((bill) => {
+      bill.info = JSON.parse(bill.info);
+    })
+    // 地址信息
+  let addresses = yield this.service.address.list(this.session.user.id, pageNum, pageSize);
+  if (addresses.length < 3) {
+    addressnotfull = true;
+  } else {
+    addressnotfull = false;
+  }
   // let bills = [1, 2, 3];
   yield this.render('profile.html', {
     user: this.session.user,
     bills: bills,
-    addresses: addresses
+    addresses: addresses,
+    addressnotfull
   });
 
 }

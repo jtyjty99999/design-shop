@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>DEFRONT</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//dn-staticfile.qbox.me/twitter-bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <!-- Custom CSS -->
+    <link href="/public/css/clean-blog.min.css" rel="stylesheet">
+
+    {% block style %}{% endblock %}
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body csrf = {{ctx.csrf}}>
+
+{% block header %}
+
+<link href="//vjs.zencdn.net/5.11/video-js.min.css" rel="stylesheet">
+
+{% endblock %}
+
+{% block body %}
+
+    <style>
+
+.video-js{
+  background-color: initial
+}
+.vjs-big-play-button{
+  display: none!important
+}
+
+.my-player{
+
+}
+.my-player-dimensions{
+    width:100%;
+    height: 100%
+}
+.video-container{
+    height: 100%;
+}
+html, body{
+    height: 100%;
+    background: #f9fff8
+}
+.action{
+    position: absolute;
+    bottom:50px;
+    right:20px;
+    font-family: "Microsoft Yahei"
+}
+.action li{
+    display: inline-block;
+}
+.action a {
+    text-decoration: none
+}
+    </style>
+
+<!-- Main Content -->
+<div class="video-container">
+
+    <video
+        id="my-player"
+        class="video-js"
+        controls
+        preload="auto"
+        autoplay="true"
+        data-setup='{}'>
+    <source src="http://pic-cloud-hn.b0.upaiyun.com/dv.mp4" type="video/mp4"></source>
+    <p class="vjs-no-js">
+        To view this video please enable JavaScript, and consider upgrading to a
+        web browser that
+        <a href="http://videojs.com/html5-video-support/" target="_blank">
+        supports HTML5 video
+        </a>
+    </p>
+    </video>
+
+    <ul class="action">
+        <li><a href="/home">英文</a></li>
+        <li><a href="/home">中文</a></li>
+    </ul>
+
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+<!-- jQuery -->
+<script src="//dn-staticfile.qbox.me/jquery/1.9.0/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/public/js/lib/bootstrap.js"></script>
+
+<script src="//vjs.zencdn.net/5.11/video.min.js"></script>
+
+<script>
+
+
+</script>
+
+{% endblock %}
+
+</body>
+
+</html>

@@ -40,6 +40,13 @@ exports.index = function* () {
     let total = 0;
     
     let goods = yield this.service.cart.list(this.session.user.id);
+    let address = yield this.service.address.list(this.session.user.id, 1, 1);
+
+    if(address[0]){
+        address = address[0];
+    }else{
+        address = {};
+    }
 
     if (goods) {
         for (let i = 0, l = goods.length; i < l; i++) {
@@ -52,7 +59,8 @@ exports.index = function* () {
     }
     yield this.render('cart.html', {
         goods,
-        total
+        total,
+        address
     });
 };
 
