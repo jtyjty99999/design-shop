@@ -74,7 +74,11 @@ exports.profile = function* () {
   bills.forEach((bill)=>{
     bill.info = JSON.parse(bill.info);
   })
-  console.log(bills);
+  let addresses = [{
+    id:1,
+    country:'中国',
+    address:'网商路699号'
+  }]
  /*
   // 地址信息
   let address = yield this.service.address.list(this.session.user.id, pageNum, pageSize);
@@ -83,7 +87,7 @@ exports.profile = function* () {
   yield this.render('profile.html', {
     user: this.session.user,
     bills: bills,
-    // address: address
+    addresses: addresses
   });
 
 }

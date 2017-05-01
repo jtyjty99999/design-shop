@@ -91,8 +91,6 @@
             padding: 6px;
             margin-left: 17px;
         }
-
-
         .address-list-status{
 
             position: relative;
@@ -182,19 +180,16 @@
             </div>
             <div class="col-md-8">
                 <ul class="address-list">
-                    <li>
-                        <div class="address-list-status status-current"></div>
-                        <div class="address-list-detail">常用</div>
-                    </li>
-                    <li>
-                        <div class="address-list-status"></div>
-                        <div class="address-list-detail">常用2</div>
-                    </li>
-                    <li>
-                        <div class="address-list-status"></div>
-                        <div class="address-list-detail">常用3</div>
-                    </li>
+                        {% for address in addresses %}
+                            <li data-id="{{address.id}}">
+                                <div class="address-list-status status-current"></div>
+                                <div class="address-list-detail">{{address.country}}{{address.address}}</div>
+                                <div class="address-modify">编辑</div>
+                                <div class="address-delete">删除</div>
+                            </li>
+                        {% endfor %}
                 </ul>
+                <div class="profile-action" id="address-add">添加地址 &gt&gt</div>
             </div>
         </div>
 
@@ -332,6 +327,30 @@
             margin:0px;
             margin-top:-20px;
         }
+        #address-box{
+            padding: 30px 72px;
+            overflow: hidden
+        }
+        #address-box .profile-title{
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        #address-box .profile-input{
+            font-size: 14px;
+            margin-bottom:14px;
+        }
+        #confirm-address{
+                width: 140px;
+                height: 30px;
+                line-height: 30px;
+                font-size: 12px;
+                padding: 0px;
+                background: black;
+                color: white;
+                font-weight: normal;
+        }
 
     </style>
     <div class="project-card">
@@ -401,6 +420,60 @@
 
 <script>
 
+
+                var addressContent = `<div id="address-box">
+                                <h3 class="profile-title">收件地址</h3>
+                                <div class="row profile-input">
+                                    <div class="col-xs-5">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">国家</div>
+                                            <input type="text" class="form-control" id="country">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row profile-input">
+                                    <div class="col-xs-7">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">详细地址</div>
+                                            <input type="text" class="form-control" id="address" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">邮编</div>
+                                            <input type="text" class="form-control" id="email" placeholder="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3 class="profile-title">收件人信息</h3>
+                                <div class="row profile-input">
+                                    <div class="col-xs-5">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">姓名</div>
+                                            <input type="text" class="form-control" id="contact_name" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">联系人电话</div>
+                                            <input type="text" class="form-control" id="contact_phone" placeholder="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row profile-input">
+                                    <div class="col-xs-12">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">邮箱</div>
+                                            <input type="text" class="form-control" id="contact_email" placeholder="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row profile-input">
+                                    <div class="col-xs-12">
+                                        <button class="btn" id="confirm-address">确认</button>
+                                    </div>
+                                </div>
+                        </div>`
 	$(function(){
 			var $li = $('.menu_project li');
 			var $ul = $('.project-card');
@@ -443,6 +516,146 @@
                                 alert('修改失败');
                             }else{
                                 alert('修改成功');
+                            }
+                        }
+                    });
+                });
+
+                $(document).delegate('#confirm-address','click',function(){
+
+                    var type = $(this).attr('type');
+                    var method;
+                    if(type==='add'){
+                        method = 'POST';
+                    }else if(type==='modify'){
+                        method = 'PUT';
+                    }else{
+                        return;
+                    }
+                    $.ajax({
+                        url:'/user',
+                        type:method, //GET
+                        async:false,    //或false,是否异步
+                        data:{
+                            address:$('#address').val(),
+                            postcode:$('#postcode').val(),
+                            contact_name:$('#contact_name').val(),
+                            contact_email:$('#contact_email').val(),
+                            contact_phone:$('#contact_phone').val(),
+                            country:$('#country').val(),
+                            id:$(this).parent().attr('data-id'),
+                            _csrf:$('#_csrf').val()
+                        },
+                        timeout:300,    //超时时间
+                        dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        beforeSend:function(xhr){
+                            // console.log(xhr)
+                            // console.log('发送前')
+                        },
+                        success:function(data){
+                            if(data.msg ==='wrong'){
+                                alert('修改失败');
+                            }else{
+                                alert('修改成功');
+                            }
+                        }
+                    });
+                });
+
+                $(document).delegate('#address-add','click',function(){
+                            layer.open({
+                                title: false,
+                                type: 1,
+                                shadeClose: true,
+                                closeBtn:1,
+                                shade: 0.8,
+                                area:['353px','379px'],
+                                content: addressContent,
+                                success: function(layero, i){
+                                            $('#address').val('');
+                                            $('#postcode').val('');
+                                            $('#contact_name').val('');
+                                            $('#contact_email').val('');
+                                            $('#contact_phone').val('');
+                                            $('#country').val('');
+                                            $('#confirm-address').attr('type','add');
+                                            $('#confirm-address').attr('data-addressid','');
+
+                                },
+                                end: function(layero, i){
+                                }
+                            });                         
+
+
+                });
+
+                $(document).delegate('.address-delete','click',function(){
+
+                    $.ajax({
+                        url:'/address',
+                        type:'DELETE', //GET
+                        async:false,    //或false,是否异步
+                        data:{
+                            id:$(this).parent().attr('data-id'),
+                            _csrf:$('#_csrf').val()
+                        },
+                        timeout:300,    //超时时间
+                        dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        beforeSend:function(xhr){
+                            // console.log(xhr)
+                            // console.log('发送前')
+                        },
+                        success:function(data){
+                            if(data.success ===false){
+                                alert('删除失败');
+                            }else{
+                                 alert('删除成功');
+                            }
+                        }
+                    });
+                });
+
+                $(document).delegate('.address-modify','click',function(){
+
+                    $.ajax({
+                        url:'/address',
+                        type:'GET', //GET
+                        async:false,    //或false,是否异步
+                        data:{
+                            id:$(this).parent().attr('data-id'),
+                            _csrf:$('#_csrf').val()
+                        },
+                        timeout:300,    //超时时间
+                        dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        beforeSend:function(xhr){
+                            // console.log(xhr)
+                            // console.log('发送前')
+                        },
+                        success:function(data){
+                            if(data.success ===false){
+                                alert('请求地址信息失败');
+                            }else{
+                                layer.open({
+                                    title: false,
+                                    type: 1,
+                                    shadeClose: true,
+                                    closeBtn:1,
+                                    shade: 0.8,
+                                    area:['819px','388px'],
+                                    content: addressContent,
+                                    success: function(layero, i){
+                                        $('#address').val(data.info.address);
+                                        $('#postcode').val(data.info.postcode);
+                                        $('#contact_name').val(data.info.contact_name);
+                                        $('#contact_email').val(data.info.contact_email);
+                                        $('#contact_phone').val(data.info.contact_phone);
+                                        $('#country').val(data.info.country);
+                                        $('#confirm-address').attr('type','modify');
+                                        $('#confirm-address').attr('data-addressid',data.info.id);
+                                    },
+                                    end: function(layero, i){
+                                    }
+                                });
                             }
                         }
                     });

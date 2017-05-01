@@ -682,7 +682,15 @@ goods
 */
 
 .select-current{
-    border:1px dotted black
+}
+.select-current:before{
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: 24px;
+    height: 24px;
+    content: ' ';
+    border: 1px solid black;
 }
 
 #goods-container{
@@ -737,6 +745,7 @@ goods
     height: 20px;
     display: inline-block;
     margin-right: 4px;
+    position: relative
 }
 .good-input{
     margin-top:30px;
