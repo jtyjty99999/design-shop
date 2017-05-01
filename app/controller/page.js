@@ -34,7 +34,15 @@ exports.shop = function* () {
 
 
 exports.home = function* () {
-  const result = {};
+
+  const pageNum = +this.query.pageNum || 1;
+  const pageSize = +this.query.pageSize || 100;
+
+  const result = yield {
+    projects: this.service.project.list(pageNum, pageSize),
+  };
+  result.projects = result.projects.slice(0,4);
+  console.log(result);
   yield this.render('home.html', result);
 };
 

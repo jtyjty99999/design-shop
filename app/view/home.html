@@ -13,16 +13,15 @@
         <div class="col-md-12"><img src="/public/images/big/1.jpg" class="img-responsive" alt="Responsive image"></div>
     </div>
     <div class="row section fp-auto-height">
-        <div class="col-md-12"><img src="/public/images/big/2.png" class="img-responsive" alt="Responsive image"></div>
+        <div class="col-md-12"><img src="/public/images/big/99.jpg" class="img-responsive" alt="Responsive image"></div>
     </div>
     <div class="row section fp-auto-height">
         <div class="col-md-12"><img src="/public/images/big/3.jpg" class="img-responsive" alt="Responsive image"></div>
     </div>
     <div class="row section fp-auto-height">
             {% for project in projects %}
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <img data-src="/project/info?id={{project.id}}" class="img" alt="140x140" src="{{project.m_pic}}" data-holder-rendered="true">
-                <div class="mask-title">{{project.title}}</div>
             </div>
 
             {% endfor %}
@@ -34,6 +33,24 @@
 <script type="text/javascript" src="/public/js/plugins/jquery.fullPage.min.js"></script>
 
 <script>
-    $('#fullpage').fullpage();
+    var per = 850/490;
+    var ins;
+    if($(window).width()/$(window).height()<per){
+
+    }else{
+        $('#fullpage').fullpage();
+        ins = true;
+    }
+    $(window).on('resize',function(){
+
+        if($(window).width()/$(window).height()<per){
+             // $.fn.fullpage.destroy('all');
+        }else{
+            if(!ins){
+                 $('#fullpage').fullpage();
+                ins = true;
+            }
+        }
+    })
 </script>
 {% endblock %}
