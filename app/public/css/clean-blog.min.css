@@ -356,7 +356,7 @@ margin-right: 45px;
 }
 
 .project-card img:hover+.mask-title{
-    top:0px;
+    top:0px!important;
 }
 
 .mask-title{
