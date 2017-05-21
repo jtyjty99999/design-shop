@@ -190,9 +190,10 @@
                  <p class="bill-info-title">金额</p>
                 <div class="bill-status-text">
                     <div class="bill-price">{{bill.total}}</div>
+                    <div>用户的地址是：国家：{{bill.country}}, 地址：{{bill.address}}, 邮政编码:{{bill.postcode}},姓名：{{bill.name}}, 电话：{{bill.phone}}, 邮箱:{{bill.email}}</div>
                     <hr>
                     <div class="bill-status">{% if bill.status===0 %}未支付  <input type="text" value="{{bill.total}}" placeholder="价格" id="total"><button class="change btn" data-billid="{{bill.id}}">修改价格</button> {% endif %} 
-                    {% if bill.status ===1 %}已支付，等待发货。 用户的地址是：国家：{{bill.country}}, 地址：{{bill.address}}, 邮政编码:{{bill.postcode}} <input type="text" value="" placeholder="快递单号" id="shipping-code"> <button class="send btn" data-billid="{{bill.id}}">发货</button> {% endif %}
+                    {% if bill.status ===1 %}已支付，等待发货。<input type="text" value="" placeholder="快递单号" id="shipping-code"> <button class="send btn" data-billid="{{bill.id}}">发货</button> {% endif %}
                     {% if bill.status ===2 %}<span class="bill-shipping-code">已发货，快递单号： {{bill.shipping_code}} <button class="confirm-package btn" data-billid="{{bill.id}}">确认收货</button></span>{% endif %}{% if bill.status ===3 %}<span class="bill-shipping-code">已收货</span>{% endif %} </div>
                 </div>
             </div>
@@ -207,7 +208,7 @@
                     <li class="bill-sep"></li>
                     <li class="{% if bill.status >2 %}status-current{% endif %} bill-status-li"><span class="bill-status-table-text">收货</span></li>
                     <li class="bill-sep"></li>
-                    <li class="{% if bill.status >3 %}status-current{% endif %} bill-status-li"><span class="bill-status-table-text">完成</span></li>
+                    <li class="{% if bill.status >2 %}status-current{% endif %} bill-status-li"><span class="bill-status-table-text">完成</span></li>
                 </ul>
             </div>
         </div>

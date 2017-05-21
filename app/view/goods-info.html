@@ -129,7 +129,20 @@ function isLogin(cb){
                     
                     isLogin(function(data){
                         if(data.login === false){
-                            alert('请登录！');
+                             layer.open({
+                                title: false,
+                                type: 1,
+                                shadeClose: true,
+                                closeBtn:1,
+                                shade: 0.8,
+                                area:['353px','379px'],
+                                content: loginContent,
+                                success: function(layero, i){
+                                    // console.log(index);
+                                },
+                                end: function(layero, i){
+                                }
+                            }); 
                         }else{
 
                     var quantity = $('#quantity').val();

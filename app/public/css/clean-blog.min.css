@@ -140,6 +140,13 @@ margin-right: 45px;
      margin-right: 40px;
     background-position: 0 11px;  
 }
+.navbar-icon.y{
+     background-image: url('../images/y.png');
+     margin-left:2px;
+     margin-right: 40px;
+    background-position: 0 11px;  
+}
+
 
 @media (min-width: 768px){
     .navbar-nav.navbar-right:last-child {
@@ -484,10 +491,11 @@ margin-right: 45px;
 }
 
 .test {
+    /*
     -webkit-animation: flipOutYtest 0.25s linear;
     animation: flipOutYtest 0.25s linear;
     -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
+    animation-fill-mode: both;*/
 }
 
 .test p, .test2 p {
@@ -525,10 +533,11 @@ margin-right: 45px;
 }
 
 .test2 {
+    /*
     -webkit-animation: flipInYtest 0.25s linear;
     animation: flipInYtest 0.25s linear;
     -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
+    animation-fill-mode: both;*/
     width: 100%;
     min-height: 140px;
     background-color: #ccc;
@@ -541,7 +550,8 @@ margin-right: 45px;
     line-height: 140px
 }
 
-.well-item { position: relative; float: left; width: 217px; min-height: 140px; z-index:999}
+.well-item { position: relative; float: left; width: 217px; min-height: 140px; z-index:999;
+overflow: hidden;}
 .well-item img { width: 100%; min-height: 140px; }
   .correct { position: absolute; width: 100%; z-index:1px}
   .opposite { min-height: 140px; width: 100%;}
@@ -857,3 +867,30 @@ input:-webkit-autofill,
         select:-webkit-autofill{
             -webkit-box-shadow: 0 0 0 1000px transparent inset;
         }
+
+
+.well-item .correct:hover+.mask-info{
+    top:0px!important;
+}
+
+.mask-info{
+    position:absolute;
+    left: 0px;
+    top: 260px;
+    text-align: center;
+    transition: all 1s;
+    width: 100%;
+    opacity: 0.6;
+    pointer-events: none;
+    background: white
+}
+
+.mask-info p {
+    margin: 0!important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    width: 100%;
+
+}

@@ -40,6 +40,19 @@ exports.find = function* () {
 
 };
 
+exports.modifyDefaultAddress = function* () {
+  const id = this.request.body.id;
+
+  const address = yield this.service.user.modifyDefaultAddress(id, this.session.user.id);
+  this.session.user = yield this.service.user.find(this.session.user.id);
+  this.body = {
+    success: 'true',
+    address: address || {}
+  }
+
+};
+
+
 // 新增一个文章
 exports.update = function* () {
   const postcode = this.request.body.postcode;

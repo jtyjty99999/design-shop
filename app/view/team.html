@@ -26,7 +26,7 @@
                 <div class="col-md-2" data-id="{{person.id }}">
                         <div class="well-item">
                             <div class="correct"> <img src="{{person.m_pic}}" width="215" class="test2"></div>
-                            <div class="opposite">
+                            <div class="opposite mask-info">
                                 <div class="test">
                                     <p>{{person.name }}  <br />{{person.position }}</p>			
                                 </div>
@@ -41,7 +41,7 @@
                 <div class="col-md-2" data-id="{{person.id }}">
                         <div class="well-item">
                             <div class="correct"> <img src="{{person.m_pic}}" width="215" class="test2"></div>
-                            <div class="opposite">
+                            <div class="opposite mask-info">
                                 <div class="test">
                                     <p>{{person.name }} <br /> {{person.position }}</p>			
                                 </div>
@@ -55,7 +55,7 @@
                 <div class="col-md-2" data-id="{{person.id }}">
                         <div class="well-item">
                             <div class="correct"> <img src="{{person.m_pic}}" width="215" class="test2"></div>
-                            <div class="opposite">
+                            <div class="opposite mask-info">
                                 <div class="test">
                                     <p>{{person.name }} <br /> {{person.position }}</p>			
                                 </div>
@@ -71,7 +71,7 @@
                 <div class="col-md-2" data-id="{{person.id }}">
                         <div class="well-item">
                             <div class="correct"> <img src="{{person.m_pic}}" width="215" class="test2"></div>
-                            <div class="opposite">
+                            <div class="opposite mask-info">
                                 <div class="test">
                                     <p>{{person.name }} <br /> {{person.position }}</p>			
                                 </div>
@@ -85,7 +85,7 @@
                 <div class="col-md-2" data-id="{{person.id }}">
                         <div class="well-item">
                             <div class="correct"> <img src="{{person.m_pic}}" width="215" class="test2"></div>
-                            <div class="opposite">
+                            <div class="opposite mask-info">
                                 <div class="test">
                                     <p>{{person.name }}  <br />{{person.position }}</p>			
                                 </div>
@@ -100,8 +100,8 @@
                 <div class="col-md-2" data-id="{{person.id }}">
                         <div class="well-item">
                             <div class="correct"> <img src="{{person.m_pic}}" width="215" class="test2"></div>
-                            <div class="opposite">
-                                <div class="test">
+                            <div class="opposite mask-info">
+                                <div>
                                     <p>{{person.name }} <br /> {{person.position }}</p>		
                                 </div>
                             </div>
@@ -114,7 +114,7 @@
                 <div class="col-md-2" data-id="{{person.id }}">
                         <div class="well-item">
                             <div class="correct"> <img src="{{person.m_pic}}" width="215" class="test2"></div>
-                            <div class="opposite">
+                            <div class="opposite mask-info">
                                 <div class="test">
                                     <p>{{person.name }}  <br />{{person.position }}</p>		
                                 </div>
@@ -173,7 +173,7 @@
                     index = $(this).parent().index();
                     location.href = url;
                 })
-
+                /*
         $(".well-item").hover(function(){
 
             $(this).find(".correct").children().removeClass();
@@ -185,9 +185,12 @@
             $(this).find(".opposite").children().removeClass();
             $(this).find(".correct").children().addClass("test2");
             $(this).find(".opposite").children().addClass('test');
-        });
+        });*/
 
-
+                $('.mask-info').css({
+                    top:$('.mask-info').prev().height(),
+                    height:$('.mask-info').prev().height(),
+                })
         $(document).delegate('.col-md-2','click',function(){
             var in_png = $(this).attr('data-big');
             var id = $(this).attr('data-id');

@@ -138,10 +138,29 @@ font-size: 18px;
     color:black;
         line-height: 22px;
 }
+
+#maskline{
+    position: absolute;
+    top: 0;
+    right: 88px;
+    transition: 1s all;
+    height: 35px;
+    background: #d1cdc4;
+    z-index: 99;
+    width: 0;
+}
+#maskline.extend{
+    width:1500px;
+}
 </style>
 <script type="text/javascript" src="/public/js/plugins/layer.js"></script>
 
 <script>
+
+                $(document).delegate('#close','click',function(){
+                    $('#maskline').toggleClass('extend');
+                    $('#close').toggleClass('y');
+                });   
 
 
                 function isLogin(cb){

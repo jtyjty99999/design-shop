@@ -51,6 +51,7 @@ exports.index = function* () {
     if (goods) {
         for (let i = 0, l = goods.length; i < l; i++) {
             let goodsInfo = yield this.service.goods.find(goods[i].goods_id);
+            delete goodsInfo.id;
             Object.assign(goods[i], goodsInfo);
             total += parseInt(goods[i].price)* goods[i].quantity;
         }
@@ -68,7 +69,7 @@ exports.index = function* () {
 exports.deleteCarts = function* () {
     const id = +this.request.body.id;
 
-    const success = yield this.service.cart.remove(id);
+    const success = yield this.service.cart.remove({id:id});
 
     if (success) {
         this.body = true;

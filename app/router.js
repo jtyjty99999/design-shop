@@ -34,6 +34,7 @@ module.exports = app => {
   app.post('/address', app.controller.address.add);
   app.put('/address', app.controller.address.update);
   app.delete('/address', app.controller.address.deleteAddress);
+  app.put('/address/modifydefaultaddress', app.controller.address.modifyDefaultAddress);
 
   app.get('/', app.controller.page.video);
   app.get('/home', app.controller.page.home);

@@ -19,6 +19,7 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div id="maskline"></div>
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a class="navbar-link {% if current =='about' %}current{% endif %}" href="/about">ABOUT</a>
@@ -57,15 +58,10 @@
                 <li>
                     <a class="navbar-icon flag2" href=""></a>
                 </li>
-                {%  if login %}
+
                 <li>
-                    <a class="navbar-icon x" href="/logout"></a>
+                    <a class="navbar-icon x" id="close"></a>
                 </li>
-                {%  else %}
-                <li>
-                    <a class="navbar-icon x" href="/login"></a>
-                </li>
-                {% endif %}
 
             </ul>
         </div>
