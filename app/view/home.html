@@ -15,10 +15,10 @@
     <div class="row section fp-auto-height">
         <div class="col-md-12"><img src="/public/images/big/3.jpg" class="img-responsive" alt="Responsive image"></div>
     </div>
-    <div class="row section fp-auto-height">
+    <div class="row section fp-auto-height project">
             {% for project in projects %}
             <div class="col-md-6" style="padding: 0px;">
-                <img class="img" alt="140x140" src="{{project.m_pic}}">
+                <img class="img" alt="140x140" src="{{project.m_pic}}" data-src="/project/info?id={{project.id}}">
             </div>
             {% endfor %}
     </div>
@@ -30,13 +30,23 @@
 
 <script>
     var per = 850/490;
+    var bigper = 2;
     var ins;
-    if($(window).width()/$(window).height()<per){
+
+    if($(window).width()/$(window).height()>bigper){
 
     }else{
-        $('#fullpage').fullpage();
-        ins = true;
+
+        if($(window).width()/$(window).height()<per){
+
+        }else{
+            $('#fullpage').fullpage();
+            ins = true;
+        }
+
     }
+
+
     $(window).on('resize',function(){
 
         if($(window).width()/$(window).height()<per){
@@ -48,5 +58,12 @@
             }
         }
     })
+
+    $(document).delegate('.project img','click',function(){
+                    var url = $(this).attr('data-src');
+                    index = $(this).parent().index();
+                    location.href = url;
+                })
+
 </script>
 {% endblock %}

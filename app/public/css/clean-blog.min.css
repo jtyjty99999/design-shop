@@ -48,6 +48,9 @@ table, td{
     border-left: 1px solid #686662;
     margin-top: 10px!important;
 }
+.project img{
+    cursor:pointer
+}
 
 
 
@@ -406,6 +409,9 @@ margin-right: 45px;
     color:black;
     border-bottom:solid 1px black
 }
+.menu_project ul li.current a{
+    color:black;
+}
 
 .menu_project ul li a {
     font-size: 12px;
@@ -712,7 +718,7 @@ goods
     margin-top:20px;
     width:52px;
     height: 4px;
-    border: 1px solid black;
+    border: 1px solid #d1cdc4;
     list-style: none;
     display: inline-block;
     margin-right:11px
@@ -845,4 +851,9 @@ goods
     margin-bottom: 36px;
 }
 
-
+/*hack*/
+input:-webkit-autofill,
+        textarea:-webkit-autofill,
+        select:-webkit-autofill{
+            -webkit-box-shadow: 0 0 0 1000px transparent inset;
+        }
