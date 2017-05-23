@@ -14,6 +14,7 @@ var secret = process.env.UPYUN_SECRET;
 var thunkify = require('thunkify');
 
 module.exports = function (app) {
+  console.log(bucket, username, password);
 
   app.upyun = new UpYun(bucket, username, password, 'v0.api.upyun.com', {
     apiVersion: 'v2',

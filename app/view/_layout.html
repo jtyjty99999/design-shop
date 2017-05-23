@@ -38,8 +38,54 @@
 {% endblock %}
 
     <div class="footer-nofix">
-        <img src="/public/images/footer.jpg" alt="">
+        <img src="/public/images/footer.png" alt="">
+        <div id="link-list">
+            <a id="link-list-1" href="https://www.instagram.com/defront_official/"></a>
+            <a class="link-divider"></a>
+            <a id="link-list-2" href="https://www.facebook.com/Defront-212357525853058/"></a>
+            <a class="link-divider"></a>
+            <a id="link-list-3" href=""></a>
+            <a class="link-divider"></a>
+            <a id="link-list-4" href="http://weibo.com/p/1006066050455287"></a>
+            <a class="link-divider"></a>
+            <a id="link-list-5" href="https://site.douban.com/286845/"></a>
+        </div>
     </div>
+    <style>
+        #link-list{
+            position:absolute;
+            right: 78px;
+            top: 58px;
+        }
+        #link-list a{
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background-repeat: no-repeat;
+            
+        }
+        #link-list .link-divider{
+            width:0;
+            border-right:1px solid #d1cdc4;
+                margin-left: 8px;
+    margin-right: 8px;
+        }
+        #link-list-1{
+            background-image:url('public/images/f1.png')
+        }
+        #link-list-2{
+            background-image:url('public/images/f2.png')
+        }
+        #link-list-3{
+            background-image:url('public/images/f3.png')
+        }
+        #link-list-4{
+            background-image:url('public/images/f4.png')
+        }
+        #link-list-5{
+            background-image:url('public/images/f5.png')
+        }
+    </style>
 
 <!-- jQuery -->
 <script src="//dn-staticfile.qbox.me/jquery/1.9.0/jquery.min.js"></script>

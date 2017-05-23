@@ -61,9 +61,11 @@ exports.update = function* () {
   const id = this.request.body.id;
   const m_pic = this.request.body.m_pic;
   const content = this.request.body.content;
-  const type = this.request.body.type;
+  let type = this.request.body.type;
   const title = this.request.body.title;
-
+  if(typeof type === 'object'){
+    type = type.join(',');
+  }
   yield this.service.project.update({
     id,
     m_pic,
@@ -92,7 +94,6 @@ exports.deleteProject = function* () {
 exports.find = function* () {
   const id = +this.query.id;
   const article = yield this.service.project.find(id);
-  console.log(article);
   yield this.render('project-info.html', article);
 
 };

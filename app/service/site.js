@@ -47,6 +47,14 @@ module.exports = app => {
 
       return count[0]['count(*)'];
     }
+
+    // 更新
+    * update(data) {
+      const result = yield app.mysql.update('site', data);
+
+      return result.affectedRows === 1;
+    }
+
   }
   return MonthServer;
 };

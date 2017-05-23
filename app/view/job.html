@@ -22,125 +22,153 @@
 
             <div style="height:auto; overflow:hidden" id="job_content" class="tab_content">
                 <ul style="display:block; height:auto; overflow:hidden">
-                    <li>
-                        <div class="list_jobs">
-                            <table style="margin:0 auto; width:95%;">
-                                <tr>
-                                    <td colspan="2" style="height:20px"></td>
-                                </tr>
-                                <tr>
-                                    <td align="left">品牌策划</td>
-                                    <td width="180" align="right"><a href="#" onClick="showdetail(13);" class="more">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" style="height:20px"></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" style="line-height:30px; text-align:left; font-size:12px">职位描述： 1. 负责生活美学品牌的品牌定位，品牌策划，品牌运营，及品牌视觉呈现等 2. 参与品牌内产品项目的规划，进行设计及推广构想，并配合新媒体部门完成产品的推广宣传活动，同时与市场部门同时推进产品的营销，展会等活动
-                                        3. 参与生活美学品牌的线上规划，配合电子商务人员完成营销计划</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </li>
+
+                    {% for jobs in all%}
+
+                        <li>
+                            <div class="list_jobs">
+                                <table style="margin:0 auto; width:95%;">
+                                    <tr>
+                                        <td colspan="2" style="height:20px"></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left">{{jobs.title}}</td>
+                                        <td width="180" align="right"><a href="#" onClick="showdetail({{jobs.id}});" class="more">Detail</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="height:20px"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="line-height:30px; text-align:left; font-size:12px">{{jobs.content | safe}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </li>
+
+                    {% endfor %}
                 </ul>
                 <ul>
-                    <li>
-                        <div class="list_jobs">
-                            <table style="margin:0 auto; width:95%;">
-                                <tr>
-                                    <td colspan="2" style="height:20px"></td>
-                                </tr>
-                                <tr>
-                                    <td align="left">产品设计师</td>
-                                    <td width="180" align="right"><a href="#" onClick="showdetail(8);" class="more">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" style="height:20px"></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" style="line-height:30px; text-align:left; font-size:12px">职位描述： 1. 参与公司新项目“CO-INK”的规划，项目调研、开发设计、以及产品后期的生产、加工供应等工作 2. 参与各部门间的项目沟通、协调和驱动。 跟踪项目进度和质量，并参与分析和讨论项目上线工作
-                                        3. 持续跟踪产品上线的效果，根据线上运营数据，提出产品优化意见
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </li>
+
+                    {% for jobs in design %}
+                        <li>
+                            <div class="list_jobs">
+                                <table style="margin:0 auto; width:95%;">
+                                    <tr>
+                                        <td colspan="2" style="height:20px"></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left">{{jobs.title}}</td>
+                                        <td width="180" align="right"><a href="#" onClick="showdetail({{jobs.id}});" class="more">Detail</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="height:20px"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="line-height:30px; text-align:left; font-size:12px">{{jobs.content | safe}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </li>
+                    {% endfor %}
                 </ul>
                 <ul>
-                    <li>
-                        <div class="list_jobs">
-                            <table style="margin:0 auto; width:95%;">
-                                <tr>
-                                    <td colspan="2" style="height:20px"></td>
-                                </tr>
-                                <tr>
-                                    <td align="left">新媒体运营</td>
-                                    <td width="180" align="right"><a href="#" onClick="showdetail(4);" class="more">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" style="height:20px"></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" style="line-height:30px; text-align:left; font-size:12px">职位描述： 1. 辅助媒体运营总监，更新公司网站、微信、微博等； 2. 对公司的每一项产品进行深入了解并撰写原创话题 3. 喜欢关注国内外的媒体，对新鲜事物有敏锐的嗅觉，了解年轻人的社交方式
-                                        4. 乐于与读者，粉丝，消费者在各项媒介上进行友好的互动 5. 对文字敏感且写作功底好，能有趣且精准的向读者输出有价值的信息
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list_jobs">
-                            <table style="margin:0 auto; width:95%;">
-                                <tr>
-                                    <td colspan="2" style="height:20px"></td>
-                                </tr>
-                                <tr>
-                                    <td align="left">品牌策划</td>
-                                    <td width="180" align="right"><a href="#" onClick="showdetail(13);" class="more">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" style="height:20px"></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" style="line-height:30px; text-align:left; font-size:12px">职位描述： 1. 负责生活美学品牌的品牌定位，品牌策划，品牌运营，及品牌视觉呈现等 2. 参与品牌内产品项目的规划，进行设计及推广构想，并配合新媒体部门完成产品的推广宣传活动，同时与市场部门同时推进产品的营销，展会等活动
-                                        3. 参与生活美学品牌的线上规划，配合电子商务人员完成营销计划</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </li>
+
+                    {% for jobs in brand %}
+                        <li>
+                            <div class="list_jobs">
+                                <table style="margin:0 auto; width:95%;">
+                                    <tr>
+                                        <td colspan="2" style="height:20px"></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left">{{jobs.title}}</td>
+                                        <td width="180" align="right"><a href="#" onClick="showdetail({{jobs.id}});" class="more">Detail</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="height:20px"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="line-height:30px; text-align:left; font-size:12px">{{jobs.content | safe}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </li>
+                    {% endfor %}
                 </ul>
                 <ul>
+
+
+                    {% for jobs in research %}
+                        <li>
+                            <div class="list_jobs">
+                                <table style="margin:0 auto; width:95%;">
+                                    <tr>
+                                        <td colspan="2" style="height:20px"></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left">{{jobs.title}}</td>
+                                        <td width="180" align="right"><a href="#" onClick="showdetail({{jobs.id}});" class="more">Detail</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="height:20px"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="line-height:30px; text-align:left; font-size:12px">{{jobs.content | safe}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </li>
+                    {% endfor %}
+
                 </ul>
                 <ul>
-                    <li>
-                        <div class="list_jobs">
-                            <table style="margin:0 auto; width:95%;">
-                                <tr>
-                                    <td colspan="2" style="height:20px"></td>
-                                </tr>
-                                <tr>
-                                    <td align="left">项目助理</td>
-                                    <td width="180" align="right"><a href="#" onClick="showdetail(6);" class="more">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" style="height:20px"></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" style="line-height:30px; text-align:left; font-size:12px">职位描述： 1. 帮助维持公司日常运营 2. 协助会计做好公司内部财务记录 3. 安排好客户沟通，人员变更，会议记录等事程 4. 关注与公司项目关联的互联网讯息，并与相关项目组分享社圈有价值的信息资讯</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </li>
+                    {% for jobs in business %}
+
+                        <li>
+                            <div class="list_jobs">
+                                <table style="margin:0 auto; width:95%;">
+                                    <tr>
+                                        <td colspan="2" style="height:20px"></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left">{{jobs.title}}</td>
+                                        <td width="180" align="right"><a href="#" onClick="showdetail({{jobs.id}});" class="more">Detail</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="height:20px"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="line-height:30px; text-align:left; font-size:12px">{{jobs.content | safe}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </li>
+
+                    {% endfor %}
+
+
                 </ul>
             </div>
         </div>
     </div>
+
+{% for jobs in all %}
+<textarea name="" id="jobs_{{jobs.id}}" cols="30" rows="10" style="display:none">
+{{jobs.content}}
+</textarea>
+{% endfor %}
+
 {% endblock %}
 
 {% block script %}
 
 <script type="text/javascript" src="/public/js/plugins/layer.js"></script>
 
+<script>
+
+var jobs = [];
+
+</script>
 <script>
 
   function showdetail(id){
@@ -152,7 +180,7 @@
             closeBtn:1,
             shade: 0.8,
             area:['760px','460px'],
-            content: '<div class="dialog-content">测试</div>' 
+            content: $('#jobs_'+id).val()
         }); 
 
   }

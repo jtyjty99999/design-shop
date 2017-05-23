@@ -31,9 +31,27 @@ exports.editorJob = function* () {
     article = yield this.service.job.find(articleID);
   }
 
+  if(articleID &&article&&article.type){
+
+    if(article.type.indexOf('design')!==-1){
+      article.isdesign = true;
+    }
+    if(article.type.indexOf('research')!==-1){
+      article.isresearch = true;
+    }
+    if(article.type.indexOf('business')!==-1){
+      article.isbusiness = true;
+    }
+    if(article.type.indexOf('brand')!==-1){
+      article.isbrand = true;
+    }
+
+  }
+
   if (articleID && article) {
     isNew = false;
   }
+  console.log(article)
   yield this.render('admin/editor-job.html', {
     article,
     isNew,
@@ -80,6 +98,16 @@ exports.editorPress = function* () {
   yield this.render('admin/editor-press.html', {
     article,
     isNew,
+    login: this.session.adminLogin,
+  });
+
+};
+
+exports.editorSite = function* () {
+  let article =  yield this.service.site.getSite();
+  
+  yield this.render('admin/editor-site.html', {
+    article:article[0],
     login: this.session.adminLogin,
   });
 

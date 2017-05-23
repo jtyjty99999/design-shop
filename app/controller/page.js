@@ -72,10 +72,8 @@ exports.return = function* () {
 };
 
 exports.contact = function* () {
-  const result = {
-    current: 'contact'
-  };
-  yield this.render('contact.html', result);
+  let site =  yield this.service.site.getSite();
+  yield this.render('contact.html', {site:site[0]});
 };
 
 exports.upload = function* () {
@@ -84,12 +82,14 @@ exports.upload = function* () {
   const filepath = path.join(this.app.config.logger.dir, 'multipart-test-file');
   yield saveStream(stream, filepath);
   const self = this;
+  console.log(stream.filename);
+  console.log(fs.readFileSync(filepath));
   const plus = 'http://pic-cloud-hn.b0.upaiyun.com/';
   const filename = moment(Date.now()).format('YYYY-MM-DD') + '/' + stream.filename;
   let result = yield this.app.upyun.putFile(filename, fs.readFileSync(filepath), 'text/plain', true, null);
     console.log(plus + filename);
     if (result) {
-      this.body = '上传成功!url是: '+ plus + filename;
+      this.body = plus + filename;
     } else {
       this.body = '上传失败';
     }

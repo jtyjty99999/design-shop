@@ -6,15 +6,22 @@ module.exports = app => {
       const result = yield app.mysql.insert('design_job', {
         title:obj.title,
         content:obj.content,
+        type:obj.type,
         timestamp: app.mysql.literals.now,
       });
 
       return result.affectedRows === 1;
     }
 
+    // 获取某一类的job
+    * search(type) {
+      const article = yield app.mysql.query('select  id,title,type, content from design_job where type like \'%' + type + '%\' and deleted = 0 order by timestamp desc', [ type ]);
+      return article;
+    }
+
     // 获取文章列表
     * list(pageNum, pageSize) {
-      const articles = yield app.mysql.query('select  id, title, content from design_job where deleted = 0 order by timestamp desc limit ? offset ?;', [ pageSize, (pageNum - 1) * pageSize ]);
+      const articles = yield app.mysql.query('select  id, title,type, content from design_job where deleted = 0 order by timestamp desc limit ? offset ?;', [ pageSize, (pageNum - 1) * pageSize ]);
 
       return articles;
     }

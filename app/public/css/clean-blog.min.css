@@ -639,6 +639,7 @@ job list
 }
 
 .footer-nofix{
+    position: relative
 }
 .footer-nofix img{
     width: 100%;

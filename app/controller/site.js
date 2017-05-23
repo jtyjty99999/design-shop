@@ -22,8 +22,17 @@ const installRule = {
   },
 };
 
-exports.contact = function* () {
-  yield this.render('contact.html');
+
+exports.update = function* () {
+  const retailer = this.request.body.retailer;
+  const site = yield this.service.site.getSite();
+
+  yield this.service.site.update({
+    retailer,
+    id:site[0].id
+  });
+
+  this.redirect(`/manager`);
 };
 
 exports.adminLogin = function* () {

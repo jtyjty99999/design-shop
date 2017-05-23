@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="page-heading">
-                    <h1>Published a job</h1>
+                    <h1>edit site 编辑站点信息</h1>
                     <hr class="small">
                 </div>
             </div>
@@ -22,32 +22,9 @@
 {% block body %}
 <div class="container">
     <div class="row article-form">
-        <form action="/job" method="post">
-            {% if article.id %}
-            <input type="hidden" name="id" value="{{article.id}}">
-            <input type="hidden" name="method" value="PUT">
-            {% endif %}
-            <div class="row control-group" style="margin: 0 60px;" >
-                <div class="form-group col-xs-12 floating-label-form-group controls">
-                    <label>职位名</label>
-                    <input value="{{article.title}}" type="text" class="form-control" placeholder="职位名" id="title" name="title" required data-validation-required-message="Please enter article title.">
-                    <p class="help-block text-danger"></p>
-                </div>
-            </div>
-            <div class="row control-group" style="margin: 0 60px 60px;" >
-                <div class="form-group col-xs-12 floating-label-form-group controls">
-                    <label>职位类型</label>
-                    <select name="type" id="type" class="form-control" multiple="multiple">
-                        <option value="design" {% if article.isdesign ==true %}selected{% endif %}>design</option>
-                        <option value="brand" {% if article.isbrand ==true %}selected{% endif %}>brand</option>
-                        <option value="research" {% if article.isresearch ==true %}selected{% endif %}>research</option>
-                        <option value="business" {% if article.isbusiness ==true %}selected{% endif %}>business</option>
-                    </select>
-                    <p class="help-block text-danger"></p>
-                </div>
-            </div>
+        <form action="/site/update" method="post">
             <div class="editormd" id="article-editormd">
-                <textarea name="content" id="editor1">{{article.content}}</textarea>
+                <textarea name="retailer" id="editor1">{{article.retailer}}</textarea>
             </div>
             <br/><input id="article-submit" type="submit" name="submit" value="Submit" class="btn" style="margin-left: 5%;" />
         </form>

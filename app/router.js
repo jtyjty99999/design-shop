@@ -93,11 +93,13 @@ module.exports = app => {
   app.get('/editor-news', install, admin, app.controller.admin.editorNews);
   app.get('/editor-good', install, admin, app.controller.admin.editorGoods);
   app.get('/editor-bill', install, admin, app.controller.admin.editorBills);
+  app.get('/editor-site', install, admin, app.controller.admin.editorSite);
   app.post('/adminLogin', app.controller.admin.login);
 
   app.get('/adminlogin', install, app.controller.site.adminLogin);
   app.get('/adminLogout', app.controller.site.adminLogout);
   app.get('/install', app.controller.site.startInstall);
+  app.post('/site/update', app.controller.site.update);
   app.post('/install', app.controller.site.install);
   app.get('/about', install, app.controller.site.about);
   app.get('/contact', install, app.controller.site.contact);
