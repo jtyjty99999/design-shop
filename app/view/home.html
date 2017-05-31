@@ -18,7 +18,7 @@
     <div class="row section fp-auto-height project">
             {% for project in projects %}
             <div class="col-md-6" style="padding: 0px;">
-                <img class="img" alt="140x140" src="{{project.m_pic}}" data-src="/project/info?id={{project.id}}">
+                <img class="img" alt="140x140" src="{{project.m_pic}}" data-s="/project/info?id={{project.id}}">
             </div>
             {% endfor %}
     </div>
@@ -60,7 +60,7 @@
     })
 
     $(document).delegate('.project img','click',function(){
-                    var url = $(this).attr('data-src');
+                    var url = $(this).attr('data-s');
                     index = $(this).parent().index();
                     location.href = url;
                 })
