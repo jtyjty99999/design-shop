@@ -2,6 +2,7 @@
 
 const moment = require('moment');
 const marked = require('marked');
+const counter = require('../lib/count');
 
 exports.index = function* () {
   const pageNum = +this.query.pageNum || 1;
@@ -38,6 +39,8 @@ exports.add = function* () {
   const subtitle = this.request.body.subtitle;
   const in_pic = this.request.body.in_pic;
   const color = this.request.body.color;
+  const weight = this.request.body.weight;
+  
 
   if(typeof type === 'object'){
     type = type.join(',');
@@ -54,7 +57,8 @@ exports.add = function* () {
       whole,
       subtitle,
       in_pic,
-      color
+      color,
+      weight
     });
   }else{
     yield this.service.goods.insert({
@@ -67,7 +71,8 @@ exports.add = function* () {
         whole,
         subtitle,
         in_pic,
-        color
+        color,
+        weight
     });
 
   }
@@ -83,6 +88,7 @@ exports.update = function* () {
   const content = this.request.body.content;
   let type = this.request.body.type;
   const title = this.request.body.title;
+  const weight = this.request.body.weight;
   if(typeof type === 'object'){
     type = type.join(',');
   }
@@ -91,7 +97,8 @@ exports.update = function* () {
     m_pic,
     content,
     type,
-    title
+    title,
+    weight
   });
 
   this.redirect(`/manager`);
@@ -119,3 +126,19 @@ exports.find = function* () {
   yield this.render('goods-info.html', {good:article});
 
 };
+
+
+exports.countDelivery = function* () {
+  let goods = yield this.service.cart.list(this.session.user.id);
+  let address = this.request.body.address;
+
+        for (let i = 0, l = goods.length; i < l; i++) {
+            let goodsInfo = yield this.service.goods.find(goods[i].goods_id);
+            Object.assign(goods[i], goodsInfo);
+        }
+
+  let total = counter(goods, address);
+  this.body = {
+    total: total
+  };
+}

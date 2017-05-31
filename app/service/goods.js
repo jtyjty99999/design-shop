@@ -14,6 +14,7 @@ module.exports = app => {
         whole :obj.whole,
         description :obj.description,
         color :obj.color,
+        weight:obj.weight,
         timestamp: app.mysql.literals.now,
       });
 
@@ -22,7 +23,7 @@ module.exports = app => {
 
     // 获取文章列表
     * list(pageNum, pageSize) {
-      const articles = yield app.mysql.query('select  id,title,  m_pic, content, type,price from design_goods where deleted = 0 order by timestamp desc limit ? offset ?;', [ pageSize, (pageNum - 1) * pageSize ]);
+      const articles = yield app.mysql.query('select  id,title,  m_pic, content, type,price,weight from design_goods where deleted = 0 order by timestamp desc limit ? offset ?;', [ pageSize, (pageNum - 1) * pageSize ]);
       return articles;
     }
 

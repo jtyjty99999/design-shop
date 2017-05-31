@@ -514,8 +514,8 @@
                     <div class="bill-status">{% if bill.status===0 %}未支付 <button class="pay btn" data-billid="{{bill.id}}">去支付</button>{% endif %} 
                     {% if bill.status ===1 %}已支付，等待发货{% endif %}
                     {% if bill.status ===2 %}<span class="bill-shipping-code">已发货，快递单号： {{bill.shipping_code}} <button class="confirm-package btn" data-billid="{{bill.id}}">确认收货</button></span>{% endif %} </div>
-                    {% if bill.status ===3 %}<span class="bill-shipping-code">已收货，快递单号： {{bill.shipping_code}} </span>{% endif %} </div>
-                </div>
+                    {% if bill.status ===3 %}<span class="bill-shipping-code">已收货，快递单号： {{bill.shipping_code}} </span>{% endif %} 
+                    </div>
             </div>
             <div class="col-md-5">
                  <p class="bill-info-title">交易状态</p>
@@ -835,8 +835,9 @@
                                 <div class="row profile-input">
                                     <div class="col-xs-5">
                                         <div class="input-group">
-                                            <div class="input-group-addon">国家</div>
-                                            <input type="text" class="form-control" id="country">
+                                            <div class="input-group-addon">地区</div>
+                                            <select name="type" class="form-control" id="country" data-address="{{address.country}}">
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -931,7 +932,7 @@
                 });
 
 
-
+var pro = ["北京","天津","上海","重庆","河北","山西","辽宁","吉林","黑龙江","江苏","浙江","安徽","福建","江西","山东","河南","湖北","湖南","广东","海南","四川","贵州","云南","陕西","甘肃","青海","内蒙古","广西","西藏","宁夏","新疆","香港","澳门","台湾"];
 
                 $(document).delegate('.address-list-status','click',function(){
                     var self = this;
@@ -1028,6 +1029,12 @@
                                             $('#confirm-address').attr('type','add');
                                             $('#confirm-address').attr('data-addressid','');
 
+                                            for(var i=0;i<pro.length;i++){
+                                                $option=$("<option/>")
+                                                $option.attr("value",pro[i]);
+                                                $option.text(pro[i]);
+                                                $("#country").append($option);
+                                            }
                                 },
                                 end: function(layero, i){
                                 }
@@ -1097,9 +1104,15 @@
                                         $('#contact_name').val(data.address.contact_name);
                                         $('#contact_email').val(data.address.contact_email);
                                         $('#contact_phone').val(data.address.contact_phone);
-                                        $('#country').val(data.address.country);
                                         $('#confirm-address').attr('type','modify');
                                         $('#confirm-address').attr('data-addressid',data.address.id);
+                                            for(var i=0;i<pro.length;i++){
+                                                $option=$("<option/>")
+                                                $option.attr("value",pro[i]);
+                                                $option.text(pro[i]);
+                                                $("#country").append($option);
+                                            }
+                                            $("#country").val(data.address.country);
                                     },
                                     end: function(layero, i){
                                     }

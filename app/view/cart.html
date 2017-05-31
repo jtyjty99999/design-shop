@@ -145,12 +145,13 @@
         <h4>SHIPPING ADDRESS</h4>
         <div class="row">
             <div class="col-lg-5">
-                <input type="text" class="form-control" aria-label="..." value="{{address.country}}" id="country" placeholder="COUNTRY">
+                    <select name="type" class="form-control" id="country" data-address="{{address.country}}">
+                    </select>
             </div><!-- /.col-lg-6 -->
         </div><!-- /.row -->
         <div class="row">
             <div class="col-lg-8">
-                <input type="text" class="form-control" aria-label="..." value="{{address.address}}" id="address" placeholder="ADDRESS">
+                <input type="text" class="form-control" aria-label="..." value="{{address.address}}" id="address" placeholder="COUNTRY">
             </div><!-- /.col-lg-6 -->
             <div class="col-lg-4">
                 <input type="text" class="form-control" aria-label="..." value="{{address.postcode}}" id="postcode" placeholder="POSTCODE">
@@ -175,7 +176,9 @@
     <div class="cart-box">
         <h4>TOTAL</h4>
         <ul class="price-list">
-            总计：{{total}}
+            <li>价格：<span id="price">{{total}}</span></li>
+            <li>运费：<span id="delivery"></span></li>
+            <li>总计：<span id="total"></span></li>            
         </ul>
     </div>
 
@@ -189,12 +192,12 @@
     <input type="hidden" value="{{ ctx.csrf | safe }}" id="_csrf">
                 
     <div id="place-box">
-        <button class="btn" id="place-order">place order</button>
+        <button class="btn" id="place-order" disabled>place order</button>
     </div>
 
     {% else%}
 
-    <div class="cart-box">
+    <div class="cart-box" data-cart="none">
         <h4>YOUR CART IS EMPTY</h4>
     </div>
 
@@ -209,7 +212,59 @@
 
 <script>
 
+if($(".cart-box").attr('data-cart')!=='none'){
+
+
+var pro = ["北京","天津","上海","重庆","河北","山西","辽宁","吉林","黑龙江","江苏","浙江","安徽","福建","江西","山东","河南","湖北","湖南","广东","海南","四川","贵州","云南","陕西","甘肃","青海","内蒙古","广西","西藏","宁夏","新疆","香港","澳门","台湾"];
+
+for(var i=0;i<pro.length;i++){
+    $option=$("<option/>")
+    $option.attr("value",pro[i]);
+    $option.text(pro[i]);
+    $("#country").append($option);
+}
+
+$("#country").val($("#country").attr('data-address'));
+
 	$(function(){
+
+        function getDelivery(cb){
+
+                    $.ajax({
+                        url:'/countDelivery',
+                        type:'POST', //GET
+                        async:false,    //或false,是否异步
+                        data:{
+                            address:$('#country').val(),
+                            _csrf:$('#_csrf').val()
+                        },
+                        timeout:300,    //超时时间
+                        dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                        beforeSend:function(xhr){
+                            // console.log(xhr)
+                            // console.log('发送前')
+                        },
+                        success:function(data){
+                            cb(data);
+                        }
+                    });
+
+        }
+        getDelivery(function(data){
+            $('#delivery').text(data.total);
+            $('#total').text(Number($('#price').text()) + Number($('#delivery').text()));
+            $('#place-order').prop('disabled',false);
+        })
+
+        $('#country').on('change',function(){
+            $('#place-order').prop('disabled',true);
+            getDelivery(function(data){
+                $('#delivery').text(data.total);
+                $('#total').text(Number($('#price').text()) + Number($('#delivery').text()));
+                $('#place-order').prop('disabled',false);
+            })
+
+        })
 
                 $(document).delegate('.shop-close','click',function(){
                     $.ajax({
@@ -295,6 +350,9 @@
                     });
                 });
 	});
+
+}
+
 
 </script>
 {% endblock %}

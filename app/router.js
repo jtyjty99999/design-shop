@@ -76,6 +76,8 @@ module.exports = app => {
   app.post('/goods', admin, app.controller.goods.add);
   app.put('/goods', admin, app.controller.goods.update);
   app.delete('/goods', admin, app.controller.goods.deleteGoods);
+  app.post('/countDelivery', app.controller.goods.countDelivery);
+  
 
 
   app.get('/findteam', install, app.controller.team.find);

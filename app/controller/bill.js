@@ -7,6 +7,8 @@
 const moment = require('moment');
 const marked = require('marked');
 const AlipayNotify = require('../lib/alipay');
+const counter = require('../lib/count');
+
 function pad(num, n) {
   var len = num.toString().length;
   while (len < n) {
@@ -178,9 +180,6 @@ function generatorAlipayUrl(config,id,total){
   return sURL;
 }
 
-function countPrice(){
-
-}
 // 新增订单
 exports.add = function* () {
   const name = this.request.body.name;
@@ -199,6 +198,11 @@ exports.add = function* () {
     delete goods[i].description;
     delete goods[i].in_pic;
     total += parseInt(goods[i].price)* goods[i].quantity;
+  }
+
+  let delivery = counter(goods, country);
+  if(delivery!==undefined){
+    total += Number(delivery);
   }
 
   let bill = yield this.service.bill.insert({
