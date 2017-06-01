@@ -4,6 +4,14 @@ module.exports = function (goods, address) {
 
     let total = 0;
     let addressKey = '';
+    let whole = 0;
+
+    for (let i = 0, l = goods.length; i < l; i++) {
+        whole += parseInt(goods[i].price) * goods[i].quantity;
+    }
+    if (whole > 200) {
+        return 0
+    }
 
     if ('安徽'.indexOf(address) !== -1) {
         addressKey = 'anhui';
