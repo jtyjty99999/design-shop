@@ -112,12 +112,12 @@
     <div class="row section fp-auto-height" id="goods-container">
         <div class="col-md-5">
             <div class="goods-pics">
-                <img src="{{good.m_pic}}" alt=""> 
+                <img src="{{good.m_pic}}" alt="" data-src="/goods/info?id={{good.goods_id}}"> 
             </div>
         </div>
         <div class="col-md-7" id="good-info-block">
             <div class="shop-close" id="{{good.id}}">&times;</div>
-            <h3>{{good.title}}</h3>
+            <h3 data-src="/goods/info?id={{good.goods_id}}">{{good.title}}</h3>
             <h4>{{good.subtitle}}</h4>
             <hr>
             <div class="row good-input">
@@ -290,6 +290,10 @@ $("#country").val($("#country").attr('data-address'));
                             }
                         }
                     });
+                });
+
+                $(document).delegate('[data-src]','click',function(){
+                    location.href = $(this).attr('data-src');
                 });
 
                 $(document).delegate('#place-order','click',function(){

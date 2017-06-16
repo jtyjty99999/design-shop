@@ -40,7 +40,7 @@
                 {% for person in london %}
                 <div class="col-md-2" data-id="{{person.id }}">
                         <div class="well-item">
-                            <div class="correct"> <img src="{{person.m_pic}}" width="215" class="test2"></div>
+                            <div class="correct"> <img src="{{person.m_pic}}" width="215"></div>
                             <div class="opposite mask-info">
                                 <div class="test">
                                     <p>{{person.name }} <br /> {{person.position }}</p>			
@@ -54,7 +54,7 @@
                 {% for person in losa %}
                 <div class="col-md-2" data-id="{{person.id }}">
                         <div class="well-item">
-                            <div class="correct"> <img src="{{person.m_pic}}" width="215" class="test2"></div>
+                            <div class="correct"> <img src="{{person.m_pic}}" width="215"></div>
                             <div class="opposite mask-info">
                                 <div class="test">
                                     <p>{{person.name }} <br /> {{person.position }}</p>			
@@ -70,7 +70,7 @@
                 {% for person in design %}
                 <div class="col-md-2" data-id="{{person.id }}">
                         <div class="well-item">
-                            <div class="correct"> <img src="{{person.m_pic}}" width="215" class="test2"></div>
+                            <div class="correct"> <img src="{{person.m_pic}}" width="215"></div>
                             <div class="opposite mask-info">
                                 <div class="test">
                                     <p>{{person.name }} <br /> {{person.position }}</p>			
@@ -84,7 +84,7 @@
                 {% for person in brand %}
                 <div class="col-md-2" data-id="{{person.id }}">
                         <div class="well-item">
-                            <div class="correct"> <img src="{{person.m_pic}}" width="215" class="test2"></div>
+                            <div class="correct"> <img src="{{person.m_pic}}" width="215"></div>
                             <div class="opposite mask-info">
                                 <div class="test">
                                     <p>{{person.name }}  <br />{{person.position }}</p>			
@@ -99,7 +99,7 @@
                 {% for person in research %}
                 <div class="col-md-2" data-id="{{person.id }}">
                         <div class="well-item">
-                            <div class="correct"> <img src="{{person.m_pic}}" width="215" class="test2"></div>
+                            <div class="correct"> <img src="{{person.m_pic}}" width="215"></div>
                             <div class="opposite mask-info">
                                 <div>
                                     <p>{{person.name }} <br /> {{person.position }}</p>		
@@ -113,7 +113,7 @@
                 {% for person in business %}
                 <div class="col-md-2" data-id="{{person.id }}">
                         <div class="well-item">
-                            <div class="correct"> <img src="{{person.m_pic}}" width="215" class="test2"></div>
+                            <div class="correct"> <img src="{{person.m_pic}}" width="215"></div>
                             <div class="opposite mask-info">
                                 <div class="test">
                                     <p>{{person.name }}  <br />{{person.position }}</p>		
@@ -167,12 +167,12 @@
 			})
             $ul.css('display','none');
             $ul.eq(0).css('display','block');
-
+                /*
                 $(document).delegate('.team-list-group img','click',function(){
                     var url = $(this).attr('data-src');
                     index = $(this).parent().index();
                     location.href = url;
-                })
+                })*/
                 /*
         $(".well-item").hover(function(){
 

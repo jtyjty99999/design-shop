@@ -22,10 +22,10 @@ exports.login = function* () {
     this.session.login = true;
     this.session.user = login;
     this.body = {
-        "success": true,
-        "msg": ''
-      }
-      // this.redirect('/manager');
+      "success": true,
+      "msg": ''
+    }
+    // this.redirect('/manager');
   } else {
     this.body = {
       "success": false,
@@ -45,13 +45,22 @@ exports.update = function* () {
   const email = this.request.body.email;
   const nick = this.request.body.nick;
   const pic = this.request.body.pic;
-  let res = yield this.service.user.update({
-    id,
-    phone,
-    email,
-    nick,
-    pic
-  });
+
+  let res;
+  if (pic) {
+    res = yield this.service.user.update({
+      id,
+      pic,
+    });
+  } else {
+    res = yield this.service.user.update({
+      id,
+      phone,
+      email,
+      nick,
+    });
+  }
+
   this.session.user = yield this.service.user.find(this.session.user.id);
   this.body = {
     success: true,
@@ -72,9 +81,9 @@ exports.profile = function* () {
   // 订单信息
   let bills = yield this.service.bill.list(this.session.user.id, pageNum, pageSize);
   bills.forEach((bill) => {
-      bill.info = JSON.parse(bill.info);
-    })
-    // 地址信息
+    bill.info = JSON.parse(bill.info);
+  })
+  // 地址信息
   let addresses = yield this.service.address.list(this.session.user.id, pageNum, pageSize);
   if (addresses.length < 3) {
     addressnotfull = true;

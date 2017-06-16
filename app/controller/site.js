@@ -25,10 +25,12 @@ const installRule = {
 
 exports.update = function* () {
   const retailer = this.request.body.retailer;
+  const cooperation = this.request.body.cooperation;
   const site = yield this.service.site.getSite();
 
   yield this.service.site.update({
     retailer,
+    cooperation,
     id:site[0].id
   });
 
