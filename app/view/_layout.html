@@ -12,7 +12,7 @@
     <title>DEFRONT</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="//dn-staticfile.qbox.me/twitter-bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/public/css/bootstrap.min.css" rel="stylesheet" media="screen">
 
     <!-- Custom CSS -->
     <link href="/public/css/clean-blog.min.css" rel="stylesheet">
@@ -44,7 +44,8 @@
             <a class="link-divider"></a>
             <a id="link-list-2" href="https://www.facebook.com/Defront-212357525853058/"></a>
             <a class="link-divider"></a>
-            <a id="link-list-3" href=""></a>
+            <a id="link-list-3">
+            </a>
             <a class="link-divider"></a>
             <a id="link-list-4" href="http://weibo.com/p/1006066050455287"></a>
             <a class="link-divider"></a>
@@ -52,10 +53,11 @@
         </div>
     </div>
     <style>
+
         #link-list{
             position:absolute;
             right: 78px;
-            top: 58px;
+                top: 44%;
         }
         #link-list a{
             display: inline-block;
@@ -88,7 +90,7 @@
     </style>
 
 <!-- jQuery -->
-<script src="//dn-staticfile.qbox.me/jquery/1.9.0/jquery.min.js"></script>
+<script src="/public/js/lib/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="/public/js/lib/bootstrap.js"></script>
@@ -132,7 +134,12 @@
 #login-box li.active{
     width:55%
 }
-
+.middle-img{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%)
+}
 #login-box li a{
     color:#3e3a39;
     border:none;
@@ -288,6 +295,23 @@ font-size: 18px;
                     $('#login-status-box').hide();
                 }); 
 
+                $(document).delegate('#link-list-3','click',function(){
+                            layer.open({
+                                title: false,
+                                type: 1,
+                                shadeClose: true,
+                                closeBtn:1,
+                                shade: 0.8,
+                                area:['353px','379px'],
+                                content: '<img class="middle-img" src="/public/images/weixin.png" alt="">',
+                                success: function(layero, i){
+                                    // console.log(index);
+                                },
+                                end: function(layero, i){
+                                }
+                            });                     
+                }); 
+
                 $(document).delegate('#profile2','click',function(){
                     isLogin(function(data){
                         if(data.login === true){
@@ -368,6 +392,7 @@ font-size: 18px;
                         }
                     });
                 });
+
 
 
 </script>
