@@ -62,15 +62,34 @@ html, body{
 }
 .action{
     position: absolute;
-    bottom:50px;
+    bottom:76px;
     right:20px;
-    font-family: "Microsoft Yahei"
+    font-family: "Microsoft Yahei";
+    font-size: 18px;
+        cursor: pointer
 }
 .action li{
-    display: inline-block;
+    width:145px;
+    height:33px;
+    background: black;
+    background-color:rgba(0,0,0,0.07);
+    margin-bottom:20px;
+    line-height: 33px;
+    padding-left:10px;
+}
+.action li:hover{
+    width:145px;
+    height:33px;
+    background: black;
+    background-color:rgba(0,0,0,0.14);
 }
 .action a {
+    color:white;
+        cursor: pointer;
     text-decoration: none
+}
+.vjs-control-bar{
+    display: none!important
 }
     </style>
 
@@ -80,11 +99,11 @@ html, body{
     <video
         id="my-player"
         class="video-js"
-        controls
+        controls="false"
         preload="auto"
-        autoplay="true"
+        autoplay="false"
         data-setup='{}'>
-    <source src="http://pic-cloud-hn.b0.upaiyun.com/dv.mp4" type="video/mp4"></source>
+    <source src="http://pic-cloud-hn.b0.upaiyun.com/dv3.mp4" type="video/mp4"></source>
     <p class="vjs-no-js">
         To view this video please enable JavaScript, and consider upgrading to a
         web browser that
@@ -95,8 +114,8 @@ html, body{
     </video>
 
     <ul class="action">
-        <li><a href="/home">英文</a></li>
-        <li><a href="/home">中文</a></li>
+        <li><a href="http://en.de-front.com/home">English &nbsp&nbsp&nbsp&gt&gt&gt </a></li>
+        <li><a href="http://de-front.com/home">中文  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&gt&gt&gt</a></li>
     </ul>
 
 </div>
@@ -115,7 +134,9 @@ html, body{
 
 <script>
 
-
+$('.video-container').on('click',function(){
+    location.href= 'http://en.de-front.com/home';
+})
 </script>
 
 {% endblock %}
