@@ -35,29 +35,40 @@ var index;
 
 $(document).delegate('.press-pic','click',function(){
     var in_png = $(this).attr('data-big');
-    index = $(this).parent().index();
-    layer.open({
-            title: false,
-            type: 1,
-            shadeClose: true,
-            closeBtn:1,
-            shade: 0.8,
-            area:['80%','90%'],
-            content: '<div id="press-container"><img class="press-pic-big" src="'+in_png+'"></div>',
-            success: function(layero, i){
-                // console.log(index);
-                $('.control-btn').show();
-                console.log($('#press-container').parents('div').parents('.layui-layer'));
-                $('#press-container').parents('div').parents('.layui-layer').css({
-                    "background":"none",
-                    "box-shadow":"initial"
-                })
+    var out_url = $(this).attr('src');
+    if(out_url.indexOf('open=true')!==-1){
 
-            },
-            end: function(layero, i){
-                $('.control-btn').hide();
-            }
-        }); 
+        location.href = in_png;
+
+    }else{
+
+        index = $(this).parent().index();
+        
+        layer.open({
+                title: false,
+                type: 1,
+                shadeClose: true,
+                closeBtn:1,
+                shade: 0.8,
+                area:['80%','90%'],
+                content: '<div id="press-container"><img class="press-pic-big" src="'+in_png+'"></div>',
+                success: function(layero, i){
+                    // console.log(index);
+                    $('.control-btn').show();
+                    console.log($('#press-container').parents('div').parents('.layui-layer'));
+                    $('#press-container').parents('div').parents('.layui-layer').css({
+                        "background":"none",
+                        "box-shadow":"initial"
+                    })
+
+                },
+                end: function(layero, i){
+                    $('.control-btn').hide();
+                }
+            }); 
+
+
+    }
 
 })
 
