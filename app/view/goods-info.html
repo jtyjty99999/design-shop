@@ -128,7 +128,7 @@ function isLogin(cb){
                 $(document).delegate('#add-to-cart','click',function(){
                     
                     isLogin(function(data){
-                        if(data.login === false){
+                        if(!data.login || data.login === false){
                              layer.open({
                                 title: false,
                                 type: 1,
