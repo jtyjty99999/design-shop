@@ -65,7 +65,7 @@
 {% block page %}{% include "component/pager.html" %}{% endblock %}
 
 {% block script %}
-<script src="https://cdn.ckeditor.com/4.6.1/full-all/ckeditor.js"></script>
+<script src="/public/js/ckeditor/ckeditor.js"></script>
 <script>
 
 	CKEDITOR.replace( 'editor1', {
@@ -81,7 +81,7 @@
 			{ name: 'align', items: [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
 			{ name: 'links', items: [ 'Link', 'Unlink' ] },
 			{ name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },
-			{ name: 'insert', items: [ 'Image', 'Table' ] },
+			{ name: 'insert', items: [ 'Image', 'Table', 'Embed' ] },
 			{ name: 'tools', items: [ 'Maximize' ] },
 			{ name: 'editing', items: [ 'Scayt' ] }
 		],
@@ -96,7 +96,7 @@
 		//  - About Allowed Content: http://docs.ckeditor.com/#!/guide/dev_allowed_content_rules
 		extraAllowedContent: 'img[width,height,align]',
 		// Enabling extra plugins, available in the full-all preset: http://ckeditor.com/presets-all
-		extraPlugins: 'tableresize',
+		extraPlugins: 'embed,tableresize,html5video,widget,widgetselection,clipboard,lineutils',
 		/*********************** File management support ***********************/
 		// In order to turn on support for file uploads, CKEditor has to be configured to use some server side
 		// solution with file upload/management capabilities, like for example CKFinder.

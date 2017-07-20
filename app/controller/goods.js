@@ -109,7 +109,7 @@ exports.update = function* () {
 exports.deleteGoods = function* () {
   const id = +this.request.body.id;
 
-  const success = yield this.service.goods.deleteGood(id);
+  const success = yield this.service.goods.deleteGoods(id);
 
   if (success) {
     this.body = true;
