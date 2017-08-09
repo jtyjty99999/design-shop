@@ -74,3 +74,8 @@ exports.userrole = {
 exports.onerror = {
   errorPageUrl: '/500',
 };
+
+exports.bodyParser = {
+    "formLimit": "2000kb",
+    "jsonLimit": "2000kb",
+}

@@ -132,6 +132,39 @@ exports.countDelivery = function* () {
   let goods = yield this.service.cart.list(this.session.user.id);
   let address = this.request.body.address;
 
+
+class koubeiFixer extends baseFixer {
+  constructor(input) {
+    this.input = input;// 代码
+    this.fileHandler = {
+      'package.json':function(content){
+        ///
+        return content
+      }
+    }
+  }
+
+  doFix() {
+    for (let key in this.fileHandler){
+      let content = fs.readFileSync(glob(key));
+      content = this.fileHandler[key](content);
+      fs.writeFileSync(content);
+    }
+    // 修建动作
+  }
+}
+
+  var koubeiPublisher = {
+    key: 'koubei',
+    schema: {
+      input: [
+        {name: "project", type: "string"},
+        {name: "appid", type: "string"},
+      ]
+    }
+  }
+
+
         for (let i = 0, l = goods.length; i < l; i++) {
             let goodsInfo = yield this.service.goods.find(goods[i].goods_id);
             Object.assign(goods[i], goodsInfo);

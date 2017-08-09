@@ -750,7 +750,7 @@ goods
     background: #d1cdc4;
     color:#727171;
     width: 574px;
-    height: 486px
+    height: 460px
 }
 #good-info-block hr{
     border-color: #727171;
@@ -767,7 +767,8 @@ goods
     position: relative
 }
 .good-input{
-    margin-top:30px;
+    margin-top:20px;
+    font-size:14px;
 }
 .good-input .col-md-6:nth-child(2){ 
     margin-left: -54px;

@@ -7,7 +7,7 @@ module.exports = app => {
         title:obj.title,
         content:obj.content,
         type:obj.type,
-        description: description,
+        description: obj.description,
         timestamp: app.mysql.literals.now,
       });
 

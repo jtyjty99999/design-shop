@@ -89,7 +89,7 @@
 {% block page %}{% include "component/pager.html" %}{% endblock %}
 
 {% block script %}
-<script src="https://cdn.ckeditor.com/4.6.1/full-all/ckeditor.js"></script>
+<script src="/public/js/ckeditor/ckeditor.js"></script>
 <script>
 
 	CKEDITOR.replace( 'editor1', {
@@ -99,7 +99,7 @@
 		toolbar: [
 			{ name: 'document', items: [ 'Print' ] },
 			{ name: 'clipboard', items: [ 'Undo', 'Redo' ] },
-			{ name: 'styles', items: [ 'Format', 'Font', 'FontSize' ] },
+			{ name: 'styles', items: [ 'Format', 'Font', 'FontSize','lineheight' ] },
 			{ name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat', 'CopyFormatting' ] },
 			{ name: 'colors', items: [ 'TextColor', 'BGColor' ] },
 			{ name: 'align', items: [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
@@ -120,7 +120,7 @@
 		//  - About Allowed Content: http://docs.ckeditor.com/#!/guide/dev_allowed_content_rules
 		extraAllowedContent: 'img[width,height,align]',
 		// Enabling extra plugins, available in the full-all preset: http://ckeditor.com/presets-all
-		extraPlugins: 'tableresize',
+		extraPlugins: 'lineheight,tableresize',
 		/*********************** File management support ***********************/
 		// In order to turn on support for file uploads, CKEditor has to be configured to use some server side
 		// solution with file upload/management capabilities, like for example CKFinder.
@@ -133,7 +133,7 @@
 		height: 800,
 		// An array of stylesheets to style the WYSIWYG area.
 		// Note: it is recommended to keep your own styles in a separate file in order to make future updates painless.
-		contentsCss: [ 'https://cdn.ckeditor.com/4.6.1/full-all/contents.css', '/public/css/myeditor.css' ],
+		contentsCss: [ '/public/js/ckeditor/contents.css', '/public/css/myeditor.css' ],
 		// This is optional, but will let us define multiple different styles for multiple editors using the same CSS file.
 		bodyClass: 'document-editor',
 		// Reduce the list of block elements listed in the Format dropdown to the most commonly used.
