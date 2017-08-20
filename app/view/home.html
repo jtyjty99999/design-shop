@@ -7,8 +7,79 @@
 {% endblock %}
 
 {% block body %}
-<!-- Main Content -->
+
+<style>
+    .carousel-inner .item img{
+        width:100%;
+        height:100%
+    }
+    .carousel-indicators,.footer-nofix{
+        display: none;
+    }
+    .glyphicon.glyphicon-chevron-right,.glyphicon.glyphicon-chevron-left{
+        background: black;
+        padding: 10px;
+        display: block;
+        width: 55px;
+        height: 56px;
+        font-size: 24px;
+    }
+    .carousel-control{
+        background: none!important;
+        opacity: 1!important;
+        width:10%;
+    }
+    .glyphicon-chevron-right:before {
+        content: ">";
+    }
+    .glyphicon-chevron-left:before {
+        content: "<";
+    }
+    .carousel-inner{
+        height: 100%
+    }
+    html,body{
+        height: 100%;
+        overflow: hidden
+    }
+    #carousel-example-generic{
+        height: 100%
+    }
+    .container{
+        margin-bottom: 0px;
+        height:100%
+    }
+    .item{
+        height: 100%
+    }
+</style>
+
 <div class="container" id="fullpage">
+
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+            {% for pic,index in main_pics %}
+            <li data-target="#carousel-example-generic" data-slide-to="{{index}}" class=""></li>
+            {% endfor %}
+      </ol>
+      <div class="carousel-inner" role="listbox">
+
+        {% for pic in main_pics %}
+        <div class="item">
+          <img alt="" src="{{pic}}" data-holder-rendered="true">
+        </div>
+        {% endfor %}
+      </div>
+      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+<!--  
     <div class="row section fp-auto-height">
         <div class="col-md-12"><img src="/public/images/big/1.jpg" class="img-responsive" alt="Responsive image"></div>
     </div>
@@ -22,13 +93,20 @@
             </div>
             {% endfor %}
     </div>
+    -->
 </div>
+
 {% endblock %}
 
 {% block script %}
 <script type="text/javascript" src="/public/js/plugins/jquery.fullPage.min.js"></script>
 
 <script>
+
+    $('#carousel-example-generic').find('.item').eq(0).addClass('active');
+    $('#carousel-example-generic').find('.carousel-indicators li').eq(0).addClass('active');
+    
+    /*
     var per = 850/490;
     var bigper = 2;
     var ins;
@@ -64,6 +142,6 @@
                     index = $(this).parent().index();
                     location.href = url;
                 })
-
+*/
 </script>
 {% endblock %}

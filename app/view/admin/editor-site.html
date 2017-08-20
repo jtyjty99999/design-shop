@@ -28,7 +28,20 @@
             </div>
             <div class="editormd" id="article-editormd">
                 <textarea name="cooperation" id="editor2">{{article.cooperation}}</textarea>
-            </div>
+			</div>
+            <div class="row control-group" style="margin: 0 60px;" >
+					<div class="form-group col-xs-12 floating-label-form-group controls">
+						<label>首页图片，逗号分隔</label>
+						<input value="{{article.main_pics}}" type="text" class="form-control" placeholder="首页图片，逗号分隔" id="main_pics" name="main_pics" required data-validation-required-message="Please enter main pics.">
+						<p class="help-block text-danger"></p>
+					</div>
+					<div class="form-group col-xs-12 floating-label-form-group controls">
+							<label>首页链接，逗号分隔</label>
+							<input value="{{article.main_links}}" type="text" class="form-control" placeholder="首页链接，逗号分隔" id="main_links" name="main_links" required data-validation-required-message="Please enter main pics.">
+							<p class="help-block text-danger"></p>
+						</div>
+				</div>
+
             <br/><input id="article-submit" type="submit" name="submit" value="Submit" class="btn" style="margin-left: 5%;" />
         </form>
     </div>

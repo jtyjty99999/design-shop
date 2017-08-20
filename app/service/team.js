@@ -19,13 +19,13 @@ module.exports = app => {
 
     // 获取文章列表
     * list(pageNum, pageSize) {
-      const articles = yield app.mysql.query('select  id, tag ,m_pic,content, name, position,description from design_team where deleted = 0 order by timestamp asc limit ? offset ?;', [ pageSize, (pageNum - 1) * pageSize ]);
+      const articles = yield app.mysql.query('select  id, tag ,m_pic,content, name, position,description from design_team where deleted = 0 order by id asc limit ? offset ?;', [ pageSize, (pageNum - 1) * pageSize ]);
       return articles;
     }
     // 获取某一类的team
     * search(type) {
       type = '%'+type+'%';
-      const article = yield app.mysql.query('select  id, tag ,m_pic,content, name, position,description from design_team where tag like ? and deleted = 0  order by timestamp desc', [ type ]);
+      const article = yield app.mysql.query('select  id, tag ,m_pic,content, name, position,description from design_team where tag like ? and deleted = 0  order by id asc', [ type ]);
 
       return article;
     }

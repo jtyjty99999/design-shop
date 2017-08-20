@@ -26,12 +26,16 @@ const installRule = {
 exports.update = function* () {
   const retailer = this.request.body.retailer;
   const cooperation = this.request.body.cooperation;
+  const main_pics = this.request.body.main_pics;
+  const main_links = this.request.body.main_links;
   const site = yield this.service.site.getSite();
 
   yield this.service.site.update({
     retailer,
     cooperation,
-    id:site[0].id
+    id:site[0].id,
+    main_links,
+    main_pics
   });
 
   this.redirect(`/manager`);
