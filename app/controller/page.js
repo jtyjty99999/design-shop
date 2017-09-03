@@ -46,9 +46,13 @@ exports.home = function* () {
   site = site[0];
   const result = {
     main_pics: site.main_pics ? site.main_pics.split(',') : [null,null],
-    main_links: site.main_links ? site.main_links.split(',') : [null,null]
+    main_links: site.main_links ? site.main_links.split(',') : [null,null],
+    main_texts: site.main_texts ? site.main_texts.split(',') : [null,null]
   };
-  console.log(result);
+  result.main = [];
+  result.main_links.forEach(function(d, i){
+    result.main.push([result.main_pics[i],result.main_links[i],result.main_texts[i]])
+  });
   yield this.render('home.html', result);
 };
 

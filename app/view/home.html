@@ -52,6 +52,14 @@
     .item{
         height: 100%
     }
+    .item a{
+        position: absolute;
+        bottom: 35px;
+        height: 50px;
+        background: black;
+        color: white;
+        padding: 10px 20px;
+    }
 </style>
 
 <div class="container" id="fullpage">
@@ -64,9 +72,10 @@
       </ol>
       <div class="carousel-inner" role="listbox">
 
-        {% for pic in main_pics %}
+        {% for pic,link,text in main %}
         <div class="item">
-          <img alt="" src="{{pic}}" data-holder-rendered="true">
+          <img alt="{{index}}" src="{{pic}}" data-holder-rendered="true">
+          <a href="{{link}}">{{text}}</a>
         </div>
         {% endfor %}
       </div>
