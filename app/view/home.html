@@ -17,9 +17,8 @@
         display: none;
     }
     .glyphicon.glyphicon-chevron-right,.glyphicon.glyphicon-chevron-left{
-        background: black;
+        background: #d1cdc4;
         padding: 10px;
-        display: block;
         width: 55px;
         height: 56px;
         font-size: 24px;
@@ -28,6 +27,12 @@
         background: none!important;
         opacity: 1!important;
         width:10%;
+    }
+    .carousel-control:hover span{  
+        display: block!important
+    }
+    .carousel-control span{  
+        display: none!important
     }
     .glyphicon-chevron-right:before {
         content: ">";
@@ -55,11 +60,18 @@
     .item a{
         position: absolute;
         bottom: 35px;
-        height: 50px;
-        background: black;
-        color: white;
-        padding: 10px 20px;
-        z-index: 9999
+        height: 35px;
+        background: #d1cdc4;
+        color: #6f6664;
+        padding: 0 20px;
+        line-height: 35px;
+        z-index: 9999;
+        font-weight: normal!important;
+        font-family: Century Gothic;
+        font-size: 12px!important;
+    }
+    .item a:hove{
+        text-decoration: none
     }
 </style>
 
