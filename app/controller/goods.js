@@ -15,7 +15,7 @@ exports.index = function* () {
     live: this.service.goods.search('live'),
     travel: this.service.goods.search('travel'),
     count: this.service.goods.count(),
-    current:'goods'
+    current: 'goods'
   };
   yield this.render('goods.html', Object.assign({
     pageNum,
@@ -40,12 +40,12 @@ exports.add = function* () {
   const in_pic = this.request.body.in_pic;
   const color = this.request.body.color;
   const weight = this.request.body.weight;
-  
 
-  if(typeof type === 'object'){
+
+  if (typeof type === 'object') {
     type = type.join(',');
   }
-  if(method ==='PUT'){
+  if (method === 'PUT') {
     yield this.service.goods.update({
       id,
       m_pic,
@@ -60,19 +60,19 @@ exports.add = function* () {
       color,
       weight
     });
-  }else{
+  } else {
     yield this.service.goods.insert({
-        content,
-        m_pic,
-        type,
-        title,
-        description,
-        price,
-        whole,
-        subtitle,
-        in_pic,
-        color,
-        weight
+      content,
+      m_pic,
+      type,
+      title,
+      description,
+      price,
+      whole,
+      subtitle,
+      in_pic,
+      color,
+      weight
     });
 
   }
@@ -89,7 +89,7 @@ exports.update = function* () {
   let type = this.request.body.type;
   const title = this.request.body.title;
   const weight = this.request.body.weight;
-  if(typeof type === 'object'){
+  if (typeof type === 'object') {
     type = type.join(',');
   }
   yield this.service.goods.update({
@@ -123,7 +123,9 @@ exports.find = function* () {
   const article = yield this.service.goods.find(id);
   article.color = article.color && article.color.split(',');
   article.in_pic = article.in_pic && article.in_pic.split(',');
-  yield this.render('goods-info.html', {good:article});
+  yield this.render('goods-info.html', {
+    good: article
+  });
 
 };
 
@@ -132,43 +134,10 @@ exports.countDelivery = function* () {
   let goods = yield this.service.cart.list(this.session.user.id);
   let address = this.request.body.address;
 
-
-class koubeiFixer extends baseFixer {
-  constructor(input) {
-    this.input = input;// 代码
-    this.fileHandler = {
-      'package.json':function(content){
-        ///
-        return content
-      }
-    }
+  for (let i = 0, l = goods.length; i < l; i++) {
+    let goodsInfo = yield this.service.goods.find(goods[i].goods_id);
+    Object.assign(goods[i], goodsInfo);
   }
-
-  doFix() {
-    for (let key in this.fileHandler){
-      let content = fs.readFileSync(glob(key));
-      content = this.fileHandler[key](content);
-      fs.writeFileSync(content);
-    }
-    // 修建动作
-  }
-}
-
-  var koubeiPublisher = {
-    key: 'koubei',
-    schema: {
-      input: [
-        {name: "project", type: "string"},
-        {name: "appid", type: "string"},
-      ]
-    }
-  }
-
-
-        for (let i = 0, l = goods.length; i < l; i++) {
-            let goodsInfo = yield this.service.goods.find(goods[i].goods_id);
-            Object.assign(goods[i], goodsInfo);
-        }
 
   let total = counter(goods, address);
   this.body = {
