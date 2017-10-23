@@ -308,6 +308,7 @@ margin-right: 45px;
 
 .press-container{
     margin-top: 100px;
+    height: 100%;
 }
 
 .press-pic-list{
@@ -328,7 +329,7 @@ margin-right: 45px;
 
 }
 .press-pic-big{
-    width: 100%;
+    height: 100%;
 } 
 
 .press-pic-list img{

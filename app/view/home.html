@@ -28,6 +28,9 @@
         opacity: 1!important;
         width:10%;
     }
+    .carousel-control span{
+        transform: translateY(-50%);
+    }
     .carousel-control:hover span{  
         display: block!important
     }
@@ -77,7 +80,7 @@
 
 <div class="container" id="fullpage">
 
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-pause="null">
       <ol class="carousel-indicators">
             {% for pic,index in main_pics %}
             <li data-target="#carousel-example-generic" data-slide-to="{{index}}" class=""></li>

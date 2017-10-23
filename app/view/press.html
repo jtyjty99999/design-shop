@@ -37,8 +37,7 @@ $(document).delegate('.press-pic','click',function(){
     var in_png = $(this).attr('data-big');
     var out_url = $(this).attr('src');
     if(out_url.indexOf('open=true')!==-1){
-
-        location.href = in_png;
+        window.open(in_png, "_blank");
 
     }else{
 
