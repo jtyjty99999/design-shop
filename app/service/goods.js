@@ -36,7 +36,7 @@ module.exports = app => {
 
     // 获取某一类的project
     * search(type) {
-      const article = yield app.mysql.query('select  id,title,  m_pic, content, type from design_goods where type like \'%' + type + '%\' and deleted = 0 order by timestamp desc', [ type ]);
+      const article = yield app.mysql.query('select  id,title,  m_pic, content, type,price from design_goods where type like \'%' + type + '%\' and deleted = 0 order by timestamp desc', [ type ]);
       return article;
     }
 
