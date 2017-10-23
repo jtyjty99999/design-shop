@@ -306,7 +306,7 @@ margin-right: 45px;
     display: none
 }
 
-.press-container{
+#press-container{
     margin-top: 100px;
     height: 100%;
 }
@@ -330,6 +330,7 @@ margin-right: 45px;
 }
 .press-pic-big{
     height: 100%;
+    width: auto;
 } 
 
 .press-pic-list img{
