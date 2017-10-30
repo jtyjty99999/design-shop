@@ -193,7 +193,7 @@
 
   
                                 <div class="address-list-detail">{{address.country}}{{address.address}}</div>
-                                <div class="address-modify">编辑{{user.default_address_id}}</div>
+                                <div class="address-modify" data-id="{{user.default_address_id}}">编辑</div>
                                 <div class="address-delete">删除</div>
                             </li>
                         {% endfor %}
@@ -490,13 +490,13 @@
                                 <p>{{good.subtitle}}</p>
                                 <hr>
                                 <div class="row bill-info-text-table">
-                                    <div class="col-md-6">PRICE</div><div class="col-md-6">{{good.price}}</div>
+                                    <div class="col-md-6">价格</div><div class="col-md-6">{{good.price}}</div>
                                 </div>
                                 <div class="row bill-info-text-table">
-                                    <div class="col-md-6">COLOR</div><div class="col-md-6">{{good.metarial}}</div>
+                                    <div class="col-md-6">颜色</div><div class="col-md-6">{{good.metarial}}</div>
                                 </div>
                                 <div class="row bill-info-text-table">
-                                    <div class="col-md-6">QUANTITY</div><div class="col-md-6">{{good.quantity}}</div>
+                                    <div class="col-md-6">数量</div><div class="col-md-6">{{good.quantity}}</div>
                                 </div>
                             </div>
                         </div>

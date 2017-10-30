@@ -121,11 +121,11 @@
             <h4>{{good.subtitle}}</h4>
             <hr>
             <div class="row good-input">
-                <div class="col-md-6">Price</div>
+                <div class="col-md-6">价格</div>
                 <div class="col-md-6 price-format">$ {{good.price}}</div>
             </div>
             <div class="row good-input">
-                <div class="col-md-6">COLOR</div>
+                <div class="col-md-6">颜色</div>
                 <div class="col-md-6">
                     <ul class="color-list">
                         <li style="background:{{good.material}}"></li>       
@@ -133,7 +133,7 @@
                 </div>
             </div>
             <div class="row good-input">
-                <div class="col-md-6">QUANTITY</div>
+                <div class="col-md-6">数量</div>
                 <div class="col-md-6">{{good.quantity}}</div>
             </div>
 
@@ -142,7 +142,7 @@
     {% endfor %}  
 
     <div class="cart-box">
-        <h4>SHIPPING ADDRESS</h4>
+        <h4>收货地址</h4>
         <div class="row">
             <div class="col-lg-5">
                     <select name="type" class="form-control" id="country" data-address="{{address.country}}">
@@ -151,30 +151,30 @@
         </div><!-- /.row -->
         <div class="row">
             <div class="col-lg-8">
-                <input type="text" class="form-control" aria-label="..." value="{{address.address}}" id="address" placeholder="COUNTRY">
+                <input type="text" class="form-control" aria-label="..." value="{{address.address}}" id="address" placeholder="详细地址">
             </div><!-- /.col-lg-6 -->
             <div class="col-lg-4">
-                <input type="text" class="form-control" aria-label="..." value="{{address.postcode}}" id="postcode" placeholder="POSTCODE">
+                <input type="text" class="form-control" aria-label="..." value="{{address.postcode}}" id="postcode" placeholder="邮编">
             </div><!-- /.col-lg-6 -->
         </div><!-- /.row -->
         <hr>
-        <h4>CUSTOMER INFORMATION</h4>
+        <h4>收件人信息</h4>
         <div class="row">
             <div class="col-lg-4">
-                <input type="text" class="form-control" aria-label="..." value="{{address.contact_name}}" id="name" placeholder="NAME">
+                <input type="text" class="form-control" aria-label="..." value="{{address.contact_name}}" id="name" placeholder="姓名">
             </div><!-- /.col-lg-6 -->
             <div class="col-lg-8">
-                <input type="text" class="form-control" aria-label="..." value="{{address.contact_phone}}" id="phone" placeholder="PHONE">
+                <input type="text" class="form-control" aria-label="..." value="{{address.contact_phone}}" id="phone" placeholder="电话">
             </div><!-- /.col-lg-6 -->
         </div><!-- /.row -->
         <div class="row">
             <div class="col-lg-12">
-                <input type="text" class="form-control" aria-label="..." value="{{address.contact_email}}" id="email" placeholder="EMAIL">
+                <input type="text" class="form-control" aria-label="..." value="{{address.contact_email}}" id="email" placeholder="邮箱">
             </div><!-- /.col-lg-6 -->
         </div><!-- /.row -->
     </div>
     <div class="cart-box">
-        <h4>TOTAL</h4>
+        <h4>总计</h4>
         <ul class="price-list">
             <li>价格：<span id="price">{{total}}</span></li>
             <li>运费：<span id="delivery"></span></li>
@@ -183,7 +183,7 @@
     </div>
 
     <div class="cart-box">
-        <h4>PAYMENT</h4>
+        <h4>付款方式</h4>
         <ul class="pay-type-list">
             <li></li>
             <li></li>
@@ -192,7 +192,7 @@
     <input type="hidden" value="{{ ctx.csrf | safe }}" id="_csrf">
                 
     <div id="place-box">
-        <button class="btn" id="place-order" disabled>place order</button>
+        <button class="btn" id="place-order" disabled>确认付款</button>
     </div>
 
     {% else%}

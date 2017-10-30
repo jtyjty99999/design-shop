@@ -33,11 +33,11 @@
             <hr>
             <p>{{good.description}}</p>
             <div class="row good-input">
-                <div class="col-md-6">PRICE</div>
+                <div class="col-md-6">价格</div>
                 <div class="col-md-6 price-format">¥ {{good.price}}</div>
             </div>
             <div class="row good-input">
-                <div class="col-md-6">COLOR</div>
+                <div class="col-md-6">颜色</div>
                 <div class="col-md-6">
                     <ul class="color-list">
                         {% for color in good.color %}
@@ -47,12 +47,12 @@
                 </div>
             </div>
             <div class="row good-input">
-                <div class="col-md-6">QUANTITY</div>
+                <div class="col-md-6">数量</div>
                 <div class="col-md-6"><input  style="width:100px;" data_max="{{good.whole}}" value="0" data_step="1"  data_digit="0" id="quantity"/></div>
             </div>
             <div class="row good-input" id="add-cart-box">
                 <input type="hidden" value="{{ ctx.csrf | safe }}" id="_csrf">
-                <button id="add-to-cart" data-good="{{good.id}}">ADD TO CART</button>
+                <button id="add-to-cart" data-good="{{good.id}}">添加购物车</button>
             </div>
 
         </div>

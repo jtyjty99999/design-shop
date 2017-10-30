@@ -93,6 +93,6 @@ module.exports = function (goods, address) {
     } else {
         total = 0;
     }
-    return total
+    return total.toFixed(2);
 
 }
