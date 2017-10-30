@@ -17,7 +17,7 @@ module.exports = app => {
 
     * login(username, password) {
       const md5Password = crypto.createHash('md5').update(password).digest('hex');
-      const articles = yield app.mysql.query('select id, nick, phone, email, pic, username, registry_time, default_address_id from design_user where username = ? and password = ?', [ username,username, md5Password ]);
+      const articles = yield app.mysql.query('select id, nick, phone, email, pic, username, registry_time, default_address_id from design_user where username = ? and password = ?', [ username, md5Password ]);
       return articles[0];
     }
     // 获取文章列表
