@@ -30,6 +30,7 @@ CKEDITOR.dialog.add( 'videoDialog', function ( editor ) {
 			var video = editor.document.createElement( 'video' );
 			video.setAttribute('src', dialog.getValueOf('flv', 'flvLink'));
 			video.setAttribute('autoplay', 'autoplay');
+			video.setAttribute('loop', 'loop');
 			video.setAttribute('width', dialog.getValueOf('flv', 'width'));
 			editor.insertElement( video );
 		}

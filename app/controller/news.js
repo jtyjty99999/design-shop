@@ -14,7 +14,7 @@ exports.index = function* () {
   };
 
   result.articles = result.articles.map(function(d){
-    d.fromNow = moment(d.timestamp).fromNow();
+    d.fromNow = moment(d.timestamp).format('YYYY-MM-DD');
     return d
   })
   console.log(result.articles);
@@ -34,20 +34,23 @@ exports.add = function* () {
   const m_pic = this.request.body.m_pic;
   const method = this.request.body.method;
   const id = this.request.body.id;
+  const timestamp = this.request.body.timestamp;
   if(method ==='PUT'){
     yield this.service.news.update({
       id,
       title,
       content,
       description,
-      m_pic
+      m_pic,
+      timestamp
     });
   }else{
     yield this.service.news.insert({
         title,
         content,
         description,
-        m_pic
+        m_pic,
+        timestamp
     });
   }
 
@@ -63,16 +66,16 @@ exports.update = function* () {
   const content = this.request.body.content;
   const description = this.request.body.description;
   const m_pic = this.request.body.m_pic;
+  const timestamp = this.request.body.timestamp;
   yield this.service.news.update({
     id,
     title,
     content,
     description,
-    m_pic
+    m_pic,
+    timestamp
   });
-
   this.redirect(`/manager`);
-
 };
 
 // 删除一个文章
@@ -93,7 +96,8 @@ exports.find = function* () {
   const id = +this.query.id;
   const article = yield this.service.news.find(id);
 
-  article.fromNow = moment(article.timestamp).fromNow();
+  //article.fromNow = moment(article.timestamp).fromNow();
+  article.fromNow = moment(article.timestamp).format('YYYY-MM-DD');
   article.content = marked(article.content);
 
   this.body = article;

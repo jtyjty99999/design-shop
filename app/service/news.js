@@ -8,7 +8,7 @@ module.exports = app => {
         description: obj.description,
         content:obj.content,
         m_pic:obj.m_pic,
-        timestamp: app.mysql.literals.now,
+        timestamp: obj.timestamp || app.mysql.literals.now,
       });
 
       return result.affectedRows === 1;

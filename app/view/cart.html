@@ -65,6 +65,7 @@
     margin-top: 20px;
     font-family: "Microsoft Yahei";
     margin-bottom: -8px;
+    position: relative
     }
     .cart-box h4{
         text-align: center;
@@ -103,6 +104,18 @@
         top:0;
         color:black;
         cursor: pointer
+    }
+    .address-button.address-left {
+        left: 22px;
+    }
+    .address-button {
+        position: absolute;
+        top: 116px;
+        cursor: pointer;
+        font-size: 38px;
+    }
+    .address-button.address-right {
+        right: 20px;
     }
 </style>
 <div class="container" id="cart-container">
@@ -172,6 +185,9 @@
                 <input type="text" class="form-control" aria-label="..." value="{{address.contact_email}}" id="email" placeholder="邮箱">
             </div><!-- /.col-lg-6 -->
         </div><!-- /.row -->
+        <div class="address-button address-right">&gt</div>
+        <div class="address-button address-left">&lt</div>
+        <textarea id="address-list" style="display:none" name="" id="" cols="30" rows="10">{{addressList | dump}}</textarea>   
     </div>
     <div class="cart-box">
         <h4>总计</h4>
@@ -189,8 +205,7 @@
             <li></li>
         </ul>
     </div>
-    <input type="hidden" value="{{ ctx.csrf | safe }}" id="_csrf">
-                
+    <input type="hidden" value="{{ ctx.csrf | safe }}" id="_csrf">   
     <div id="place-box">
         <button class="btn" id="place-order" disabled>确认付款</button>
     </div>
@@ -211,6 +226,30 @@
 {% block script %}
 
 <script>
+
+var addressList = JSON.parse($('#address-list').val());
+var addressIndex = 0;
+
+$(document).delegate('.address-right', 'click', function(){
+    addressIndex += 1;
+    if(addressIndex > addressList.length -1){
+        addressIndex = 0
+    }
+    showAddress(addressIndex);
+});
+$(document).delegate('.address-left', 'click', function(){
+    if(addressIndex == 0){
+        addressIndex = addressList.length -1;
+    }
+    showAddress(addressIndex);
+});
+
+function showAddress(index){
+    let address = addressList[index];
+    $('#country').val(address.country);
+    $('#address').val(address.address);
+    $('#postcode').val(address.postcode);
+}
 
 if($(".cart-box").attr('data-cart')!=='none'){
 
