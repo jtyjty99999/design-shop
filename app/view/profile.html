@@ -167,7 +167,7 @@
                         <button id="confirm-modify" type="button" class="btn btn-default">确认修改</button>
                     </div>
                     <div class="col-xs-3">
-                        <div class="profile-action">修改密码 &gt&gt</div>
+                        <div class="profile-action change-password">修改密码 &gt&gt</div>
                     </div>
 
                 </div>
@@ -350,7 +350,7 @@
             font-size: 14px;
             margin-bottom:14px;
         }
-        #confirm-address{
+        .confirm-btn{
                 width: 140px;
                 height: 30px;
                 line-height: 30px;
@@ -1039,8 +1039,6 @@ var pro = ["北京","天津","上海","重庆","河北","山西","辽宁","吉�
                                 end: function(layero, i){
                                 }
                             });                         
-
-
                 });
 
                 $(document).delegate('.address-delete','click',function(){
@@ -1174,8 +1172,91 @@ var pro = ["北京","天津","上海","重庆","河北","山西","辽宁","吉�
                     });
                 });
 
+                var passwordContent = `<div id="address-box">
+                        <h3 class="profile-title">修改密码</h3>
+                        <div class="row profile-input">
+                            <div class="col-xs-12">
+                                <div class="input-group">
+                                    <div class="input-group-addon">原密码</div>
+                                    <input type="text" class="form-control" id="password-from" placeholder="">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row profile-input">
+                            <div class="col-xs-12">
+                                <div class="input-group">
+                                    <div class="input-group-addon">新密码</div>
+                                    <input type="text" class="form-control" id="password-to" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row profile-input">
+                                <div class="col-xs-12">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">确认新密码</div>
+                                            <input type="text" class="form-control" id="password-to-confirm" placeholder="">
+                                        </div>
+                                    </div>
+                            </div>
+                        <div class="row profile-input">
+                            <div class="col-xs-12">
+                                <button class="btn confirm-btn" id="confirm-password">确认</button>
+                            </div>
+                        </div>
+                </div>`
 
+                $(document).delegate('.change-password','click',function(){
+                    layer.open({
+                        title: false,
+                        type: 1,
+                        shadeClose: true,
+                        closeBtn:1,
+                        shade: 0.8,
+                        area:['819px','388px'],
+                        content: passwordContent,
+                        success: function(layero, i){
+                                    $('#password-from').val('');
+                                    $('#password-to').val('');
+                                    $('#password-to-confirm').val('');
+                        },
+                        end: function(layero, i){
+                        }
+                    });                         
+        });
 
-
+        $(document).delegate('#confirm-password','click',function(){
+            var passwordFrom = $('#password-from').val();
+            var passwordTo = $('#password-to').val();
+            var passwordToConfirm = $('#password-to-confirm').val();
+                                if(passwordTo!==passwordToConfirm){
+                                    alert('新密码和确认新密码不一致');
+                                    return
+                                }
+                                $.ajax({
+                                    url:'/changepassword',
+                                    type:'POST', //GET
+                                    async:false,    //或false,是否异步
+                                    data:{
+                                        passwordFrom:passwordFrom,
+                                        passwordTo:passwordTo,
+                                        _csrf:$('#_csrf').val()
+                                    },
+                                    timeout:300,    //超时时间
+                                    dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                                    beforeSend:function(xhr){
+                                        // console.log(xhr)
+                                        // console.log('发送前')
+                                    },
+                                    success:function(data){
+                                        if(data.success ==='false'){
+                                            alert(data.msg);
+                                        }else{
+                                            alert('修改成功!');
+                                        }
+                                        location.reload();
+                                    }
+                                });
+                            });
 </script>
 {% endblock %}

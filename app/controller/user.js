@@ -12,6 +12,23 @@ exports.islogin = function* () {
   };
 }
 
+exports.changePassword = function *(){
+  const id = this.session.user.id
+  const passwordFrom = this.request.body.passwordFrom;
+  const passwordTo = this.request.body.passwordTo;
+
+  let res = yield this.service.user.update({
+      id,
+      password:passwordTo,
+    });
+
+  this.session.user = yield this.service.user.find(this.session.user.id);
+  this.body = {
+    success: true,
+    msg: ""
+  };
+}
+
 exports.login = function* () {
   this.validate(loginRule);
   const name = this.request.body.name;
@@ -22,10 +39,10 @@ exports.login = function* () {
     this.session.login = true;
     this.session.user = login;
     this.body = {
-      "success": true,
-      "msg": ''
-    }
-    // this.redirect('/manager');
+        "success": true,
+        "msg": ''
+      }
+      // this.redirect('/manager');
   } else {
     this.body = {
       "success": false,
@@ -45,7 +62,6 @@ exports.update = function* () {
   const email = this.request.body.email;
   const nick = this.request.body.nick;
   const pic = this.request.body.pic;
-
   let res;
   if (pic) {
     res = yield this.service.user.update({
@@ -60,7 +76,6 @@ exports.update = function* () {
       nick,
     });
   }
-
   this.session.user = yield this.service.user.find(this.session.user.id);
   this.body = {
     success: true,
@@ -81,9 +96,9 @@ exports.profile = function* () {
   // 订单信息
   let bills = yield this.service.bill.list(this.session.user.id, pageNum, pageSize);
   bills.forEach((bill) => {
-    bill.info = JSON.parse(bill.info);
-  })
-  // 地址信息
+      bill.info = JSON.parse(bill.info);
+    })
+    // 地址信息
   let addresses = yield this.service.address.list(this.session.user.id, pageNum, pageSize);
   if (addresses.length < 3) {
     addressnotfull = true;
@@ -105,6 +120,16 @@ exports.registry = function* () {
 
   const name = this.request.body.name;
   const password = this.request.body.password;
+
+  let user = yield this.service.user.findByName(name);
+
+  if(user){
+    this.body = {
+      success: false,
+      msg: "exist"
+    }; 
+    return
+  }
   let res = yield this.service.user.insert(name, password);
 
   //错误处理

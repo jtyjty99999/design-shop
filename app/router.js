@@ -11,7 +11,7 @@ module.exports = app => {
   app.put('/user', app.controller.user.update);
   app.get('/user/islogin', app.controller.user.islogin); 
   app.get('/logout', app.controller.user.logout);
-
+  app.post('/changepassword', app.controller.user.changePassword);
   // cart
   app.get('/cart', app.controller.cart.index);
   app.post('/cart', app.controller.cart.add);

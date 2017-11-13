@@ -33,7 +33,12 @@ module.exports = app => {
 
       return article;
     }
+    // 按照用户名查询用户
+    * findByName(username) {
+      const article = yield app.mysql.get('design_user', { username });
 
+      return article;
+    }
 
 
     // 文章总数
