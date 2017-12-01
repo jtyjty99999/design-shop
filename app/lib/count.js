@@ -58,19 +58,24 @@ module.exports = function (goods, address) {
 
     let map = {
         'jiang': function (x) {
-            return 0 + ceiling(x) * 2
+            //return 12 + ceiling(x) * 2
+            return 0
         },
         'anhui': function (x) {
-            return 0 + ceiling(x) * 2
+            //return 14 + ceiling(x) * 2
+            return 0
         },
         'bei': function (x) {
-            return 0 + ceiling(x) * 2.5
+            //return 18 + ceiling(x) * 2.5
+            return 0
         },
         'nan': function (x) {
-            return 0 + ceiling(x) * 3
+            //return 18 + ceiling(x) * 3
+            return 0
         },
         'hennan': function (x) {
-            return 0 + ceiling(x) * 4.5
+            //return 18 + ceiling(x) * 4.5
+            return 0
         },
         'xinjiang': function (x) {
             return 20 + ceiling(x) * 5
