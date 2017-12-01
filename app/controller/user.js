@@ -17,9 +17,12 @@ exports.changePassword = function *(){
   const passwordFrom = this.request.body.passwordFrom;
   const passwordTo = this.request.body.passwordTo;
 
+  const crypto = require('crypto');
+  const md5Password = crypto.createHash('md5').update(passwordTo).digest('hex');
+
   let res = yield this.service.user.update({
       id,
-      password:passwordTo,
+      password:md5Password,
     });
 
   this.session.user = yield this.service.user.find(this.session.user.id);
