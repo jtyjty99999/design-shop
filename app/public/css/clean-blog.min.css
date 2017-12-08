@@ -743,25 +743,26 @@ goods
 }
 .goods-pics{
     width: 574px;
-    height: 460px;
+    height: 431px;
     display: inline-block
 }
 .goods-pics img{
     height:100%;
 }
 #good-info-block{
-    padding: 46px 45px 42px;
+    padding: 49px 45px 42px;
     background: #d1cdc4;
     color:#727171;
     width: 574px;
-    height: 460px
+    height: 431px
 }
 #good-info-block hr{
     border-color: #727171;
         margin-bottom: 5px;
 }
 .color-list{
-    padding-left: 0px
+    padding-left: 0px;
+    margin-bottom:0
 }
 .color-list li{
     width: 20px;
@@ -771,7 +772,7 @@ goods
     position: relative
 }
 .good-input{
-    margin-top:20px;
+    margin-bottom:30px;
     font-size:14px;
 }
 .good-input .col-md-6:nth-child(2){ 
@@ -779,7 +780,7 @@ goods
 }
 
 #good-info-block h3{
-    font-size: 21px;
+    font-size: 18px;
     color:black;
     margin-top: -2px;
     font-weight: normal;
@@ -787,7 +788,7 @@ goods
 #good-info-block h4{
     font-size: 14px;
     color:#727171;
-    margin-top: 23px;
+    margin-top: 26px;
     font-weight: normal;
     margin-bottom: -13px;
 }
@@ -795,7 +796,7 @@ goods
     font-size: 12px;
     color:#727171;
     margin: 0px;
-    height: 74px;
+    height: 70px;
 }
 .price-format{
     font-size: 18px;
@@ -810,7 +811,7 @@ goods
     border-right: none;
 }
 #add-to-cart{
-    width: 303px;
+    width: 287px;
     height: 35px;
     font-size: 21px;
     color: white;
