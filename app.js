@@ -6,10 +6,10 @@
 
 var fs = require('fs');
 var UpYun = require('upyun');
-var bucket = process.env.UPYUN_BUCKET;
-var username = process.env.UPYUN_USERNAME;
-var password = process.env.UPYUN_PASSWORD;
-var secret = process.env.UPYUN_SECRET;
+var bucket = process.env.UPYUN_BUCKET || "pic-cloud-hn";
+var username = process.env.UPYUN_USERNAME || "jtyjty99999"; 
+var password = process.env.UPYUN_PASSWORD || "jty19880604";
+var secret = process.env.UPYUN_SECRET || "9Tiuyq6o484zVgBXPem2qNd/0hM=";
 
 var thunkify = require('thunkify');
 
