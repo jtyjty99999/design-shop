@@ -707,6 +707,7 @@ goods
 .select-current{
 }
 .select-current:before{
+    border-radius: 28px;
     position: absolute;
     top: -2px;
     left: -2px;
@@ -750,8 +751,9 @@ goods
     height:100%;
 }
 #good-info-block{
-    padding: 49px 45px 42px;
-    background: #d1cdc4;
+    padding: 46px 45px 42px;
+    /*
+    background: #d1cdc4;*/
     color:#727171;
     width: 574px;
     height: 431px
@@ -765,6 +767,7 @@ goods
     margin-bottom:0
 }
 .color-list li{
+    border-radius: 28px;
     width: 20px;
     height: 20px;
     display: inline-block;
@@ -796,7 +799,7 @@ goods
     font-size: 12px;
     color:#727171;
     margin: 0px;
-    height: 70px;
+    height: 60px;
 }
 .price-format{
     font-size: 18px;
@@ -811,16 +814,18 @@ goods
     border-right: none;
 }
 #add-to-cart{
-    width: 287px;
-    height: 35px;
+    width: 208px;
+    height: 33px;
     font-size: 21px;
     color: white;
     background: #070503;
     text-align: center;
-    margin: auto
+    margin: auto;
+    border-radius: 20px;
 }
 #add-cart-box{
-    text-align: center
+    /*text-align: center*/
+    margin-top:30px
 }
 .number-input-left,.number-input-right{
     color: white;
